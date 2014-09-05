@@ -1,7 +1,8 @@
 class ApisController < ApplicationController
+  
   def create
     #expecting params to be complete and not nested
-    @new_api = Api.new(params)
+    @new_api = Api.new()
     respond_to do |format|
       if new_api.save
         format.json {render json: @new_api}
