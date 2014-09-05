@@ -1,18 +1,3 @@
-Skip to content
- This repository
-Explore
-Gist
-Blog
-Help
-I love turtles ninachurch
-
-361  Watch
-  Star 3,456
- Fork 1,976IronSummitMedia/startbootstrap
- branch: gh-pages  startbootstrap / templates / agency / css / agency.css
-IronSummitMedia on Jul 20 Start Bootstrap 2.0 Update
-0 contributors
-862 lines (728 sloc)  16.785 kb RawBlameHistory
 /*!
  * Start Bootstrap - Agency Bootstrap Theme (http://startbootstrap.com)
  * Code licensed under the Apache License v2.0.
@@ -876,4 +861,9 @@ img::-moz-selection {
 body {
     webkit-tap-highlight-color: #fed136;
 }
-Status API Training Shop Blog About © 2014 GitHub, Inc. Terms Privacy Security Contact
+
+/*##added*/
+
+.search-bar {
+    width: 1000px;
+}
