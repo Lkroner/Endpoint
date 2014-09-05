@@ -9,7 +9,7 @@ Team
 - Lauren Kroner: Chief WannaBe API Whisperer
 - Nina Church: Flow Guru
 - Evan Simoni: Lead Hawking Expert
-- Yohan Yi: Cheif Best Friend
+- Yohan Yi: Chief Best Friend
 - Katia Basma: Code Bulldog
 - Phillip Crawford: Our Sweet Vegan  
 
