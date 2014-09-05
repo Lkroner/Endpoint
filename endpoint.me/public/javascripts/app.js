@@ -10,11 +10,19 @@ var ApiSearchResults = Backbone.Collection.extend({
 // Views
 var HomeView = Backbone.View.extend({
 	events: {
-		"click .container": "clickSearch"
+		"click #search": "clickSearch"
 	},
 
 	initialize: function(){
 		console.log("View initialized")
+	},
+
+	template: _.template($('#home-template').html()),
+	// template: _.template($('nav'))
+
+	render: function() {
+		this.$el.html(this.template());
+		return this;
 	},
 
 	clickSearch: function() {
@@ -39,7 +47,7 @@ var Router = Backbone.Router.extend({
 
 		console.log("You're in navigate home.");
 
-		$('#container').html(homeView.render());
+		$('#container').html(homeView.render().$el);
 	}
 });
 
