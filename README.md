@@ -4,15 +4,14 @@ Endpoint
 API discovery. Helping developers find the API that fits.
 
 
-
 Team
 ============
-Lauren Kroner - Chief WannaBe API Whisperer
-Nina Church - Lead Flow Guru
-Evan Simoni - 
-Yohan Yi - Cheif Best Friend
-Katia Basma - Code Bulldog
-Phillip Crawford - Vegan  
+- Lauren Kroner: Chief WannaBe API Whisperer
+- Nina Church: Flow Guru
+- Evan Simoni: Lead Hawking Expert
+- Yohan Yi: Cheif Best Friend
+- Katia Basma: Code Bulldog
+- Phillip Crawford: Our Sweet Vegan  
 
 
 User Stories
