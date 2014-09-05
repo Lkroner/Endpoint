@@ -12,8 +12,6 @@ class UsersController < ApplicationController
   end
 
   def github_callback
-    CLIENT_ID
-    CLIENT_SECRET
 
   end
 
