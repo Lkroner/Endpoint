@@ -1,37 +1,35 @@
 class ApisController < ApplicationController
-  
+  # POST '/apis'
   def create
-    #expecting params to be complete and not nested
-    @new_api = Api.new()
-    respond_to do |format|
-      if new_api.save
-        format.json {render json: @new_api}
-      else
-        #need to add error messages, or are we skipping these?
-        puts "did not save succesfully"
-        #format.json {render json: @new_api.errors type of error}
+    ## might need to changed parameters we are passing in
+    new_api = Api.new(params[:api])
+    if new_api.save 
+      render json: {api: new_api}.to_json
+    else
+      render json: {errors: new_api.errors}
     end
   end 
 
+
+  # GET '/apis/:id'
   def show
-    @api = Api.find(params[:api_id])    
-    respond_to do |format|
-      format.json { render json: @show}
+    api = Api.find(params[:id]) 
+    if api
+      render json: {api: api}.to_json
+    else
+      render status: :unprocessable_entity, json: { message: "#{params[:api_id]} is not a valid api id!" }.to_json
     end
   end
 
+
+  # PUT '/apis/:id'
   def update
-    @api = Api.find(params[:api_id])
-    respond_to do |format|
-      if @api.update_attributes(params[:user])
-        format.json { head :no_content, status: :ok }
+    api = Api.find(params[:id])
+      if api.update_attributes(params[:api])
+        render json: {api: api}.to_json
       else
-        puts "did not update properly"
-        # format properly with proper erro message
-        #format.json { render json: @api.errors, status: :unprocessable_entity }
+        render status: :unprocessable_entity, json: {errors: api.errors}.to_json
       end
-    end
   end
 
 end
-
