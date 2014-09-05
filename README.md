@@ -24,11 +24,10 @@ User Stories
 
 MVP
 ============
-- One page app
 - Tips and Tricks
-- Trading card summary
+- Trading card - summary
+- Review has comments
 - User profile
-
 
 Features
 ============
