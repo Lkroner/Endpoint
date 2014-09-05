@@ -1,5 +1,20 @@
 Rails.application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
+  root 'search#index'
+
+  resources :users, only: [:create, :show, :update] do
+    resources :reviews, only: [:create, :index]
+    resources :comments, only: [:create, :index]
+  end
+
+  resources :apis, only: [:create, :show, :update] do
+    resources :reviews, only: [:create, :index] do
+      resources :votes, only: [:create, :index]
+      resources :comments, only: [:create, :index]
+    end
+  end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
