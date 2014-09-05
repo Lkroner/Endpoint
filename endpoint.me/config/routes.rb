@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   root 'search#index'
+  get 'search' => "search#search"
 
   resources :users, only: [:create, :show, :update] do
     resources :reviews, only: [:create, :index]
@@ -13,6 +14,10 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :index]
     end
   end
+
+  get 'callback' => 'user#github_callback'
+
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

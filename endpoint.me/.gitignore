@@ -14,3 +14,5 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+# Ignore the GITHUB client ID and Client secret tokens
+/config/local_env.yml
