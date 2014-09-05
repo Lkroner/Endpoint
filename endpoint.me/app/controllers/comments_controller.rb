@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
       comments = user.comments 
       render json: {comments: comments}.to_json
     else
-      render json: {errors: comments.errors}
+      render json: { message: "#{params[:review_id]} or #{params[:user_id]}} is not a valid review/user id!" }.to_json
     end
   end
 
