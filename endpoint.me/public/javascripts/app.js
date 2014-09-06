@@ -9,6 +9,10 @@ var ApiSearchResults = Backbone.Collection.extend({
 // Views
 
 var NavBar = Backbone.View.extend({
+	events: {
+		"click #login": "login"
+	},
+
 	initialize: function(){
 		console.log("Navbar view initialized")
 	},
@@ -20,6 +24,9 @@ var NavBar = Backbone.View.extend({
 		return this;
 	},
 
+	login: function(){
+		alert("wooot");
+	}
 });
 
 var HomeView = Backbone.View.extend({
