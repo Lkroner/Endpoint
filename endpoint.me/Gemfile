@@ -10,7 +10,7 @@ gem 'pg'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
-  gem 'capybara'
+  # gem 'capybara'
   gem 'jasmine-rails'
   gem 'faker'
 end
