@@ -5,7 +5,7 @@ class SearchController < ApplicationController
 
   # get '/search'
   def search
-  	api = Api.find_by_title(params[:input])
+  	api = Api.find_by_title(params[:userInput])
   	if api
   		render json: {api: api}.to_json
   	else
