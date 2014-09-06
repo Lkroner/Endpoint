@@ -90,6 +90,7 @@ var Router = Backbone.Router.extend({
 		var navbar = new NavBar();
 		var login = new LogIn(router);
 		$('#app-body').empty();
+		$('#navbar').html(navbar.render().$el)
 		$('#app-body').html(login.render().$el);
 	}
 });
