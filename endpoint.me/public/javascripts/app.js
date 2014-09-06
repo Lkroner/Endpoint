@@ -8,17 +8,35 @@ var ApiSearchResults = Backbone.Collection.extend({
 
 
 // Views
+
+var NavBar = Backbone.View.extend({
+	events: {
+		// This is where login/logout event listeners go.
+	},
+
+	initialize: function(){
+		console.log("Navbar view initialized")
+	},
+
+	template: _.template($('#navbar-template').html()),
+
+	render: function() {
+		this.$el.html(this.template());
+		return this;
+	},
+
+});
+
 var HomeView = Backbone.View.extend({
 	events: {
 		"click #search": "clickSearch"
 	},
 
 	initialize: function(){
-		console.log("View initialized")
+		console.log("Home view initialized")
 	},
 
 	template: _.template($('#home-template').html()),
-	// template: _.template($('nav'))
 
 	render: function() {
 		this.$el.html(this.template());
@@ -45,9 +63,14 @@ var Router = Backbone.Router.extend({
 			// model: apiSearchResults
 		});
 
+		var navbar = new NavBar ({
+
+		});
+
 		console.log("You're in navigate home.");
 
-		$('#container').html(homeView.render().$el);
+		$('#navbar').html(navbar.render().$el)
+		$('#app-body').html(homeView.render().$el);
 	}
 });
 
