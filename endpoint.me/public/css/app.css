@@ -867,3 +867,8 @@ body {
 .search-bar {
     width: 1000px;
 }
+
+/*##Login Template##*/
+#login-template {
+    padding-top: 100px;
+}

@@ -9,7 +9,13 @@ var ApiSearchResults = Backbone.Collection.extend({
 // Views
 
 var NavBar = Backbone.View.extend({
-	initialize: function(){
+	events: {
+		"click #login": "login",
+		"click #sign-up": "signup"
+	},
+
+	initialize: function(router){
+		console.log(router);
 		console.log("Navbar view initialized")
 	},
 
@@ -19,6 +25,15 @@ var NavBar = Backbone.View.extend({
 		this.$el.html(this.template());
 		return this;
 	},
+
+	login: function(){
+		alert("wooot");
+	},
+
+	signup: function(){
+		event.preventDefault();
+		router.navigate("signup", true)
+	}
 
 });
 
@@ -42,20 +57,41 @@ var HomeView = Backbone.View.extend({
 		console.log("You're in clickSearch.");
 		alert("You clicked search!");
 	}
+})
 
+var LogIn = Backbone.View.extend({
+	initialize: function(){
+		console.log("Login view initialized")
+	},
+
+	template: _.template($('#login-template').html()),
+
+	render: function() {
+		this.$el.html(this.template());
+		return this;
+	},
 })
 
 // Router
 var Router = Backbone.Router.extend({
 	routes: {
 		"": "navigateToHome",
+		"signup": "navigateToSignUp"
 	},
 
-	navigateToHome: function() {
-		var homeView = new HomeView ();
-		var navbar = new NavBar ();
+	navigateToHome: function(){
+		var navbar = new NavBar();
+		var homeView = new HomeView();
 		$('#navbar').html(navbar.render().$el)
 		$('#app-body').html(homeView.render().$el);
+	},
+
+	navigateToSignUp: function(){
+		var navbar = new NavBar();
+		var login = new LogIn(router);
+		$('#app-body').empty();
+		$('#navbar').html(navbar.render().$el)
+		$('#app-body').html(login.render().$el);
 	}
 });
 
