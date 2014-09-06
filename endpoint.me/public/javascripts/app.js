@@ -6,14 +6,9 @@ var ApiSearchResults = Backbone.Collection.extend({
 	}
 });
 
-
 // Views
 
 var NavBar = Backbone.View.extend({
-	events: {
-		// This is where login/logout event listeners go.
-	},
-
 	initialize: function(){
 		console.log("Navbar view initialized")
 	},
@@ -57,18 +52,8 @@ var Router = Backbone.Router.extend({
 	},
 
 	navigateToHome: function() {
-		// var apiSearchResults = new ApiSearchResults
-
-		var homeView = new HomeView ({
-			// model: apiSearchResults
-		});
-
-		var navbar = new NavBar ({
-
-		});
-
-		console.log("You're in navigate home.");
-
+		var homeView = new HomeView ();
+		var navbar = new NavBar ();
 		$('#navbar').html(navbar.render().$el)
 		$('#app-body').html(homeView.render().$el);
 	}
