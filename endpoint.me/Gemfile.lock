@@ -34,6 +34,9 @@ GEM
     faker (1.4.2)
       i18n (~> 0.5)
     hike (1.2.3)
+    httparty (0.13.1)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.6.11)
     jasmine-core (2.0.2)
     jasmine-rails (0.10.2)
@@ -48,6 +51,7 @@ GEM
     mime-types (1.25.1)
     minitest (5.4.1)
     multi_json (1.10.1)
+    multi_xml (0.5.5)
     pg (0.17.1)
     phantomjs (1.9.7.1)
     polyglot (0.3.5)
@@ -113,6 +117,7 @@ PLATFORMS
 
 DEPENDENCIES
   faker
+  httparty
   jasmine-rails
   pg
   rails (= 4.1.5)
