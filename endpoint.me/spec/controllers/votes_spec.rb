@@ -1,1 +1,0 @@
-votes_spec.rb
