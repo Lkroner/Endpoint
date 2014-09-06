@@ -1,0 +1,44 @@
+NAMESPACING RULES:
+-window.app = {} is our global namespace
+-each slice has it's own js file, work in your slice's :)
+-within your file, follow the global name structure of putting it into app.YourSlice.Models.ModelName and same goes for the Collections/Views. See the first few lines of each file for the navbar direction
+-when you use the constructor of a class in the router, be sure when you do "new" you are using the namespaced object
+-if you need to add a route, be sure to follow the "navigateTo" protocol
+-routes are already added
+
+
+VERTICAL SLICES
+-Slice by:
+  -search results ---KATIA & YOHAN
+    -model for API
+    -collection of search results
+    -hit the API with search params, take the results returned and turn them into instances of the API model, which then get put in the collection
+    -create a view that iterates over the collection and templates each model into the api result template (nested templates?)
+    -incorporate the ratings model into the template
+  -signup/signin --- NINA & PHIL
+    -sign up page view already up
+    -add some signin view logic
+    -need to build a user model
+    -link the submit button to redirect to search page
+    -build the logic to change the thing to say log/out if already signed in
+    -sessions
+  -Rating Logic
+    -Model (or collection)
+  -Reviews
+    -Model
+    -View
+    -Template
+        -comments
+            -model, collections, view, template
+  -API profile page --- LAUREN & EVAN
+    -View for profile page
+    -templates needed:
+      -trading card stats (incorpate ratings model)
+      -tips/tricks
+      -plug in reviews template
+  -Leave a Review template
+    -part of API profile page view
+    -post to review model? use ajax
+  -Leave a Rating template
+    -part of API profile page view
+    -post to review model? use ajax
