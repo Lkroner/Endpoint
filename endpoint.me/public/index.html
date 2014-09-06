@@ -61,13 +61,10 @@
 	                        <a href="#page-top"></a>
 	                    </li>
 	                    <li>
-	                        <a class="page-scroll" href="#services">About</a>
+	                        <a class="page-scroll" id="login" href="#portfolio">Login</a>
 	                    </li>
 	                    <li>
-	                        <a class="page-scroll" href="#portfolio">Login</a>
-	                    </li>
-	                    <li>
-	                        <a class="page-scroll" href="#about">Sign Up</a>
+	                        <a class="page-scroll" id="sign-in" href="#about">Sign Up</a>
 	                    </li>
 	                </ul>
 	            </div>
@@ -93,8 +90,22 @@
 	    </header>
     </script>
 
-<!-- ##templates go here
- -->
+   <!--  Login Template -->
+  <script id="login-template" type="text/template">
+    <form role="form">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </script>
+
+
 <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js" type="text/javascript"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js" type="text/javascript"></script>
