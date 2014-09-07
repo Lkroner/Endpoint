@@ -54,31 +54,26 @@ app.ApiProfile.Models.Reviews = Backbone.Model.extend({
   },
 
   defaults: {
-    "title": "Google",
-    "description": "This is the Google Api This is the Google Api This is the Google ApiThis is the Google ApiThis is the Google Api This is the Google Api This is the Google Api This is the Google Api This is the Google Api This is the Google Api This is the Google Api This is the Google Api This is the Google Api This is the Google Api This is the Google Api This is the Google Api This is the Google Api This is the Google Api",
-    "tips": "Read the docs. RTFM.",
-    "average_score": "3.4",
-    "logo_url": "http://www.efytimes.com/admin/useradmin/photo/google-mobile-app-store-logo.png",
-    "data_type": "JSON",
-    "doc_link": "www.google.com",
-    "endpoint_link": "www.google.com/endpoints",
-    "num_followers": 302
+    "content": "I love this API! I love this API! I love this API! I love this API! I love this API! ",
+    "created_at": "9/12/14",
+    "comment_content": "Dudes, WTF are you talking about, this API sucks, they have 0 docs >:/",
+    "votes": "4",
+    "user_photo_url": "http://gravatar.com/avatar.jpg"
   }
 
 })
 
 app.ApiProfile.Views.Reviews = Backbone.View.extend({
-
   // do an ajax call to get the reviews n shit we need
   model: new app.ApiProfile.Models.Reviews,
 
   initialize: function(){
   },
 
-  template: _.template($('#apiprofile-template').html()),
+  template: _.template($('#apireviews-template').html()),
 
-  render2: function() {
-    console.log('render2 called')
+  render: function() {
+    console.log('render for reviews called')
     this.$el.html(this.template(this.model.attributes));
     return this;
   },
