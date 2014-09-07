@@ -4,13 +4,25 @@ app.ApiProfile = {
   Views: {}
 }
 
-app.ApiProfile.Models.Profile = Backbone.Models.extend({
+app.ApiProfile.Models.Profile = Backbone.Model.extend({
   // do we intialize our model here?
   // we will pass the model into the view
+  initialize: function(){
+  },
+
+  defaults: {
+    "title": "Google",
+    "description": "This is the Google Api",
+    "tips": "Read the docs. RTFM.",
+    "averge_score": "3.4",
+    "logo_url": "http://9to5google.files.wordpress.com/2013/09/new-google-logo-knockoff.png?w=704&h=273"
+  }
+
 })
 
 app.ApiProfile.Views.Profile = Backbone.View.extend({
-  className: 'api',
+
+  model: new app.ApiProfile.Models.Profile,
 
   events: {
     "click #info": "clickInfo",
@@ -26,13 +38,14 @@ app.ApiProfile.Views.Profile = Backbone.View.extend({
   template: _.template($('#apiprofile-template').html()),
 
   render: function() {
-    this.$el.html(this.template());
+    console.log(this.model.attributes.logo_url)
+    this.$el.html(this.template(this.model.attributes));
     return this;
   },
 
   clickInfo: function() {
     console.log("You're in clickInfo.");
-    console.log(this.$el);
+    console.log(model.attributes.title);
   },
 
   clickTips: function() {

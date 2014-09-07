@@ -117,22 +117,33 @@
 
   <!--  Api Profile Template -->
   <script id="apiprofile-template" type="text/template">
-  Hella World
   <div class="container api-trading-card">
     <!-- Nav tabs -->
       <ul class="nav nav-tabs" role="tablist">
-        <li><a href="#info" id="info" role="tab" data-toggle="tab">Info</a></li>
-        <li class="active"><a href="#tips" id="tips" role="tab" data-toggle="tab">Tips/Tricks</a></li>
+        <li class="active"><a href="#info" id="info" role="tab" data-toggle="tab">Info</a></li>
+        <li><a href="#tips" id="tips" role="tab" data-toggle="tab">Tips/Tricks</a></li>
         <li><a href="#links" id="links" role="tab" data-toggle="tab">Links</a></li>
       </ul>
 
       <!-- Tab panes -->
       <div class="tab-content">
-        <div class="tab-pane" id="info">...</div>
-        <div class="tab-pane active" id="tips">...</div>
+        <div class="tab-pane active" id="info">
+          <div class="row">
+            <div class="col-xs-6 col-md-3">
+              <a href="#" class="thumbnail">
+                <img src=<%= logo_url %> alt="...">
+                </a>
+              </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="tips">...</div>
         <div class="tab-pane" id="links">...</div>
       </div>
     </div>
+  </script>
+
+  <script id="api-info-template" type="text/template">
+
   </script>
 
   <!--  End Template: Body Scripts -->
