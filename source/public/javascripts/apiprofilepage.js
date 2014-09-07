@@ -65,7 +65,6 @@ app.ApiProfile.Models.Reviews = Backbone.Model.extend({
 })
 
 app.ApiProfile.Views.Reviews = Backbone.View.extend({
-  // do an ajax call to get the reviews n shit we need
   model: new app.ApiProfile.Models.Reviews,
 
   initialize: function(){
