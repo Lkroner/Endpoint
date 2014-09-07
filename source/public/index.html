@@ -116,13 +116,47 @@
   <!--  Search Results Template -->
 
   <!--  Api Profile Template -->
+  <script id="apiprofile-template" type="text/template">
+  <div class="container api-trading-card">
+    <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active"><a href="#info" id="info" role="tab" data-toggle="tab">Info</a></li>
+        <li><a href="#tips" id="tips" role="tab" data-toggle="tab">Tips/Tricks</a></li>
+        <li><a href="#links" id="links" role="tab" data-toggle="tab">Links</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane active" id="info">
+            <div class="col-xs-6 col-md-3">
+                <img src=<%= logo_url %>
+              </div>
+                 <ul>
+                  <li><h3><%= title %></h3></li>
+                  <li><p><%= description %></p></li>
+                </ul>
+                <div><h2><%= average_score %></h2></div>
+              </div>
+        <div class="tab-pane" id="tips">Tips</div>
+        <div class="tab-pane" id="links">Links</div>
+      </div>
+    </div>
+  </script>
+
+  <script id="api-info-template" type="text/template">
+
+  </script>
+
+  <!--  End Template: Body Scripts -->
 
 <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js" type="text/javascript"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js" type="text/javascript"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="javascripts/app.js"></script>
 <script src="javascripts/homepage.js"></script>
 <script src="javascripts/navbar.js"></script>
+<script src="javascripts/apiprofilepage.js"></script>
 <script src="javascripts/login.js"></script>
 <script src="javascripts/router.js"></script>
 

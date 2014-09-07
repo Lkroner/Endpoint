@@ -28,7 +28,11 @@ app.Router = Backbone.Router.extend({
 
 	},
 	navigateToApiProfile: function(){
-
+		var navbar = new app.NavBar.Views.NavBarView();
+		var apiprofile = new app.ApiProfile.Views.Profile();
+		$('#app-body').empty();
+		$('#navbar').html(navbar.render().$el)
+		$('#app-body').html(apiprofile.render().$el);
 	}
 });
 
