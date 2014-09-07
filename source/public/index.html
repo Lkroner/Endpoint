@@ -150,7 +150,7 @@
        </div>
   </div>
 </script>
-        
+
   <!--  Api Profile Template -->
   <script id="apiprofile-template" type="text/template">
   <div class="container api-trading-card">
@@ -186,8 +186,34 @@
     </div>
   </div>
   </script>
+  <!-- Api Reviews Template -->
+  <script id="apireviews-template" type="text/template">
+    <div class="container api-reviews">
+      <div class="container">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#tab1" data-toggle="tab">Reviews</a></li>
+          <li><a href="#tab2" data-toggle="tab">Add a Review</a></li>
+          <li><a href="#tab3" data-toggle="tab">Rate</a></li>
+        </ul>
+        <div class="tab-content">
+        <div class="tab-pane active" id="tab1">
+          <div>
+            <h4><%=content%></h4>
+          </div>
+          <div><h5>Comments</h5>
+          </div>
+          <div>
+            <p><%=comment_content%></p>
+          </div>
+        </div>
+        <div class="tab-pane" id="tab2">
 
-  <script id="api-info-template" type="text/template">
+        </div>
+        <div class="tab-pane" id="tab3">
+
+        </div>
+      </div>
+    </div>
   </script>
 
   <!--  End Template: Body Scripts -->
