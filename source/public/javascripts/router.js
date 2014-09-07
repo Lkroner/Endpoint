@@ -18,11 +18,10 @@ app.Router = Backbone.Router.extend({
 
 	navigateToSignUp: function(){
 		var navbar = new app.NavBar.Views.NavBarView();
-		var login = new app.LogIn.Views.LoginPage(app.router);
-		$('#navbar').empty();
+		var signup = new app.SignUp.Views.SignUpPage(app.router);
 		$('#app-body').empty();
 		$('#navbar').html(navbar.render().$el)
-		$('#app-body').html(login.render().$el);
+		$('#app-body').html(signup.render().$el);
 	},
 	navigateToLogin: function(){
 	},
