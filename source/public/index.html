@@ -210,8 +210,8 @@
           <div class="row">
             <div class="col-md-1">
             </div>
-            <div class="comment-toggler col-md-2"> <!-- This div needs an event listner to show/hide comments -->
-              <h5>Comments</h5>
+            <div class="col-md-2">
+              <h5><a href="" class="comment-toggler">Show comments</a></h5>
             </div>
             <div class="col-md-7">
             </div>
@@ -222,7 +222,7 @@
               <img src= <%= user_photo_url %>>
             </div>
           </div>
-          <div class="row"> <!-- This row will be repeated for each comment -->
+          <div class="comment-area row" style="display:none"> <!-- This row will be repeated for each comment -->
             <div class="col-md-1">
             </div>
             <div>

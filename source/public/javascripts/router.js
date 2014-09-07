@@ -37,7 +37,7 @@ app.Router = Backbone.Router.extend({
 	navigateToApiProfile: function(id){
 		var navbar = new app.NavBar.Views.NavBarView();
 		var apiprofile = new app.ApiProfile.Views.Profile({id: id});
-		var apireviews = new app.ApiProfile.Views.Reviews();
+		var apireviews = new app.ApiProfile.Views.Reviews({id: id});
 		$('#navbar').empty();
 		$('#app-body').empty();
 		$('#navbar').html(navbar.render().$el)

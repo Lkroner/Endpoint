@@ -66,7 +66,17 @@ app.ApiProfile.Models.Reviews = Backbone.Model.extend({
 app.ApiProfile.Views.Reviews = Backbone.View.extend({
   model: new app.ApiProfile.Models.Reviews,
 
-  initialize: function(){
+  initialize: function(opts){
+    this.id = opts.id
+  },
+
+  events: {
+    "click .comment-toggler": "toggleComments"
+  },
+
+  toggleComments: function(e){
+    e.preventDefault();
+    $('.comment-area').toggle()
   },
 
   template: _.template($('#apireviews-template').html()),
