@@ -43,4 +43,3 @@
 	user.comments << comment
 	review.comments << comment
 }
-
