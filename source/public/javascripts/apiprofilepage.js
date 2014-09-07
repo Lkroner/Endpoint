@@ -47,11 +47,7 @@ app.ApiProfile.Views.Profile = Backbone.View.extend({
     $.ajax({
       url:'/apis/' + this.id,
       success: function(result){
-        console.log("successful call")
-        console.log(result)
-        console.log(apiObject)
         apiObject.set({title: result.api.title, average_score: result.api.average_score, data_type: result.api.data_type, description: result.api.description, doc_link: result.api.doc_link, endpoint_link: result.api.endpoint_link, logo_url: result.api.logo_url, num_followers: result.api.num_followers, tips: result.api.tips});
-        console.log(apiObject)
         that.$el.html(that.template(apiObject.attributes));
             debugger
       }
