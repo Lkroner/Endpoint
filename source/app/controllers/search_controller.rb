@@ -5,11 +5,15 @@ class SearchController < ApplicationController
 
   # get '/search'
   def search
-  	api = Api.find_by_title(params[:userInput])
-  	if api
-  		render json: {api: api}.to_json
+    pg_apis = PgSearch.multisearch(params[:input])
+  	if !(pg_apis.empty?)
+      apis = []
+      pg_apis.each do |api|
+        apis << Api.find(api.id)
+      end
+  		render json: {apis: apis}.to_json
   	else
-  		render status: :unprocessable_entity, json: { errors: api.errors }.to_json
+  		render status: :unprocessable_entity, json: { errors: pg_apis.errors }.to_json
   	end
   end
 
