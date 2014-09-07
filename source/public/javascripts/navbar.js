@@ -22,7 +22,7 @@ app.NavBar.Views.NavBarView = Backbone.View.extend({
 	},
 
 	login: function(){
-		alert("wooot");
+		app.router.navigate("login", true)
 	},
 
 	signup: function(){
@@ -32,7 +32,6 @@ app.NavBar.Views.NavBarView = Backbone.View.extend({
 
 	logout: function(){
 		$.removeCookie('user_id', { path: '/' })
-		alert("wooot");
 		app.router.navigate("", true)
 	}
 });

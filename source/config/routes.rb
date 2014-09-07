@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   root 'search#index'
   get 'search' => "search#search"
+  get 'login' => "users#login"
 
   resources :users, only: [:create, :show, :update] do
     resources :reviews, only: [:index]
