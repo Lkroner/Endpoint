@@ -43,13 +43,3 @@
 	user.comments << comment
 	review.comments << comment
 }
-
-<<<<<<< HEAD
-=======
-# API_KEY = "NM2UJn3mhn2WgG9tLd3zTFG7sd8jdw9G"
-# options = { "api-key" => API_KEY, 'display_id' => "api" }
-# puts "++++++++++++++++++++++++++++++++"
-# puts response = HTTParty.get('http://www.programmableweb.com/pw-api/views/query_apis', :query => options)
-# puts "++++++++++++++++++++++++++++++++"
->>>>>>> 87dee0b5487fbbed6f1b68754b99013fd48fd2ea
-
