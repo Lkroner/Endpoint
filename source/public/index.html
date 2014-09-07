@@ -86,7 +86,7 @@
       </header>
     </script>
 
-   <!--  Login / Logout Template -->
+   <!--  Signup Template -->
   <script id="signup-template" type="text/template">
       <div class="container" id="signup-template">
         <div class="row">
@@ -118,6 +118,39 @@
         </div>
       </div>
   </script>
+  <!--  Login Template -->
+  <script id="login-template" type="text/template">
+      <div class="container" id="signup-template">
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                  <h5 class="text-center">SIGN UP</h5>
+                    <form class="form form-login" role="form">
+                      <div class="form-group">
+                          <div class="input-group">
+                            <input type="text" name="username" class="form-control" placeholder="Username" />
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <input type="text" name="email" class="form-control" placeholder="Email Address" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <input type="password" name="password" class="form-control" placeholder="Password" />
+                        </div>
+                      </div>
+                </div>
+                  <a class="btn btn-sm btn-primary btn-block" role="button" id="submit">
+                        SUBMIT</a> </form>
+              </div>
+          </div>
+        </div>
+      </div>
+  </script>
+
   <!--  Search Results Template -->
 <script id="search-template" type="text/template">
   <div class="container result" data-id=<%=id%>>

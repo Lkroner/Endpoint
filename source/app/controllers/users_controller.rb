@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   # POST '/users'
   def create
-    new_user = User.new(email: params[:email], password: params[:password])
+    new_user = User.new(email: params[:email])
+    new_user.password = params[:password]
     if new_user.save 
       render json: {user: new_user}.to_json
     else
@@ -32,6 +33,12 @@ class UsersController < ApplicationController
 
 
   def login
+    user = User.find_by_email(params[:email])
+    if user.password == params[:password]
+      render json: {authenticate: true}.to_json
+    else
+      render json: {authenticate: false}.to_json
+    end
   end
 
   def login_user

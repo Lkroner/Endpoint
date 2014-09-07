@@ -1,9 +1,10 @@
 20.times {
-	User.create(email: Faker::Internet.email,
-				password: Faker::Internet.password,
-				about_me: Faker::Lorem.sentence(3),
-				picture_url: 'http://www.chadcreates.com/wp-content/uploads/2009/05/People-128.png'
-				)
+	user = User.new(email: Faker::Internet.email,
+					about_me: Faker::Lorem.sentence(3),
+					picture_url: 'http://www.chadcreates.com/wp-content/uploads/2009/05/People-128.png'
+					)
+	user.password = Faker::Internet.password
+	user.save
 }
 
 
