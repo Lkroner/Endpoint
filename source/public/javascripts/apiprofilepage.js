@@ -35,6 +35,7 @@ app.ApiProfile.Views.Profile = Backbone.View.extend({
 
   initialize: function(){
     console.log("Api Profile view initialized")
+    // console.log(data)
   },
 
   template: _.template($('#apiprofile-template').html()),
