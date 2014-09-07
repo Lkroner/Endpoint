@@ -15,7 +15,6 @@ app.SearchResults.View = Backbone.View.extend({
       for (var i = 0; i < data.apis.length; i++){
         templates += this.template(data.apis[i])
       }
-      debugger
       $('#app-body').empty();
       $('#app-body').html(templates);
     }.bind(this)).fail(function(){
@@ -27,7 +26,6 @@ app.SearchResults.View = Backbone.View.extend({
 
   render: function(){
     this.ajaxRequest();
-    console.log("rendering")
   }
 
 })

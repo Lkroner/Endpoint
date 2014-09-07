@@ -10,7 +10,6 @@ app.HomePage.Views.HomeView = Backbone.View.extend({
 	},
 
 	initialize: function(){
-		console.log("Home view initialized")
 	},
 
 	template: _.template($('#home-template').html()),
