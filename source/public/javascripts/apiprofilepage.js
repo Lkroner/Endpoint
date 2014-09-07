@@ -49,8 +49,7 @@ app.ApiProfile.Views.Profile = Backbone.View.extend({
 
 /////////////// Reviews Section
 app.ApiProfile.Models.Reviews = Backbone.Model.extend({
-  // do we intialize our model here?
-  // we will pass the model into the view
+
   initialize: function(){
   },
 
