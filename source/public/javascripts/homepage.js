@@ -20,8 +20,6 @@ app.HomePage.Views.HomeView = Backbone.View.extend({
 	},
 
 	clickSearch: function() {
-		console.log("You're in clickSearch.");
-		alert("You clicked search!");
 		app.router.navigate("searchResults", true)
 	}
 })
