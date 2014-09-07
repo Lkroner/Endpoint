@@ -1,7 +1,10 @@
 app.SearchResults = {};
 
 app.SearchResults.View = Backbone.View.extend({
-    
+  events: {
+    "click a.list-group-item":"navigateToProfile"
+  },
+
   template: _.template($('#search-template').html()),
 
   ajaxRequest: function(){
@@ -17,16 +20,21 @@ app.SearchResults.View = Backbone.View.extend({
       }
       $('#app-body').empty();
       $('#app-body').html(templates);
+      $(".result").on('click', this.navigateToProfile);
     }.bind(this)).fail(function(){
-      $('#app-body').empty();
-      app.router.navigate("", true)
-      $("#search-error-message").html("You fucked up")
     })
   },
 
   render: function(){
     this.ajaxRequest();
+  },
+
+  navigateToProfile: function(){
+    event.preventDefault();
+    var id = $(".container")[this.dataset.id].dataset.id
+    app.router.navigate("api/" + id, true)
   }
+
 
 })
 
