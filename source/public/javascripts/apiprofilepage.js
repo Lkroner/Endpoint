@@ -30,9 +30,6 @@ app.ApiProfile.Views.Profile = Backbone.View.extend({
   model: new app.ApiProfile.Models.Profile,
 
   events: {
-    "click #info": "clickInfo",
-    "click #tips": "clickTips",
-    "click #links": "clickLinks"
     // event listeners for info tab, tips/tricks and links
   },
 
@@ -47,17 +44,4 @@ app.ApiProfile.Views.Profile = Backbone.View.extend({
     this.$el.html(this.template(this.model.attributes));
     return this;
   },
-
-  clickInfo: function() {
-    console.log("You're in clickInfo.");
-    console.log(model.attributes.title);
-  },
-
-  clickTips: function() {
-    console.log("You're in tips.");
-  },
-
-  clickLinks: function() {
-    console.log("You're in clickLinks.");
-  }
 })
