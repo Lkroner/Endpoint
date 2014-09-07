@@ -4,7 +4,7 @@ class CreateApis < ActiveRecord::Migration
     	t.string :title
     	t.string :description
     	t.string :tips
-    	t.float :averge_score
+    	t.float :average_score
     	t.string :logo_url
     	t.timestamps
     end

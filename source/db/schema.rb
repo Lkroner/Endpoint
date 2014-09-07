@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20140905001507) do
     t.string   "title"
     t.string   "description"
     t.string   "tips"
-    t.float    "averge_score"
+    t.float    "average_score"
     t.string   "logo_url"
     t.datetime "created_at"
     t.datetime "updated_at"
