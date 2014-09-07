@@ -33,7 +33,6 @@ app.SearchResults.View = Backbone.View.extend({
     console.log("clicked search result")
     event.preventDefault();
     var id = $(".container")[this.dataset.id].dataset.id
-    debugger
     app.router.navigate("api/" + id, true)
   }
 
