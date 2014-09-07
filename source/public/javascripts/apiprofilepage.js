@@ -12,16 +12,21 @@ app.ApiProfile.Models.Profile = Backbone.Model.extend({
 
   defaults: {
     "title": "Google",
-    "description": "This is the Google Api",
+    "description": "This is the Google Api This is the Google Api This is the Google ApiThis is the Google ApiThis is the Google Api This is the Google Api This is the Google Api This is the Google Api This is the Google Api This is the Google Api This is the Google Api This is the Google Api This is the Google Api This is the Google Api This is the Google Api This is the Google Api This is the Google Api This is the Google Api",
     "tips": "Read the docs. RTFM.",
-    "averge_score": "3.4",
-    "logo_url": "http://9to5google.files.wordpress.com/2013/09/new-google-logo-knockoff.png?w=704&h=273"
+    "average_score": "3.4",
+    "logo_url": "http://www.efytimes.com/admin/useradmin/photo/google-mobile-app-store-logo.png",
+    "data_type": "JSON",
+    "doc_link": "www.google.com",
+    "endpoint_link": "www.google.com/endpoints",
+    "num_followers": 302
   }
 
 })
 
 app.ApiProfile.Views.Profile = Backbone.View.extend({
 
+  // hit the database with the api_id sent in from the search page, do an ajax call to get the model shit we need
   model: new app.ApiProfile.Models.Profile,
 
   events: {
