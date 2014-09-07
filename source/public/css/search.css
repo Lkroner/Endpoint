@@ -1,0 +1,31 @@
+.blogicon {
+    font-size: 217px;
+    color:#5CB85C;
+}
+
+.ratetext {
+    font-size: 37px;
+    text-decoration: underline;
+    padding-bottom: 10px;
+}
+
+.votes {
+    font-size: 47px;
+    padding-right: 20px;
+    color:#197BB5;
+}
+
+a.list-group-item {
+    height: auto;
+    min-height: 250px;
+}
+
+a.list-group-item:hover, a.list-group-item:focus {
+    border-left:10px solid #5CB85C;
+    border-right:10px solid #5CB85C;
+}
+
+a.list-group-item {
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
+}
