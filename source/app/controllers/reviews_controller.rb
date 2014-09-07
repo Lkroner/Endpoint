@@ -3,9 +3,13 @@ class ReviewsController < ApplicationController
   # GET /users/:user_id/reviews
   def index
     if params[:api_id]
-    	api = Api.find(:api_id)
+    	api = Api.find(params[:api_id])
+      comments_array = []
     	reviews = api.reviews
-    	render json: {reviews: reviews}.to_json
+      reviews.each do |rev|
+        comments_array << rev.comments
+      end     
+    	render json: {reviews: reviews, comments: comments_array.flatten}.to_json
     elsif params[:user_id]
       	user = User.find(params[:user_id])
       	reviews = user.reviews 
