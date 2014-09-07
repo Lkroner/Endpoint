@@ -197,30 +197,42 @@
         </ul>
         <div class="tab-content">
         <div class="tab-pane active" id="tab4">
-          <div class="col-md-1">
-            <h5> <%= votes %> votes</h5>
+          <div class="row">
+            <div class="votes col-md-1">
+              <h4> <%= votes %> votes</h4>
+            </div>
+            <div class="col-md-11">
+              <p><%=content%></p>
+            </div>
           </div>
-          <div>
-            <h4><%=content%></h4>
+          <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="comment-toggler col-md-2"> <!-- This div needs an event listner to show/hide comments -->
+              <h5>Comments</h5>
+            </div>
+            <div class="col-md-7">
+            </div>
+            <div class="col-md-1">
+              <h6><%= created_at%></h6>
+            </div>
+            <div class="col-md-1">
+              <img src= <%= user_photo_url %>>
+            </div>
           </div>
-          <div>
-            <h6><%= created_at%></h6>
-          </div>
-          <div>
-            <img src= <%= user_photo_url %>>
-          </div>
-          <div><h5>CommentsLink</h5>
-          </div>
-          <div>
-            <p><%=comment_content%></p>
+          <div class="row"> <!-- This row will be repeated for each comment -->
+            <div class="col-md-1">
+            </div>
+            <div>
+              <p><%=comment_content%></p>
+            </div>
           </div>
         </div>
         <div class="tab-pane" id="tab5">
-          <h2>asdfqwer</h2>
+          <h2>Add a review unit coming soon!</h2>
         </div>
         <div class="tab-pane" id="tab6">
-          <h2>qwerytyuoasdfqwer</h2>
-
+          <h2>Rate an API unit coming soon!</h2>
         </div>
       </div>
     </div>

@@ -54,7 +54,7 @@ app.ApiProfile.Models.Reviews = Backbone.Model.extend({
   },
 
   defaults: {
-    "content": "I love this API! I love this API! I love this API! I love this API! I love this API! ",
+    "content": "I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! ",
     "created_at": "9/12/14",
     "comment_content": "Dudes, WTF are you talking about, this API sucks, they have 0 docs >:/",
     "votes": "4",
@@ -73,7 +73,6 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
   template: _.template($('#apireviews-template').html()),
 
   render: function() {
-    console.log('render for reviews called')
     this.$el.html(this.template(this.model.attributes));
     return this;
   },
