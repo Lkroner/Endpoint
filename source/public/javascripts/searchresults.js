@@ -20,7 +20,8 @@ app.SearchResults.View = Backbone.View.extend({
       $('#app-body').html(templates);
     }.bind(this)).fail(function(){
       $('#app-body').empty();
-      $('#app-body').html("<p>you suck</p>");
+      app.router.navigate("", true)
+      $("#search-error-message").html("You fucked up")
     })
   },
 
