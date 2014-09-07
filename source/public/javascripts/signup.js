@@ -1,15 +1,24 @@
-app.LogIn = {
+app.SignUp = {
 	Models: {},
 	Collections: {},
 	Views: {}
 }
 
-app.LogIn.Views.LoginPage = Backbone.View.extend({
+app.SignUp.Views.SignUpPage = Backbone.View.extend({
 	initialize: function(){
 	},
+	
+	events: {
+		"click #submit": "clickSubmit"
+	},
 
-	template: _.template($('#login-template').html()),
+	clickSubmit: function(){
+		var email = $("input[name='email']").val()
+		var password = $("input[name='password']").val()
+		debugger
+	},
 
+	template: _.template($('#signup-template').html()),
 	render: function() {
 		this.$el.html(this.template());
 		return this;
