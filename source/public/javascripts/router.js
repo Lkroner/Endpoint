@@ -25,7 +25,10 @@ app.Router = Backbone.Router.extend({
 
 	},
 	navigateToSearchResults: function(){
-
+		var navbar = new app.NavBar.Views.NavBarView();		
+		var result = new app.SearchResults.View();
+		result.render()
+		$('#navbar').html(navbar.render().$el)
 	},
 	navigateToApiProfile: function(){
 

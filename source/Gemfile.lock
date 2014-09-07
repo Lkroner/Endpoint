@@ -53,6 +53,10 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     pg (0.17.1)
+    pg_search (0.7.8)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
+      arel
     phantomjs (1.9.7.1)
     polyglot (0.3.5)
     rack (1.5.2)
@@ -120,6 +124,7 @@ DEPENDENCIES
   httparty
   jasmine-rails
   pg
+  pg_search
   rails (= 4.1.5)
   rails-api
   rspec-rails (~> 3.0.0)
