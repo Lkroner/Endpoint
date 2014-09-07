@@ -46,3 +46,33 @@ app.ApiProfile.Views.Profile = Backbone.View.extend({
     return this;
   },
 })
+
+/////////////// Reviews Section
+app.ApiProfile.Models.Reviews = Backbone.Model.extend({
+
+  initialize: function(){
+  },
+
+  defaults: {
+    "content": "I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! ",
+    "created_at": "9/12/14",
+    "comment_content": "Dudes, WTF are you talking about, this API sucks, they have 0 docs >:/",
+    "votes": "4",
+    "user_photo_url": "http://gravatar.com/avatar.jpg"
+  }
+
+})
+
+app.ApiProfile.Views.Reviews = Backbone.View.extend({
+  model: new app.ApiProfile.Models.Reviews,
+
+  initialize: function(){
+  },
+
+  template: _.template($('#apireviews-template').html()),
+
+  render: function() {
+    this.$el.html(this.template(this.model.attributes));
+    return this;
+  },
+})

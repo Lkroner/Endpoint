@@ -162,7 +162,7 @@
       </ul>
       <div class="tab-content">
       <div class="tab-pane active" id="tab1">
-        <img src=<%= logo_url %>
+        <img src=<%= logo_url %>>
         <ul>
           <li><h3><%= title %></h3></li>
           <li><p><%= description %></p></li>
@@ -186,8 +186,58 @@
     </div>
   </div>
   </script>
-
-  <script id="api-info-template" type="text/template">
+  <!-- Api Reviews Template -->
+  <script id="apireviews-template" type="text/template">
+    <div class="container api-reviews">
+      <div class="container">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#tab4" data-toggle="tab">Reviews</a></li>
+          <li><a href="#tab5" data-toggle="tab">Add a Review</a></li>
+          <li><a href="#tab6" data-toggle="tab">Rate</a></li>
+        </ul>
+        <div class="tab-content">
+        <div class="tab-pane active" id="tab4">
+          <div class="row">
+          <!-- start Laurens upvote area -->
+            <div class="votes col-md-1">
+              <h4> <%= votes %> votes</h4>
+            </div>
+          <!-- end Laurens upvote area -->
+            <div class="col-md-11">
+              <p><%=content%></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="comment-toggler col-md-2"> <!-- This div needs an event listner to show/hide comments -->
+              <h5>Comments</h5>
+            </div>
+            <div class="col-md-7">
+            </div>
+            <div class="col-md-1">
+              <h6><%= created_at%></h6>
+            </div>
+            <div class="col-md-1">
+              <img src= <%= user_photo_url %>>
+            </div>
+          </div>
+          <div class="row"> <!-- This row will be repeated for each comment -->
+            <div class="col-md-1">
+            </div>
+            <div>
+              <p><%=comment_content%></p>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="tab5">
+          <h2>Add a review unit coming soon!</h2>
+        </div>
+        <div class="tab-pane" id="tab6">
+          <h2>Rate an API unit coming soon!</h2>
+        </div>
+      </div>
+    </div>
   </script>
 
   <!--  End Template: Body Scripts -->
