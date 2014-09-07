@@ -6,11 +6,12 @@
 				)
 }
 
+
 10.times{
 	Api.create(title: Faker::Lorem.word,
 			   description: Faker::Lorem.sentence(3),
 			   tips: Faker::Lorem.sentence(3),
-			   average_score: rand(1..5),
+			   average_score: rand(1.0..5.0),
 			   logo_url: "http://www.nasa.gov/sites/default/files/sydney.b.boen/images/twitter-small(1).gifv"
 			   )
 }
@@ -42,10 +43,3 @@
 	user.comments << comment
 	review.comments << comment
 }
-
-# API_KEY = "NM2UJn3mhn2WgG9tLd3zTFG7sd8jdw9G"
-# options = { "api-key" => API_KEY, 'display_id' => "api" }
-# puts "++++++++++++++++++++++++++++++++"
-# puts response = HTTParty.get('http://www.programmableweb.com/pw-api/views/query_apis', :query => options)
-# puts "++++++++++++++++++++++++++++++++"
-

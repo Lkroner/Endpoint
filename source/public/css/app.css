@@ -266,8 +266,8 @@ header {
     text-align: center;
     color: #0D6376;
     background-attachment: scroll;
-    background-image: url(http://www.foresthdwallpaper.com/wp-content/uploads/2014/05/beautiful-cover-photos-of-nature-7.jpg);
-    background-position: center center;
+/*    background-image: url(http://www.foresthdwallpaper.com/wp-content/uploads/2014/05/beautiful-cover-photos-of-nature-7.jpg);
+*/    background-position: center center;
     background-repeat: none;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -879,4 +879,12 @@ body {
 /*##Login Template##*/
 #login-template {
     padding-top: 100px;
+}
+
+#container {
+    background-image: url(http://www.foresthdwallpaper.com/wp-content/uploads/2014/05/beautiful-cover-photos-of-nature-7.jpg);
+}
+
+#app-boyd {
+    padding-top: 100px
 }

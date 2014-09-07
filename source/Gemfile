@@ -8,6 +8,8 @@ gem 'spring', :group => :development
 
 gem 'pg'
 
+gem 'pg_search'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   # gem 'capybara'

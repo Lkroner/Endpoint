@@ -11,8 +11,6 @@ app.NavBar.Views.NavBarView = Backbone.View.extend({
 	},
 
 	initialize: function(){
-		// console.log(router);
-		console.log("Navbar view initialized")
 	},
 
 	template: _.template($('#navbar-template').html()),

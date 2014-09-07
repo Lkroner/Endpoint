@@ -6,7 +6,6 @@ app.LogIn = {
 
 app.LogIn.Views.LoginPage = Backbone.View.extend({
 	initialize: function(){
-		console.log("Login view initialized")
 	},
 
 	template: _.template($('#login-template').html()),

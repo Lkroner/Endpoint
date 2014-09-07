@@ -10,7 +10,6 @@ app.HomePage.Views.HomeView = Backbone.View.extend({
 	},
 
 	initialize: function(){
-		console.log("Home view initialized")
 	},
 
 	template: _.template($('#home-template').html()),
@@ -21,7 +20,6 @@ app.HomePage.Views.HomeView = Backbone.View.extend({
 	},
 
 	clickSearch: function() {
-		console.log("You're in clickSearch.");
-		alert("You clicked search!");
+		app.router.navigate("searchResults", true)
 	}
 })
