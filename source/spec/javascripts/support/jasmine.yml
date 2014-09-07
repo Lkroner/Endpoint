@@ -12,7 +12,7 @@ src_dir: "spec/javascripts"
 # path to parent directory of css_files
 # relative path from Rails.root
 # defaults to app/assets/stylesheets
-# css_dir: "app/assets/stylesheets"
+css_dir: ""
 
 # list of file expressions to include as source files
 # relative path from src_dir
