@@ -30,10 +30,11 @@ app.SearchResults.View = Backbone.View.extend({
   },
 
   navigateToProfile: function(){
-    console.log("navigated")
+    console.log("clicked search result")
     event.preventDefault();
-    var id = $(".container")[this.dataset.id]
-    app.router.navigate("apiProfile", true, id)
+    var id = $(".container")[this.dataset.id].dataset.id
+    debugger
+    app.router.navigate("api/" + id, true)
   }
 
 

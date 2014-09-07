@@ -4,7 +4,7 @@ app.Router = Backbone.Router.extend({
 		"signup": "navigateToSignUp",
 		"login": "navigateToLogin",
 		"searchResults": "navigateToSearchResults",
-		"apiProfile": "navigateToApiProfile"
+		"api/:id": "navigateToApiProfile"
 	},
 
 	navigateToHome: function(){
@@ -30,9 +30,10 @@ app.Router = Backbone.Router.extend({
 		result.render()
 		$('#navbar').html(navbar.render().$el)
 	},
-	navigateToApiProfile: function(data){
+	navigateToApiProfile: function(id){
 		var navbar = new app.NavBar.Views.NavBarView();
-		var apiprofile = new app.ApiProfile.Views.Profile();
+		var apiprofile = new app.ApiProfile.Views.Profile({id: id});
+
 		$('#app-body').empty();
 		$('#navbar').html(navbar.render().$el)
 		$('#app-body').html(apiprofile.render().$el);
