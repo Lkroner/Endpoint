@@ -10,6 +10,7 @@ gem 'pg'
 
 gem 'pg_search'
 
+gem 'bcrypt'
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   # gem 'capybara'

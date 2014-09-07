@@ -61,17 +61,7 @@ app.ApiProfile.Models.Reviews = Backbone.Model.extend({
     "user_photo_url": "http://gravatar.com/avatar.jpg"
   }
 
-})
-
-app.ApiProfile.Views.Reviews = Backbone.View.extend({
-  model: new app.ApiProfile.Models.Reviews,
-
-  initialize: function(opts){
-    this.id = opts.id
-  },
-
-  events: {
-    "click .comment-toggler": "toggleComments"
+})    "click .comment-toggler": "toggleComments"
   },
 
   toggleComments: function(e){
