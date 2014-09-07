@@ -13,9 +13,20 @@ app.SignUp.Views.SignUpPage = Backbone.View.extend({
 	},
 
 	clickSubmit: function(){
-		var email = $("input[name='email']").val()
-		var password = $("input[name='password']").val()
-		debugger
+		this.email = $("input[name='email']").val()
+		this.password = $("input[name='password']").val()
+		this.ajaxRequest()
+	},
+
+	ajaxRequest: function(){
+		Backbone.ajax({
+			url: '/users',
+			type: 'post',
+			data: {email: this.email, password: this.password}
+		}).done(function(data){
+			$.cookie("user_id", data.user.id)
+			app.router.navigate("", true)
+		})		
 	},
 
 	template: _.template($('#signup-template').html()),
