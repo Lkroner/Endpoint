@@ -1,14 +1,11 @@
 class UsersController < ApplicationController
   # POST '/users'
   def create
-    puts "paramssss #{params}"
     @user = User.new(email: params[:email])
     @user.password = params[:password]
     if @user.save
-      puts "i'm saving"
       render json: {user: @user}.to_json
     else
-      puts "i'm not saving"
       render json: {errors: @user.errors}
     end
   end
@@ -52,6 +49,4 @@ class UsersController < ApplicationController
 
   def github_callback
   end
-
-
 end
