@@ -238,20 +238,20 @@
           <div class="tab-pane active" id="tab4"></div>
           <div class="tab-pane" id="tab5">
             <div class="feedback-form">
-              <form action="TBD" name="" method="POST">
+              <form class="reviewSubmission">
                 <span class="star-rating">
-                  <input type="radio" name="rating" value="1"><i></i>
-                  <input type="radio" name="rating" value="2"><i></i>
-                  <input type="radio" name="rating" value="3"><i></i>
-                  <input type="radio" name="rating" value="4"><i></i>
-                  <input type="radio" name="rating" value="5"><i></i>
+                  <input type="radio" name="score" value="1"><i></i>
+                  <input type="radio" name="score" value="2"><i></i>
+                  <input type="radio" name="score" value="3"><i></i>
+                  <input type="radio" name="score" value="4"><i></i>
+                  <input type="radio" name="score" value="5"><i></i>
                 </span><br>
-                <input type="text" name="feedback-title"><br>
-                <textarea rows="3" cols="50" name="feedback-content">
-                </textarea><br>
-                <input type="submit" value="Submit">
+                <input type="text" name="title"><br>
+                <textarea rows="3" cols="50" name="content"></textarea><br>
+                <input id="submit" type="submit" value="Submit">
               </form>
             </div>
+            <h4 class="feedback-success" style="display:none">Thank you for your feeback!</h4>
           </div>
           <div class="tab-pane" id="tab6">
             <h2>Rate an API unit coming soon!</h2>
