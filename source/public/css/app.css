@@ -3,48 +3,78 @@
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
-body {
-  background-image: url('http://www.discoverylanguage.info/discoverylanguageweb/wp-content/uploads/2011/10/new-background6.png');
+
+/* Possible backgrounds:
+http://geekslovebacon.com/wp-content/uploads/2014/01/clean-white-polygon-backgrounds-8.jpg
+*/
+
+
+header {
+  background-image: url('http://geekslovebacon.com/wp-content/uploads/2014/01/clean-white-polygon-backgrounds-8.jpg');
+  background-position: center center;
+  background-size: cover;
+  text-align: center;
+}
+.container header {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+  padding-left: 1%;
+  padding-right: 1%;
 }
 
 #app-body {
   /*background-color: red;*/
   font-family: 'Helvetica Neue', Helvetica;
-  margin-top: 10%;
+  
 }
 .intro-heading {
   color: white;
   font-family:  "Droid Serif",'Helvetica Neue', Helvetica;
   font-size: 30pt;
   font-style: italic;
-  margin: 1%;
-  padding: 1%;
-  text-align: center;
 }
 .intro-heading input {
   margin-left: auto;
   margin-right: auto;
   width: 30%;
 }
-
 .intro-lead-in {
   color: white;
   font-family: Montserrat, 'Helvetica Neue', Helvetica;
-  font-size: 50pt;
+  font-size: 70pt;
   font-weight: 700;
   text-align: center;
 }
+.intro-text {
+  padding-top: 20%;
+  padding-bottom: 18%;
+}
 .navbar {
-  background-color: transparent;
+  background-color: white;
   /*display: block;*/
 }
 .navbar.brand {
-  font-family: 
+  font-family: ;
 }
+/* Brand Logo */
+.navbar-default .navbar-brand {
+  color: #5e5e5e;
+  font-family: Cabin;
+  font-size: 20pt;
+  font-weight: 300;
+}
+/* Nav Links */
+.navbar-default .navbar-nav > li > a {
+  color: grey;
+}
+#search-list {
+  padding-top: 6%;
+}
+
 .tab-pane ul{
   list-style: none;
 }
-
 .tab-content img {
   float: left;
 }
