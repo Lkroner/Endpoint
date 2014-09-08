@@ -1,12 +1,15 @@
 class UsersController < ApplicationController
   # POST '/users'
   def create
-    new_user = User.new(email: params[:email])
-    new_user.password = params[:password]
-    if new_user.save 
-      render json: {user: new_user}.to_json
+    puts "paramssss #{params}"
+    @user = User.new(email: params[:email])
+    @user.password = params[:password]
+    if @user.save
+      puts "i'm saving"
+      render json: {user: @user}.to_json
     else
-      render json: {errors: new_user.errors}
+      puts "i'm not saving"
+      render json: {errors: @user.errors}
     end
   end
 
