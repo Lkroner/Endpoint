@@ -88,7 +88,6 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
   upVote: function(event){
     var user_id = $.cookie("user_id")
     var review_id = $(event.target).closest(".single-review")[0].dataset.id
-    //if user is logged in 
     if ($.cookie("user_id")){
       Backbone.ajax({
         url: '/reviews/' + review_id + '/votes',
