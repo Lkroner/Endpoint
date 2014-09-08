@@ -49,6 +49,7 @@ app.Router = Backbone.Router.extend({
 		this.toggleNavBar();
 		var navbar = new app.NavBar.Views.NavBarView();
 		var apiprofile = new app.ApiProfile.Views.Profile({id: id});
+		// var reviewsCollection = new app.ApiProfile.Collections.Reviews({id: id});
 		var apireviews = new app.ApiProfile.Views.Reviews({id: id});
 		$('#navbar').empty();
 		$('#app-body').empty();

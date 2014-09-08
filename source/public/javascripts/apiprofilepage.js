@@ -6,7 +6,7 @@ app.ApiProfile = {
 
 app.ApiProfile.Models.Profile = Backbone.Model.extend({
 
-  urlRoot: '/apis/:id',
+  // urlRoot: '/apis/:id',
 
   initialize: function(){
   },
@@ -48,9 +48,9 @@ app.ApiProfile.Views.Profile = Backbone.View.extend({
 })
 
 /////////////// Reviews Section
-app.ApiProfile.Models.Reviews = Backbone.Model.extend({
+app.ApiProfile.Models.Review = Backbone.Model.extend({
 
-  urlRoot: '/apis/:id/reviews',
+  // urlRoot: '/apis/:id/reviews',
 
   initialize: function(){
   },
@@ -60,13 +60,27 @@ app.ApiProfile.Models.Reviews = Backbone.Model.extend({
     "content": "",
     "title": "",
     "created_at": "",
-    "user_id": ""
+    "user_id": "",
+    "user_photo_url": "",
+    "comment_content": ""
   }
 
 })
 
+
+app.ApiProfile.Collections.Reviews = Backbone.Collection.extend({
+  $el: '.api-reviews',
+  initialize: function(opts){
+    this.id = opts.id
+  },
+  model: app.ApiProfile.Models.Review,
+  url: '/apis/' + this.id + '/reviews'
+})
+
+
 app.ApiProfile.Views.Reviews = Backbone.View.extend({
-  model: app.ApiProfile.Models.Reviews,
+  // model: app.ApiProfile.Models.Review,
+  collection: app.ApiProfile.Models.Reviews,
 
   initialize: function(opts){
     this.id = opts.id
@@ -84,16 +98,28 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
   template: _.template($('#apireviews-template').html()),
 
   render: function() {
-    var reviewObject = new this.model
+    var reviewObjects = new app.ApiProfile.Collections.Reviews(this.id);
     var that = this;
-    $.ajax({
-      url:'/apis/' + this.id + '/reviews',
-      success: function(result){
-        reviewObject.set(result.reviews);
-        that.$el.html(that.template(reviewObject.attributes));
+
+    reviewObjects.fetch({
+      success: function(){
+        debugger
+        console.log(reviewObjects);
+        that.$el.html(that.template(reviewObjects.attributes));
       }
-    })
-    console.log(this)
-    return this;
+    });
+      // success: function(result){
+      //   debugger
+      //     reviewObjects.set(result.reviews);
+      //     // debugger
+      //     that.$el.html(that.template(reviewObjects.attributes));
+
+
+    // console.log(this)
+    // return this;
   },
+
+  displayReviews: function(){
+    console.log(reviewObjects);
+  }
 })
