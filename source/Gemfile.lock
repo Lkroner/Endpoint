@@ -72,6 +72,7 @@ GEM
     multi_json (1.10.1)
     multi_test (0.1.1)
     multi_xml (0.5.5)
+    netrc (0.7.7)
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     pg (0.17.1)
@@ -103,6 +104,8 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.3.2)
+    rest_client (1.7.3)
+      netrc (~> 0.7.7)
     rspec-core (3.0.4)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.4)
@@ -157,10 +160,12 @@ DEPENDENCIES
   faker
   httparty
   jasmine-rails
+  json
   pg
   pg_search
   rails (= 4.1.5)
   rails-api
+  rest_client
   rspec-rails (~> 3.0.0)
   selenium-webdriver
   spring
