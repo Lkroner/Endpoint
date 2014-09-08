@@ -40,11 +40,12 @@ app.Router = Backbone.Router.extend({
 	navigateToApiProfile: function(id){
 		this.resetBody()
 		this.toggleNavBar();
+		var navbar = new app.NavBar.Views.NavBarView();
 		var apiprofile = new app.ApiProfile.Views.Profile({id: id});
 		var apireviews = new app.ApiProfile.Views.Reviews({id: id});
 		$('#navbar').empty();
 		$('#app-body').empty();
-		$('#navbar').html(navbar.render().$el)
+		$('#navbar').html(navbar.render().$el);
 		$('#app-body').html(apiprofile.render().$el);
 		$('#app-body').append(apireviews.render().$el);
 	},

@@ -50,18 +50,30 @@ app.ApiProfile.Views.Profile = Backbone.View.extend({
 /////////////// Reviews Section
 app.ApiProfile.Models.Reviews = Backbone.Model.extend({
 
+  urlRoot: '/apis/:id/reviews',
+
   initialize: function(){
   },
 
   defaults: {
-    "content": "I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! ",
-    "created_at": "9/12/14",
-    "comment_content": "Dudes, WTF are you talking about, this API sucks, they have 0 docs >:/",
-    "votes": "4",
-    "user_photo_url": "http://gravatar.com/avatar.jpg"
+    "score": "",
+    "content": "",
+    "title": "",
+    "created_at": "",
+    "user_id": ""
   }
 
-})    "click .comment-toggler": "toggleComments"
+})
+
+app.ApiProfile.Views.Reviews = Backbone.View.extend({
+  model: app.ApiProfile.Models.Reviews,
+
+  initialize: function(opts){
+    this.id = opts.id
+  },
+
+  events: {
+    "click .comment-toggler": "toggleComments"
   },
 
   toggleComments: function(e){
@@ -72,7 +84,16 @@ app.ApiProfile.Models.Reviews = Backbone.Model.extend({
   template: _.template($('#apireviews-template').html()),
 
   render: function() {
-    this.$el.html(this.template(this.model.attributes));
+    var reviewObject = new this.model
+    var that = this;
+    $.ajax({
+      url:'/apis/' + this.id + '/reviews',
+      success: function(result){
+        reviewObject.set(result.reviews);
+        that.$el.html(that.template(reviewObject.attributes));
+      }
+    })
+    console.log(this)
     return this;
   },
 })
