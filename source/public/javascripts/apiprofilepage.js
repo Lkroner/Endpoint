@@ -101,8 +101,8 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
     $('.comment-area').toggle()
   },
 
-  template: _.template($('#apireviews-template').html()),
-
+  reviewsTemplate: _.template($('#apireviews-template').html()),
+  singleReviewTemplate: _.template($('#singlereview-template').html()),
   render: function() {
     var reviewObject = new this.model;
     var that = this;
@@ -119,7 +119,7 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
           reviewObject.set(data.reviews[i]);
           // debugger
           // debugger
-          var templatesss = that.$el.html(that.template(reviewObject.attributes));
+          var templatesss = that.$el.html(that.singleReviewTemplate(reviewObject.attributes));
           // debugger
           allReviewsHTML += templatesss[0].innerHTML
           // debugger
@@ -127,7 +127,9 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
           // debugger
 
         };
-        $("#app-body").append(allReviewsHTML);
+
+        $("#app-body").append(that.$el.html(that.reviewsTemplate()));
+        $("#tab4").append(allReviewsHTML);
         // $("#tab4").append(allReviewsHTML);
         // debugger
       })
