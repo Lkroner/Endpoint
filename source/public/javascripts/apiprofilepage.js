@@ -84,38 +84,16 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
   template: _.template($('#apireviews-template').html()),
 
   render: function() {
-    // var apiObject = new this.model
-    // var that = this;
-    // $.ajax({
-    //   url:'/apis/' + this.id,
-    //   success: function(result){
-    //     apiObject.set(result.api);
-    //     that.$el.html(that.template(apiObject.attributes));
-    //   }
-    // })
-    // ###NINA
-
     var reviewObject = new this.model
     var that = this;
     $.ajax({
       url:'/apis/' + this.id + '/reviews',
       success: function(result){
-        var templates = ""
-        console.log(result.reviews)
-        // debugger
-        for (var i = 0; i < result.reviews.length; i++){
-          // debugger
-          console.log(reviewObject)
-          console.log(result.reviews[i])
-          reviewObject.set(result.reviews[i])
-          templates += that.template(reviewObject.attributes);
-        }
-        $('#app-body').append(templates);
-
-        // reviewObject.set(result.reviews);
-        // that.$el.html(that.template(reviewObject.attributes));
+        reviewObject.set(result.reviews);
+        that.$el.html(that.template(reviewObject.attributes));
       }
     })
+    console.log(this)
     return this;
   },
 })
