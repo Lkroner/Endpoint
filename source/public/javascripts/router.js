@@ -12,7 +12,7 @@ app.Router = Backbone.Router.extend({
 		$('#navbar').empty();
 		$('#app-body').empty();
 		$('#navbar').html(navbar.render().$el)
-		
+
 	},
 
 	navigateToHome: function(){
@@ -48,9 +48,9 @@ app.Router = Backbone.Router.extend({
 		this.resetBody()
 		this.toggleNavBar();
 		var apiprofile = new app.ApiProfile.Views.Profile({id: id});
-		var apireviews = new app.ApiProfile.Views.Reviews();
+		var apireviews = new app.ApiProfile.Views.Reviews({id: id});
 		$('#app-body').html(apiprofile.render().$el);
-		$('#app-body').append(apireviews.render().$el);
+		$('#app-body').append(apireviews.render());
 	},
 
 	toggleNavBar: function(){
@@ -61,7 +61,7 @@ app.Router = Backbone.Router.extend({
 			$("#sign-up").toggleClass("hidden")
 		}
 	}
-	
+
 });
 
 (function(){
