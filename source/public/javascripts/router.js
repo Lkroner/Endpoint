@@ -55,7 +55,7 @@ app.Router = Backbone.Router.extend({
 		$('#app-body').empty();
 		$('#navbar').html(navbar.render().$el);
 		$('#app-body').html(apiprofile.render().$el);
-		$('#app-body').append(apireviews.render().$el);
+		$('#app-body').append(apireviews.render());
 	},
 
 	toggleNavBar: function(){

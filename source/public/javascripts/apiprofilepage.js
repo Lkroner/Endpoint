@@ -69,7 +69,7 @@ app.ApiProfile.Models.Review = Backbone.Model.extend({
 
 
 app.ApiProfile.Collections.Reviews = Backbone.Collection.extend({
-  $el: '.api-reviews',
+  // $el: '.api-reviews',
   initialize: function(opts){
     this.id = opts.id
   },
@@ -80,7 +80,7 @@ app.ApiProfile.Collections.Reviews = Backbone.Collection.extend({
 
 app.ApiProfile.Views.Reviews = Backbone.View.extend({
   // model: app.ApiProfile.Models.Review,
-  collection: app.ApiProfile.Models.Reviews,
+  model: app.ApiProfile.Models.Review,
 
   initialize: function(opts){
     this.id = opts.id
@@ -98,16 +98,33 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
   template: _.template($('#apireviews-template').html()),
 
   render: function() {
-    var reviewObjects = new app.ApiProfile.Collections.Reviews(this.id);
+    var reviewObject = new this.model;
     var that = this;
+     Backbone.ajax({
+      url: '/apis/' + that.id + '/reviews',
+      type: 'GET'
+      }).done(function(data){
+        // debugger
+        console.log(data);
+        allReviewsHTML = ""
+        for(var i=0; i< data.reviews.length; i++){
+          console.log(i)
+          // debugger
+          reviewObject.set(data.reviews[i]);
+          // debugger
+          // debugger
+          var templatesss = that.$el.html(that.template(reviewObject.attributes));
+          // debugger
+          allReviewsHTML += templatesss[0].innerHTML
+          // debugger
+          // var template1 = that.$el
+          // debugger
 
-    reviewObjects.fetch({
-      success: function(){
-        debugger
-        console.log(reviewObjects);
-        that.$el.html(that.template(reviewObjects.attributes));
-      }
-    });
+        };
+        $("#app-body").append(allReviewsHTML)
+        // debugger
+      })
+    }
       // success: function(result){
       //   debugger
       //     reviewObjects.set(result.reviews);
@@ -117,9 +134,6 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
 
     // console.log(this)
     // return this;
-  },
 
-  displayReviews: function(){
-    console.log(reviewObjects);
-  }
+
 })
