@@ -6,7 +6,11 @@ class UsersController < ApplicationController
 		if @user.save
 			render json: {user: @user}.to_json
 		else
-			render json: {errors: @user.errors}
+			errors = []
+			@user.errors.messages.each do |property, message|
+				errors.concat(message)
+			end
+			render json: {errors: errors}
 		end
 	end
 

@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
 
   	validates :email, :presence => {:message => "Email cannot be blank"}
   	validates :email, :uniqueness => {:message => "Email already exists"}
-  	# validates :password_hash, :presence => {:message => "Password cannot be blank"}
+  	validates :email, format: { with: /@/, message: "Email format is incorrect"}
+
 
 	def password
     	@password ||= Password.new(password_hash)
