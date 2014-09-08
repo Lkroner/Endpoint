@@ -77,6 +77,12 @@ app.ApiProfile.Collections.Reviews = Backbone.Collection.extend({
   url: '/apis/' + this.id + '/reviews'
 })
 
+app.ApiProfile.Views.NavBarView = Backbone.View.extend({
+  template: _.template($('#apireviews-navbar').html()),
+  render: function() {
+    this.$el.html(this.template());
+  }
+})
 
 app.ApiProfile.Views.Reviews = Backbone.View.extend({
   // model: app.ApiProfile.Models.Review,
@@ -121,7 +127,8 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
           // debugger
 
         };
-        $("#app-body").append(allReviewsHTML)
+        $("#app-body").append(allReviewsHTML);
+        // $("#tab4").append(allReviewsHTML);
         // debugger
       })
     }

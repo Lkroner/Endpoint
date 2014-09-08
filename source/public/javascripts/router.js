@@ -49,12 +49,13 @@ app.Router = Backbone.Router.extend({
 		this.toggleNavBar();
 		var navbar = new app.NavBar.Views.NavBarView();
 		var apiprofile = new app.ApiProfile.Views.Profile({id: id});
-		// var reviewsCollection = new app.ApiProfile.Collections.Reviews({id: id});
+		var apiReviewNavbar = new app.ApiProfile.Views.NavBarView();
 		var apireviews = new app.ApiProfile.Views.Reviews({id: id});
 		$('#navbar').empty();
 		$('#app-body').empty();
 		$('#navbar').html(navbar.render().$el);
 		$('#app-body').html(apiprofile.render().$el);
+		$('#app-body').append(apiReviewNavbar.render());
 		$('#app-body').append(apireviews.render());
 	},
 
