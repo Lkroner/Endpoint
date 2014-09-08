@@ -6,8 +6,6 @@ app.ApiProfile = {
 
 app.ApiProfile.Models.Profile = Backbone.Model.extend({
 
-  urlRoot: '/apis/:id',
-
   initialize: function(){
   },
 
@@ -48,31 +46,67 @@ app.ApiProfile.Views.Profile = Backbone.View.extend({
 })
 
 /////////////// Reviews Section
-app.ApiProfile.Models.Reviews = Backbone.Model.extend({
-
+app.ApiProfile.Models.Review = Backbone.Model.extend({
   initialize: function(){
   },
 
   defaults: {
-    "content": "I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! I love this API! ",
-    "created_at": "9/12/14",
-    "comment_content": "Dudes, WTF are you talking about, this API sucks, they have 0 docs >:/",
-    "votes": "4",
-    "user_photo_url": "http://gravatar.com/avatar.jpg"
+    "score": "",
+    "content": "",
+    "title": "",
+    "created_at": "",
+    "user_id": "",
+    "user_photo_url": "",
+    "comment_content": ""
   }
 
 })
 
+
+app.ApiProfile.Collections.Reviews = Backbone.Collection.extend({
+  initialize: function(opts){
+    this.id = opts.id
+  },
+  model: app.ApiProfile.Models.Review,
+  url: '/apis/' + this.id + '/reviews'
+})
+
+
 app.ApiProfile.Views.Reviews = Backbone.View.extend({
-  model: new app.ApiProfile.Models.Reviews,
+  model: app.ApiProfile.Models.Review,
 
-  initialize: function(){
+  initialize: function(opts){
+    this.id = opts.id
   },
 
-  template: _.template($('#apireviews-template').html()),
+  events: {
+    "click .comment-toggler": "toggleComments"
+  },
 
+  toggleComments: function(e){
+    e.preventDefault();
+    $('.comment-area').toggle()
+  },
+
+  reviewsTemplate: _.template($('#apireviews-template').html()),
+  singleReviewTemplate: _.template($('#singlereview-template').html()),
   render: function() {
-    this.$el.html(this.template(this.model.attributes));
-    return this;
-  },
+    var reviewObject = new this.model;
+    var that = this;
+     Backbone.ajax({
+      url: '/apis/' + that.id + '/reviews',
+      type: 'GET'
+      }).done(function(data){
+        allReviewsHTML = ""
+        for(var i=0; i< data.reviews.length; i++){
+          reviewObject.set(data.reviews[i]);
+          var templates = that.$el.html(that.singleReviewTemplate(reviewObject.attributes));
+          allReviewsHTML += templates[0].innerHTML
+        };
+
+        $("#app-body").append(that.$el.html(that.reviewsTemplate()));
+        $("#tab4").append(allReviewsHTML);
+      })
+    }
+
 })
