@@ -6,8 +6,6 @@ app.ApiProfile = {
 
 app.ApiProfile.Models.Profile = Backbone.Model.extend({
 
-  // urlRoot: '/apis/:id',
-
   initialize: function(){
   },
 
@@ -49,9 +47,6 @@ app.ApiProfile.Views.Profile = Backbone.View.extend({
 
 /////////////// Reviews Section
 app.ApiProfile.Models.Review = Backbone.Model.extend({
-
-  // urlRoot: '/apis/:id/reviews',
-
   initialize: function(){
   },
 
@@ -69,7 +64,6 @@ app.ApiProfile.Models.Review = Backbone.Model.extend({
 
 
 app.ApiProfile.Collections.Reviews = Backbone.Collection.extend({
-  // $el: '.api-reviews',
   initialize: function(opts){
     this.id = opts.id
   },
@@ -77,15 +71,8 @@ app.ApiProfile.Collections.Reviews = Backbone.Collection.extend({
   url: '/apis/' + this.id + '/reviews'
 })
 
-app.ApiProfile.Views.NavBarView = Backbone.View.extend({
-  template: _.template($('#apireviews-navbar').html()),
-  render: function() {
-    this.$el.html(this.template());
-  }
-})
 
 app.ApiProfile.Views.Reviews = Backbone.View.extend({
-  // model: app.ApiProfile.Models.Review,
   model: app.ApiProfile.Models.Review,
 
   initialize: function(opts){
@@ -110,39 +97,17 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
       url: '/apis/' + that.id + '/reviews',
       type: 'GET'
       }).done(function(data){
-        // debugger
         console.log(data);
         allReviewsHTML = ""
         for(var i=0; i< data.reviews.length; i++){
-          console.log(i)
-          // debugger
           reviewObject.set(data.reviews[i]);
-          // debugger
-          // debugger
           var templatesss = that.$el.html(that.singleReviewTemplate(reviewObject.attributes));
-          // debugger
           allReviewsHTML += templatesss[0].innerHTML
-          // debugger
-          // var template1 = that.$el
-          // debugger
-
         };
 
         $("#app-body").append(that.$el.html(that.reviewsTemplate()));
         $("#tab4").append(allReviewsHTML);
-        // $("#tab4").append(allReviewsHTML);
-        // debugger
       })
     }
-      // success: function(result){
-      //   debugger
-      //     reviewObjects.set(result.reviews);
-      //     // debugger
-      //     that.$el.html(that.template(reviewObjects.attributes));
-
-
-    // console.log(this)
-    // return this;
-
 
 })
