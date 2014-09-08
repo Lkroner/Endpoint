@@ -97,12 +97,11 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
       url: '/apis/' + that.id + '/reviews',
       type: 'GET'
       }).done(function(data){
-        console.log(data);
         allReviewsHTML = ""
         for(var i=0; i< data.reviews.length; i++){
           reviewObject.set(data.reviews[i]);
-          var templatesss = that.$el.html(that.singleReviewTemplate(reviewObject.attributes));
-          allReviewsHTML += templatesss[0].innerHTML
+          var templates = that.$el.html(that.singleReviewTemplate(reviewObject.attributes));
+          allReviewsHTML += templates[0].innerHTML
         };
 
         $("#app-body").append(that.$el.html(that.reviewsTemplate()));
