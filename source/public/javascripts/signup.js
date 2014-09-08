@@ -1,13 +1,13 @@
-app.LogIn = {
+app.SignUp = {
 	Models: {},
 	Collections: {},
 	Views: {}
 }
 
-app.LogIn.Views.LoginPage = Backbone.View.extend({
+app.SignUp.Views.SignUpPage = Backbone.View.extend({
 	initialize: function(){
 	},
-
+	
 	events: {
 		"click #submit": "clickSubmit"
 	},
@@ -20,21 +20,26 @@ app.LogIn.Views.LoginPage = Backbone.View.extend({
 
 	ajaxRequest: function(){
 		Backbone.ajax({
-			url: '/login',
-			type: 'get',
+			url: '/users',
+			type: 'post',
 			data: {email: this.email, password: this.password}
 		}).done(function(data){
+			debugger
 			if (data.user) {
-				$.cookie("user_id", data.user.id)
-				app.router.navigate("", true)
-			} else {
-				$(".errors").html("Email or password is incorrect.")
+			$.cookie("user_id", data.user.id)
+			} else if (data.errors){
+				errors = data.errors
+				errorsHTML = ""
+				for (var i = 0; i < errors.length; i++) {
+					errorsHTML += errors[i] + "<br>"
+				}
+				$(".errors").html(errorsHTML)
 			}
+			// app.router.navigate("", true)
 		})		
 	},
 
-
-	template: _.template($('#login-template').html()),
+	template: _.template($('#signup-template').html()),
 	render: function() {
 		this.$el.html(this.template());
 		return this;

@@ -1,11 +1,16 @@
 class UsersController < ApplicationController
   # POST '/users'
   def create
-    new_user = User.new(params[:user])
-    if new_user.save 
-      render json: {user: new_user}.to_json
+    @user = User.new(email: params[:email])
+    @user.password = params[:password]
+    if @user.save
+      render json: {user: @user}.to_json
     else
-      render json: {errors: new_user.errors}
+      errors = []
+      @user.errors.messages.each do |property, message|
+        errors.concat(message)
+      end
+      render json: {errors: errors}
     end
   end
 
@@ -32,6 +37,12 @@ class UsersController < ApplicationController
 
 
   def login
+    user = User.where("email = ?", params[:email]).first
+    if user && user.password == params[:password]
+      render json: {user: user}.to_json
+    else
+      render json: {message: "user doesn't exist"}.to_json
+    end
   end
 
   def login_user
