@@ -36,8 +36,8 @@ class UsersController < ApplicationController
 
 
   def login
-    user = User.find_by_email(params[:email])
-    if user.password == params[:password]
+    user = User.where("email = ?", params[:email]).first
+    if user && user.password == params[:password]
       render json: {authenticate: true}.to_json
     else
       render json: {authenticate: false}.to_json
@@ -52,4 +52,6 @@ class UsersController < ApplicationController
 
   def github_callback
   end
+
+
 end
