@@ -3,4 +3,48 @@
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
+body {
+  background-image: url('http://www.discoverylanguage.info/discoverylanguageweb/wp-content/uploads/2011/10/new-background6.png');
+}
 
+#app-body {
+  /*background-color: red;*/
+  font-family: 'Helvetica Neue', Helvetica;
+  margin-top: 10%;
+}
+.intro-heading {
+  color: white;
+  font-family:  "Droid Serif",'Helvetica Neue', Helvetica;
+  font-size: 30pt;
+  font-style: italic;
+  margin: 1%;
+  padding: 1%;
+  text-align: center;
+}
+.intro-heading input {
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+
+.intro-lead-in {
+  color: white;
+  font-family: Montserrat, 'Helvetica Neue', Helvetica;
+  font-size: 50pt;
+  font-weight: 700;
+  text-align: center;
+}
+.navbar {
+  background-color: transparent;
+  /*display: block;*/
+}
+.navbar.brand {
+  font-family: 
+}
+.tab-pane ul{
+  list-style: none;
+}
+
+.tab-content img {
+  float: left;
+}
