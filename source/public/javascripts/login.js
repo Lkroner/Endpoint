@@ -28,6 +28,7 @@ app.LogIn.Views.LoginPage = Backbone.View.extend({
 				$.cookie("user_id", data.user.id)
 				app.router.navigate("", true)
 			} else {
+				$(".errors").html("Email or password is incorrect.")
 				app.router.navigate("#login")
 			}
 		})		
