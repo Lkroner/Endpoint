@@ -80,7 +80,8 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
   },
 
   events: {
-    "click .comment-toggler": "toggleComments"
+    "click .comment-toggler": "toggleComments",
+    "click #submit": "submitReview"
   },
 
   toggleComments: function(e){
@@ -93,20 +94,34 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
   render: function() {
     var reviewObject = new this.model;
     var that = this;
-     Backbone.ajax({
-      url: '/apis/' + that.id + '/reviews',
-      type: 'GET'
-      }).done(function(data){
-        allReviewsHTML = ""
-        for(var i=0; i< data.reviews.length; i++){
-          reviewObject.set(data.reviews[i]);
-          var templates = that.$el.html(that.singleReviewTemplate(reviewObject.attributes));
-          allReviewsHTML += templates[0].innerHTML
-        };
+    Backbone.ajax({
+    url: '/apis/' + that.id + '/reviews',
+    type: 'GET'
+    }).done(function(data){
+      allReviewsHTML = ""
+      for(var i=0; i< data.reviews.length; i++){
+        reviewObject.set(data.reviews[i]);
+        var templates = that.$el.html(that.singleReviewTemplate(reviewObject.attributes));
+        allReviewsHTML += templates[0].innerHTML
+      };
 
-        $("#app-body").append(that.$el.html(that.reviewsTemplate()));
-        $("#tab4").append(allReviewsHTML);
-      })
-    }
+      $("#app-body").append(that.$el.html(that.reviewsTemplate()));
+      $("#tab4").append(allReviewsHTML);
+    })
+  },
 
+  submitReview: function(){
+    event.preventDefault();
+    Backbone.ajax({
+    url: '/apis/' + this.id + '/reviews',
+    type: 'POST',
+    data: $('.reviewSubmission').serialize()
+    }).done(function(data){
+      console.log('success');
+      $('.feedback-success').toggle()
+    }).fail(function(){
+      console.log(errors)
+    });
+  }
 })
+
