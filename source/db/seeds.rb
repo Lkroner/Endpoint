@@ -54,16 +54,6 @@ json_response = Hash.from_xml(response).to_json
 
 puts json_response
 
-# "field_api_blog": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "format": null,
-#                         "safe_value": "http://developer.yahoo.net/blog/",
-#                         "value": "http://developer.yahoo.net/blog/"
-#                     }
-#                 }
-#             }
             
 # "field_api_description": {
 #                 "und": {
@@ -85,16 +75,7 @@ puts json_response
 #                 }
 #             }
             
-# "field_api_developer_portal": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "value": "---"
-#                     }
-#                 }
-#             }
-            
-# "field_api_documentation": {
+#             "field_api_documentation": {
 #                 "und": {
 #                     "is_array": "true",
 #                     "item": {
@@ -139,17 +120,6 @@ puts json_response
 #                 }
 #             }
             
-# "field_api_gallery": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "format": null,
-#                         "safe_value": "http://gallery.yahoo.com/maps",
-#                         "value": "http://gallery.yahoo.com/maps"
-#                     }
-#                 }
-#             }
-            
 #             "field_api_home_page": {
 #                 "und": {
 #                     "is_array": "true",
@@ -160,18 +130,7 @@ puts json_response
 #                     }
 #                 }
 #             }
-            
-#             "field_api_other_auth_model": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "format": null,
-#                         "safe_value": "API Key",
-#                         "value": "API Key"
-#                     }
-#                 }
-#             }
-            
+                   
 #             "field_api_sample_calls": {
 #                 "und": {
 #                     "is_array": "true",
@@ -180,29 +139,7 @@ puts json_response
 #                     }
 #                 }
 #             }
-            
-#             "field_api_signup_requirements": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "format": null,
-#                         "safe_value": "API Key",
-#                         "value": "API Key"
-#                     }
-#                 }
-#             }
-            
-#             "field_api_site_blog": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "format": null,
-#                         "safe_value": null,
-#                         "value": null
-#                     }
-#                 }
-#             }
-            
+           
 # "field_api_site_twitter_url": {
 #                 "und": {
 #                     "is_array": "true",
@@ -246,37 +183,8 @@ puts json_response
 #                     }
 #                 }
 #             }
-            
-# "field_article_primary_category": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "tid": "19978"
-#                     }
-#                 }
-#             }
-            
-# "field_article_secondary_category": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "tid": "20408"
-#                     }
-#                 }
-#             }
-            
+                     
 # "field_article_related_companies": null
-
-# "field_content_type_group": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "format": null,
-#                         "safe_value": "APIs",
-#                         "value": "APIs"
-#                     }
-#                 }
-#             }
             
 # "field_image_upload": {
 #                 "und": {
@@ -303,35 +211,6 @@ puts json_response
 #                 }
 #             }
             
-# "field_popularity": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "value": "137"
-#                     }
-#                 }
-#             }
-            
-# "field_provider_of_api": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "format": null,
-#                         "safe_value": "http://yahoo.com",
-#                         "value": "http://yahoo.com"
-#                     }
-#                 }
-#             }
-            
-# "field_read_only_without_login": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "value": "Yes"
-#                     }
-#                 }
-#             }
-            
 # "field_twitter_url": {
 #                 "und": {
 #                     "is_array": "true",
@@ -342,8 +221,6 @@ puts json_response
 #                     }
 #                 }
 #             }
-            
-# "language": "und"
 
 # "title": "Yahoo Maps"
 
