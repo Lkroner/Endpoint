@@ -44,13 +44,4 @@ class UsersController < ApplicationController
       render json: {message: "user doesn't exist"}.to_json
     end
   end
-
-  def login_user
-  end
-
-  def logout
-  end
-
-  def github_callback
-  end
 end

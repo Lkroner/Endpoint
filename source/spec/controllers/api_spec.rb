@@ -1,8 +1,6 @@
 require 'rails_helper'
 describe ApisController do
-		before :each do
-    	Api.destroy_all
- 		end
+
     it "successfully creates a new api" do
       expect {
         post :create, title: "hi", description: "hi", tips: "hi"

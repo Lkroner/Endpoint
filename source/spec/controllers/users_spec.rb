@@ -1,8 +1,5 @@
 require 'rails_helper'
 describe UsersController do
-    before :each do
-      User.destroy_all
-    end
     it "successfully creates a new user" do
       expect {
         post :create, email: "hi@gmail.com", password: "hiiiiii", about_me: "i'm a person"
