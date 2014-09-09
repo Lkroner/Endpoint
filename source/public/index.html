@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Agency - Start Bootstrap Theme</title>
+    <title>Endpoint</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -194,8 +194,6 @@
         <ul>
           <li><h3><%= title %></h3></li>
           <li><p><%= description %></p></li>
-          <li>Docs: <p><%= doc_link %></p></li>
-          <li>Data Type: <p><%= data_type %></p></li>
         </ul>
         <div><h2><%= average_score %></h2></div>
       </div>
@@ -253,17 +251,17 @@
 
   <!--  End Template: Body Scripts -->
     <script id="singlereview-template" type="text/template">
-        <div class="row">
+        <div class="single-review row" data-id=<%=rev.id%>>
         <!-- start Laurens upvote area -->
           <div class="votes col-md-1">
           <button type="button" class="btn btn-default btn-lg">
             <span id="votes" class="glyphicon glyphicon-chevron-up"></span>
           </button>
-            <h4> votes</h4>
+            <h4><span class="vote-count"> <%=votes.length%> votes</span></h4>
           </div>
         <!-- end Laurens upvote area -->
           <div class="col-md-11">
-            <p><%=content%></p>
+            <p><%=rev.content%></p>
           </div>
         </div>
         <div class="row">
@@ -275,7 +273,7 @@
           <div class="col-md-7">
           </div>
           <div class="col-md-1">
-            <h6><%= created_at%></h6>
+            <h6><%= rev.created_at%></h6>
           </div>
           <div class="col-md-1">
           </div>
@@ -301,13 +299,26 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+<!-- LOAD CLIENT SIDE -->
 <script src="javascripts/app.js"></script>
-<script src="javascripts/homepage.js"></script>
-<script src="javascripts/searchresults.js"></script>
-<script src="javascripts/navbar.js"></script>
-<script src="javascripts/apiprofilepage.js"></script>
-<script src="javascripts/signup.js"></script>
-<script src="javascripts/login.js"></script>
-<script src="javascripts/router.js"></script>
+<!-- LOAD MODELS -->
+<script src="javascripts/models/search_model.js"></script>
+<script src="javascripts/models/apiprofile_model.js"></script>
+<script src="javascripts/models/apiprofile_reviews_model.js"></script>
+<script src="javascripts/models/login_model.js"></script>
+<script src="javascripts/models/signup_model.js"></script>
+<!-- LOAD COLLECTIONS  -->
+<script src="javascripts/collections/search_results_collection.js"></script>
+<script src="javascripts/collections/reviews_collection.js"></script>
+<!-- LOAD VIEWS -->
+<script src="javascripts/views/reviews_view.js"></script>
+<script src="javascripts/views/api_profile_view.js"></script>
+<script src="javascripts/views/homepage_view.js"></script>
+<script src="javascripts/views/login_view.js"></script>
+<script src="javascripts/views/navbar_view.js"></script>
+<script src="javascripts/views/signup_view.js"></script>
+<script src="javascripts/views/search_results_view.js"></script>
+<!-- LOAD ROUTER -->
+<script src="javascripts/routers/router.js"></script>
 </body>
 </html>

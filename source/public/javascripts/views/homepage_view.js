@@ -1,10 +1,4 @@
-app.HomePage = {
-	Models: {},
-	Collections: {},
-	Views: {}
-}
-
-app.HomePage.Views.HomeView = Backbone.View.extend({
+ENDPOINT.Views.HomeView = Backbone.View.extend({
 	events: {
 		"click #search": "clickSearch"
 	},
@@ -20,6 +14,7 @@ app.HomePage.Views.HomeView = Backbone.View.extend({
 	},
 
 	clickSearch: function() {
-		app.router.navigate("searchResults", true)
+		var query = $(".form-control").val();
+		ENDPOINT.router.navigate("search=" + query, true)
 	}
 })
