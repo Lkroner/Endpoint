@@ -2,23 +2,12 @@ class CommentsController < ApplicationController
   #GET /reviews/:review_id/comments
   #GET /users/:user_id/comments
   def index
-    if params[:review_id]
-      review = Review.find(:review_id)
-      comments = review.comments   
-      render json: {comments: comments}.to_json
-    elsif params[:user_id]
-      user = User.find(params[:user_id])
-      comments = user.comments 
-      render json: {comments: comments}.to_json
-    else
-      render json: { message: "#{params[:review_id]} or #{params[:user_id]}} is not a valid review/user id!" }.to_json
-    end
+    comments = determine_commentable_type.comments
+    render json: {comments: comments}.to_json
   end
-
 
   # POST  /reviews/:review_id/comments
   def create
-    #assuming params come in in proper format
     comment = Comment.new(params[:comment])
     if comment.save
       review = Review.find(params[:review_id])
@@ -28,5 +17,11 @@ class CommentsController < ApplicationController
     end
   end
 
+  private
+
+  def determine_commentable_type
+    (params[:review_id].nil? ? User.find(params[:user_id]) : Review.find(params[:review_id]))
+  end
 end
+
 
