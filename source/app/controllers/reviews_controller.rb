@@ -24,11 +24,8 @@ class ReviewsController < ApplicationController
 
   # POST /apis/:api_id/reviews
   def create
-  	new_review = Review.new(score: params[:score], title: params[:title], content: params[:content], api_id: params[:api_id])
-  	if new_review.save
-  		render json: {review: new_review}.to_json
-  	else
-  		render json: {errors: new_review.errors}
-  	end
+    api = Api.find(params[:api_id])
+    review = api.reviews.create(score: params[:score], title: params[:title], content: params[:content])
+    render json: {review: review}.to_json
   end
 end
