@@ -59,14 +59,19 @@ api_array = json_response["result"]["item"]
 
 # *********************  ATTRIBUTES  *********************
 
-# title = json_response["result"]["item"][0]["title"]
 titles = api_array.map do |api|
   api["title"]
 end
 
-# description = json_response["result"]["item"][0]["field_api_description"]["und"]["item"]["value"]
 descriptions = api_array.map.with_index do |api|
-  api["field_api_description"]["und"]["item"]["value"]
+  desc = api["field_api_description"]["und"]["item"]["value"]
+  p desc
+  puts "####################################################"
+  if desc == nil
+    desc = "description unavailable"
+  else
+    desc.gsub(/[\n]/, " ")
+  end
 end
 
 # key_required = json_response["result"]["item"][0]["field_api_developer_key_required"]["und"]["item"]["value"]
@@ -87,11 +92,13 @@ puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 puts api_array.length
 puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
 print descriptions
+puts
 puts "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 
-
-
-
+CSV.open("database.csv", "wb") do |csv|
+  csv << titles
+  csv << descriptions
+end
 
 
 
