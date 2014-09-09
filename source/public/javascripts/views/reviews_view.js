@@ -61,14 +61,14 @@ ENDPOINT.Views.Reviews = Backbone.View.extend({
   },
   submitReview: function(event){
     event.preventDefault();
-    // var reviewData = $('.reviewSubmission').serialize();
-    // var title = $("input[name='title']").val();
     var reviewData = {title: $("input[name='title']").val(), 
                       content: $("textarea[name='content']").val(),
                       score: $("input[name='score']:checked").attr("value"), 
                       api_id: this.model.attributes.api_id};
     this.model.save(reviewData).done(function(data){
-      // debugger
+      var url = "api/" + data.review.api_id;
+      ENDPOINT.router.navigate("", true)
+      ENDPOINT.router.navigate(url, true)
     });
   }
 
