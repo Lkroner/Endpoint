@@ -1,10 +1,5 @@
-app.NavBar = {
-	Models: {},
-	Collections: {},
-	Views: {}
-}
 
-app.NavBar.Views.NavBarView = Backbone.View.extend({
+ENDPOINT.Views.NavBarView = Backbone.View.extend({
 	events: {
 		"click #login": "login",
 		"click #sign-up": "signup",
@@ -23,16 +18,16 @@ app.NavBar.Views.NavBarView = Backbone.View.extend({
 
 	login: function(){
 		event.preventDefault()
-		app.router.navigate("login", true)
+		ENDPOINT.router.navigate("login", true)
 	},
 
 	signup: function(){
 		event.preventDefault();
-		app.router.navigate("signup", true)
+		ENDPOINT.router.navigate("signup", true)
 	},
 
 	logout: function(){
 		$.removeCookie('user_id', { path: '/' })
-		app.router.navigate("", true)
+		ENDPOINT.router.navigate("", true)
 	}
 });
