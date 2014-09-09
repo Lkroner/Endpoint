@@ -12,6 +12,7 @@ ENDPOINT.Views.LoginPage = Backbone.View.extend({
 		this.ajaxRequest();
 	},
 
+	//this shit needs to be refactored
 	ajaxRequest: function(){
 		Backbone.ajax({
 			url: '/login',

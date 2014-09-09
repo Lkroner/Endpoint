@@ -61,18 +61,20 @@ ENDPOINT.Routers = Backbone.Router.extend({
 	navigateToApiProfile: function(id){
 		this.resetBody();
 		this.toggleNavBar();
+
+		//display profile page
 		var apiProfileModel = new ENDPOINT.Models.ApiProfile({url: "/apis/"+ id});
 		apiProfileModel.fetch().done(function(data){
 			var apiProfileView = new ENDPOINT.Views.ApiProfile({model: apiProfileModel})
 			apiProfileView.render().$el;
 		});
 
+		//display reviews on profile page
 		var reviewListModel = new ENDPOINT.Models.ReviewList({url: "/apis/"+id+"/reviews"})
 		reviewListModel.fetch().done(function(data){
 			var reviewsCollection = new ENDPOINT.Collections.Reviews(data.reviews);
 
 			var reviewsView = new ENDPOINT.Views.Reviews({collection: reviewsCollection});
-			debugger
 			reviewsView.render();
 		});
 

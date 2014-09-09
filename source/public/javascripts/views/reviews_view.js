@@ -1,6 +1,56 @@
 ENDPOINT.Views.Review = Backbone.View.extend({
   template: _.template($("#singlereview-template").html()),
 
+  events: {
+    "click .comment-toggler": "toggleComments",
+    "click #submit": "submitReview",
+    "click .votes": "upVote"
+  },
+
+  //this shit needs to be refactored
+  upVote: function(event){
+    var user_id = $.cookie("user_id")
+    var review_id = this.model.attributes.rev.id
+    if ($.cookie("user_id")){
+      Backbone.ajax({
+        url: '/reviews/' + review_id + '/votes',
+        type: 'POST',
+        data: {user_id: user_id, review_id: review_id}
+      })
+      .done(function(data){
+        var newVoteCount = data.vote_count
+        review = $("[data-id='"+ data.review_id + "'][class='single-review row']")
+        review.find(".vote-count").text(newVoteCount + " votes")
+      })
+      .fail(function(){
+        alert("You can only vote once!")
+      })
+    } else {
+      ENDPOINT.router.navigate("login", true)
+      $(".errors").html("You must be logged in to upvote!")
+    }
+  },
+
+  //this shit needs to be refactored
+  submitReview: function(){
+    event.preventDefault();
+    Backbone.ajax({
+    url: '/apis/' + this.id + '/reviews',
+    type: 'POST',
+    data: $('.reviewSubmission').serialize()
+    }).done(function(data){
+      console.log('success');
+      $('.feedback-success').toggle()
+    }).fail(function(){
+      console.log(errors)
+    });
+  },
+
+  toggleComments: function(e){
+    e.preventDefault();
+    $('.comment-area').toggle()
+  },
+
   render: function(){
     var filledTemplate = this.template(this.model.attributes);
     this.$el.html(filledTemplate)
@@ -11,7 +61,6 @@ ENDPOINT.Views.Review = Backbone.View.extend({
 ENDPOINT.Views.Reviews = Backbone.View.extend({
 
   template: _.template($("#apireviews-template").html()),
-
   render: function(){
     $("#app-body").append(this.template());
     this.collection.each(function(reviewModel){
@@ -20,6 +69,5 @@ ENDPOINT.Views.Reviews = Backbone.View.extend({
     })
     return this;
   }
-
 
 })
