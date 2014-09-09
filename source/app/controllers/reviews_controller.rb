@@ -8,8 +8,7 @@ class ReviewsController < ApplicationController
     if type.class == User
       render json: {reviews: reviewable_type.reviews}
     elsif type.class == Api
-      api_reviews = reviewable_type.reviews
-      formatted_data = ReviewPresenter.new(api_reviews).change_to_hash
+      formatted_data = ReviewPresenter.new(reviewable_type.reviews).change_to_hash
       render json: {reviews: formatted_data}.to_json
     else
       render json: { message: "#{params[:api_id]} or #{params[:user_id]}} is not a valid review/user id!" }.to_json
