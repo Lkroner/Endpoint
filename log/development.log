@@ -5822,3 +5822,850 @@ Completed 200 OK in 63ms (Views: 0.1ms | ActiveRecord: 1.7ms)
   [1m[36m (0.1ms)[0m  [1mBEGIN[0m
   [1m[35mSQL (0.2ms)[0m  UPDATE "comments" SET "review_id" = $1, "updated_at" = $2 WHERE "comments"."id" = 200  [["review_id", 33], ["updated_at", "2014-09-09 21:43:57.127580"]]
   [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/search?input=et" for 127.0.0.1 at 2014-09-09 15:54:43 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SearchController#search as JSON
+  Parameters: {"input"=>"et"}
+  [1m[35m (0.8ms)[0m  SELECT COUNT(*) FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))
+  [1m[36mPgSearch::Document Load (0.8ms)[0m  [1mSELECT "pg_search_documents".*, ((ts_rank((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))), (to_tsquery('simple', ''' ' || 'et' || ' ''')), 0))) AS pg_search_rank FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))  ORDER BY pg_search_rank DESC, "pg_search_documents"."id" ASC[0m
+  [1m[35mApi Load (0.6ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mApi Load (0.2ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 6]]
+Completed 200 OK in 33ms (Views: 0.1ms | ActiveRecord: 6.9ms)
+
+
+Started GET "/apis/4" for 127.0.0.1 at 2014-09-09 15:54:44 -0700
+Processing by ApisController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mApi Load (0.4ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 4]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/apis/4/reviews" for 127.0.0.1 at 2014-09-09 15:54:44 -0700
+Processing by ReviewsController#index as JSON
+  Parameters: {"api_id"=>"4"}
+  [1m[35mApi Load (2.0ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mReview Load (0.4ms)[0m  [1mSELECT "reviews".* FROM "reviews"  WHERE "reviews"."api_id" = $1[0m  [["api_id", 4]]
+  [1m[35mVote Load (0.4ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 24]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 24]]
+  [1m[35mVote Load (0.3ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 39]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 39]]
+  [1m[35mVote Load (0.2ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 15]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 15]]
+  [1m[35mVote Load (0.3ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 40]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 40]]
+  [1m[35mVote Load (0.3ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 42]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 42]]
+  [1m[35mVote Load (0.2ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 51]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 51]]
+Completed 200 OK in 134ms (Views: 0.1ms | ActiveRecord: 10.7ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2014-09-09 15:55:04 -0700
+Processing by UsersController#create as JSON
+  Parameters: {"email"=>"nina@example.com", "password"=>"test"}
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.9ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'nina@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "password_hash", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-09-09 22:55:04.421286"], ["email", "nina@example.com"], ["password_hash", "$2a$10$wn7I3GJ8w/hEuD0CyFHGEOjDhFzbF.1QXfQ23Zdl.suew1N17PKlS"], ["updated_at", "2014-09-09 22:55:04.421286"]]
+  [1m[36m (8.6ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 131ms (Views: 0.2ms | ActiveRecord: 11.6ms)
+
+
+Started GET "/search?input=et" for 127.0.0.1 at 2014-09-09 15:55:06 -0700
+Processing by SearchController#search as JSON
+  Parameters: {"input"=>"et"}
+  [1m[35m (0.8ms)[0m  SELECT COUNT(*) FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))
+  [1m[36mPgSearch::Document Load (1.2ms)[0m  [1mSELECT "pg_search_documents".*, ((ts_rank((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))), (to_tsquery('simple', ''' ' || 'et' || ' ''')), 0))) AS pg_search_rank FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))  ORDER BY pg_search_rank DESC, "pg_search_documents"."id" ASC[0m
+  [1m[35mApi Load (0.5ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mApi Load (0.2ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mApi Load (0.3ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 6]]
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/apis/4" for 127.0.0.1 at 2014-09-09 15:55:07 -0700
+Processing by ApisController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 4]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/apis/4/reviews" for 127.0.0.1 at 2014-09-09 15:55:07 -0700
+Processing by ReviewsController#index as JSON
+  Parameters: {"api_id"=>"4"}
+  [1m[35mApi Load (3.1ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mReview Load (1.6ms)[0m  [1mSELECT "reviews".* FROM "reviews"  WHERE "reviews"."api_id" = $1[0m  [["api_id", 4]]
+  [1m[35mVote Load (12.4ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 24]]
+  [1m[36mComment Load (6.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 24]]
+  [1m[35mVote Load (2.4ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 39]]
+  [1m[36mComment Load (2.0ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 39]]
+  [1m[35mVote Load (0.9ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 15]]
+  [1m[36mComment Load (0.8ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 15]]
+  [1m[35mVote Load (0.4ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 40]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 40]]
+  [1m[35mVote Load (0.2ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 42]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 42]]
+  [1m[35mVote Load (0.2ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 51]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 51]]
+Completed 200 OK in 60ms (Views: 0.1ms | ActiveRecord: 30.9ms)
+
+
+Started POST "/reviews/39/votes" for 127.0.0.1 at 2014-09-09 15:55:09 -0700
+Processing by VotesController#create as */*
+  Parameters: {"user_id"=>"21", "review_id"=>"39"}
+  [1m[35mReview Load (0.3ms)[0m  SELECT  "reviews".* FROM "reviews"  WHERE "reviews"."id" = $1 LIMIT 1  [["id", 39]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 21]]
+  [1m[35mVote Load (0.3ms)[0m  SELECT  "votes".* FROM "votes"  WHERE "votes"."user_id" = $1 AND (id = NULL)  ORDER BY "votes"."id" ASC LIMIT 1  [["user_id", 21]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT  "votes".* FROM "votes"  WHERE "votes"."user_id" = $1 AND (review_id = 39)  ORDER BY "votes"."id" ASC LIMIT 1[0m  [["user_id", 21]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "votes" ("created_at", "review_id", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2014-09-09 22:55:09.953237"], ["review_id", 39], ["updated_at", "2014-09-09 22:55:09.953237"]]
+  [1m[35m (6.4ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 39]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "votes" SET "updated_at" = $1, "user_id" = $2 WHERE "votes"."id" = 101[0m  [["updated_at", "2014-09-09 22:55:09.965196"], ["user_id", 21]]
+  [1m[35m (0.5ms)[0m  COMMIT
+Completed 200 OK in 23ms (Views: 0.2ms | ActiveRecord: 9.3ms)
+
+
+Started POST "/apis/4/reviews" for 127.0.0.1 at 2014-09-09 15:55:55 -0700
+Processing by ReviewsController#create as JSON
+  Parameters: {"api_id"=>"4", "title"=>"i love this api", "content"=>"you are an api", "score"=>"3"}
+  [1m[36mApi Load (0.2ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "reviews" ("api_id", "content", "created_at", "score", "title", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["api_id", 4], ["content", "you are an api"], ["created_at", "2014-09-09 22:55:55.964312"], ["score", 3], ["title", "i love this api"], ["updated_at", "2014-09-09 22:55:55.964312"]]
+  [1m[35m (7.2ms)[0m  COMMIT
+Completed 200 OK in 13ms (Views: 0.1ms | ActiveRecord: 7.9ms)
+
+
+Started GET "/apis/4" for 127.0.0.1 at 2014-09-09 15:55:55 -0700
+Processing by ApisController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 4]]
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/apis/4/reviews" for 127.0.0.1 at 2014-09-09 15:55:56 -0700
+Processing by ReviewsController#index as JSON
+  Parameters: {"api_id"=>"4"}
+  [1m[35mApi Load (0.6ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mReview Load (0.4ms)[0m  [1mSELECT "reviews".* FROM "reviews"  WHERE "reviews"."api_id" = $1[0m  [["api_id", 4]]
+  [1m[35mVote Load (0.3ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 24]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 24]]
+  [1m[35mVote Load (0.2ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 39]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 39]]
+  [1m[35mVote Load (0.2ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 15]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 15]]
+  [1m[35mVote Load (0.2ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 40]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 40]]
+  [1m[35mVote Load (0.2ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 42]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 42]]
+  [1m[35mVote Load (0.2ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 51]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 51]]
+  [1m[35mVote Load (0.1ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 54]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 54]]
+Completed 200 OK in 23ms (Views: 0.1ms | ActiveRecord: 3.6ms)
+
+
+Started POST "/apis/4/reviews" for 127.0.0.1 at 2014-09-09 15:57:12 -0700
+Processing by ReviewsController#create as JSON
+  Parameters: {"api_id"=>"4", "title"=>"hi nina", "content"=>"hi josh", "score"=>"5"}
+  [1m[35mApi Load (0.2ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "reviews" ("api_id", "content", "created_at", "score", "title", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["api_id", 4], ["content", "hi josh"], ["created_at", "2014-09-09 22:57:12.955800"], ["score", 5], ["title", "hi nina"], ["updated_at", "2014-09-09 22:57:12.955800"]]
+  [1m[36m (9.0ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 13ms (Views: 0.1ms | ActiveRecord: 9.6ms)
+
+
+Started GET "/apis/4" for 127.0.0.1 at 2014-09-09 15:57:12 -0700
+Processing by ApisController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mApi Load (3.2ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 4]]
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/apis/4/reviews" for 127.0.0.1 at 2014-09-09 15:57:13 -0700
+Processing by ReviewsController#index as JSON
+  Parameters: {"api_id"=>"4"}
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mReview Load (0.4ms)[0m  SELECT "reviews".* FROM "reviews"  WHERE "reviews"."api_id" = $1  [["api_id", 4]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 24]]
+  [1m[35mComment Load (1.4ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 24]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 39]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 39]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 15]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 15]]
+  [1m[36mVote Load (1.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 40]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 40]]
+  [1m[36mVote Load (6.2ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 42]]
+  [1m[35mComment Load (0.9ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 42]]
+  [1m[36mVote Load (0.4ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 51]]
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 51]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 54]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 54]]
+  [1m[36mVote Load (0.4ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 55]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 55]]
+Completed 200 OK in 68ms (Views: 0.1ms | ActiveRecord: 14.3ms)
+
+
+Started GET "/search?input=et" for 127.0.0.1 at 2014-09-09 15:57:43 -0700
+Processing by SearchController#search as JSON
+  Parameters: {"input"=>"et"}
+  [1m[36m (2.1ms)[0m  [1mSELECT COUNT(*) FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))[0m
+  [1m[35mPgSearch::Document Load (1.2ms)[0m  SELECT "pg_search_documents".*, ((ts_rank((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))), (to_tsquery('simple', ''' ' || 'et' || ' ''')), 0))) AS pg_search_rank FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))  ORDER BY pg_search_rank DESC, "pg_search_documents"."id" ASC
+  [1m[36mApi Load (1.1ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mApi Load (0.9ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mApi Load (0.4ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 6]]
+Completed 200 OK in 18ms (Views: 0.4ms | ActiveRecord: 5.7ms)
+
+
+Started GET "/apis/1" for 127.0.0.1 at 2014-09-09 15:57:46 -0700
+Processing by ApisController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mApi Load (2.5ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 1]]
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/apis/1/reviews" for 127.0.0.1 at 2014-09-09 15:57:46 -0700
+Processing by ReviewsController#index as JSON
+  Parameters: {"api_id"=>"1"}
+  [1m[36mApi Load (2.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mReview Load (1.5ms)[0m  SELECT "reviews".* FROM "reviews"  WHERE "reviews"."api_id" = $1  [["api_id", 1]]
+  [1m[36mVote Load (1.0ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 4]]
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 4]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 27]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 27]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 30]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 30]]
+  [1m[36mVote Load (0.4ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 34]]
+  [1m[35mComment Load (0.8ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 34]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 53]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 53]]
+Completed 200 OK in 40ms (Views: 0.1ms | ActiveRecord: 8.4ms)
+
+
+Started GET "/search?input=et" for 127.0.0.1 at 2014-09-09 15:57:48 -0700
+Processing by SearchController#search as JSON
+  Parameters: {"input"=>"et"}
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))[0m
+  [1m[35mPgSearch::Document Load (1.0ms)[0m  SELECT "pg_search_documents".*, ((ts_rank((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))), (to_tsquery('simple', ''' ' || 'et' || ' ''')), 0))) AS pg_search_rank FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))  ORDER BY pg_search_rank DESC, "pg_search_documents"."id" ASC
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mApi Load (0.2ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mApi Load (0.2ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 6]]
+Completed 200 OK in 10ms (Views: 0.2ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/apis/4" for 127.0.0.1 at 2014-09-09 15:57:48 -0700
+Processing by ApisController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mApi Load (2.2ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 4]]
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/apis/4/reviews" for 127.0.0.1 at 2014-09-09 15:57:48 -0700
+Processing by ReviewsController#index as JSON
+  Parameters: {"api_id"=>"4"}
+  [1m[36mApi Load (0.4ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mReview Load (1.3ms)[0m  SELECT "reviews".* FROM "reviews"  WHERE "reviews"."api_id" = $1  [["api_id", 4]]
+  [1m[36mVote Load (3.2ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 24]]
+  [1m[35mComment Load (0.8ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 24]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 39]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 39]]
+  [1m[36mVote Load (0.6ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 15]]
+  [1m[35mComment Load (3.7ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 15]]
+  [1m[36mVote Load (0.8ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 40]]
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 40]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 42]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 42]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 51]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 51]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 54]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 54]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 55]]
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 55]]
+Completed 200 OK in 52ms (Views: 0.1ms | ActiveRecord: 14.0ms)
+
+
+Started GET "/search?input=et" for 127.0.0.1 at 2014-09-09 15:57:50 -0700
+Processing by SearchController#search as JSON
+  Parameters: {"input"=>"et"}
+  [1m[36m (0.8ms)[0m  [1mSELECT COUNT(*) FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))[0m
+  [1m[35mPgSearch::Document Load (1.0ms)[0m  SELECT "pg_search_documents".*, ((ts_rank((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))), (to_tsquery('simple', ''' ' || 'et' || ' ''')), 0))) AS pg_search_rank FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))  ORDER BY pg_search_rank DESC, "pg_search_documents"."id" ASC
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mApi Load (0.2ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mApi Load (0.2ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 6]]
+Completed 200 OK in 9ms (Views: 0.1ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/apis/1" for 127.0.0.1 at 2014-09-09 15:57:51 -0700
+Processing by ApisController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mApi Load (0.4ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 1]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/apis/1/reviews" for 127.0.0.1 at 2014-09-09 15:57:51 -0700
+Processing by ReviewsController#index as JSON
+  Parameters: {"api_id"=>"1"}
+  [1m[36mApi Load (0.8ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mReview Load (0.5ms)[0m  SELECT "reviews".* FROM "reviews"  WHERE "reviews"."api_id" = $1  [["api_id", 1]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 4]]
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 4]]
+  [1m[36mVote Load (0.4ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 27]]
+  [1m[35mComment Load (1.5ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 27]]
+  [1m[36mVote Load (0.4ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 30]]
+  [1m[35mComment Load (0.9ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 30]]
+  [1m[36mVote Load (4.0ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 34]]
+  [1m[35mComment Load (1.1ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 34]]
+  [1m[36mVote Load (0.8ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 53]]
+  [1m[35mComment Load (0.7ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 53]]
+Completed 200 OK in 37ms (Views: 0.2ms | ActiveRecord: 11.9ms)
+
+
+Started GET "/search?input=et" for 127.0.0.1 at 2014-09-09 15:57:52 -0700
+Processing by SearchController#search as JSON
+  Parameters: {"input"=>"et"}
+  [1m[36m (0.9ms)[0m  [1mSELECT COUNT(*) FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))[0m
+  [1m[35mPgSearch::Document Load (1.7ms)[0m  SELECT "pg_search_documents".*, ((ts_rank((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))), (to_tsquery('simple', ''' ' || 'et' || ' ''')), 0))) AS pg_search_rank FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))  ORDER BY pg_search_rank DESC, "pg_search_documents"."id" ASC
+  [1m[36mApi Load (0.2ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mApi Load (0.2ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 6]]
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/apis/6" for 127.0.0.1 at 2014-09-09 15:57:54 -0700
+Processing by ApisController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[35mApi Load (0.9ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 6]]
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/apis/6/reviews" for 127.0.0.1 at 2014-09-09 15:57:54 -0700
+Processing by ReviewsController#index as JSON
+  Parameters: {"api_id"=>"6"}
+  [1m[36mApi Load (1.7ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mReview Load (0.3ms)[0m  SELECT "reviews".* FROM "reviews"  WHERE "reviews"."api_id" = $1  [["api_id", 6]]
+  [1m[36mVote Load (0.5ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 7]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 7]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 10]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 10]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 16]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 16]]
+  [1m[36mVote Load (1.5ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 21]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 21]]
+  [1m[36mVote Load (1.1ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 31]]
+  [1m[35mComment Load (1.1ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 31]]
+  [1m[36mVote Load (2.1ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 52]]
+  [1m[35mComment Load (1.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 52]]
+Completed 200 OK in 42ms (Views: 0.2ms | ActiveRecord: 11.1ms)
+
+
+Started GET "/apis/6" for 127.0.0.1 at 2014-09-09 15:57:55 -0700
+Processing by ApisController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[36mApi Load (0.2ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 6]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/apis/6/reviews" for 127.0.0.1 at 2014-09-09 15:57:55 -0700
+Processing by ReviewsController#index as JSON
+  Parameters: {"api_id"=>"6"}
+  [1m[35mApi Load (0.3ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mReview Load (0.2ms)[0m  [1mSELECT "reviews".* FROM "reviews"  WHERE "reviews"."api_id" = $1[0m  [["api_id", 6]]
+  [1m[35mVote Load (0.2ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 7]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 7]]
+  [1m[35mVote Load (0.2ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 10]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 10]]
+  [1m[35mVote Load (0.3ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 16]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 16]]
+  [1m[35mVote Load (0.3ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 21]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 21]]
+  [1m[35mVote Load (0.2ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 31]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 31]]
+  [1m[35mVote Load (0.2ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 52]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 52]]
+Completed 200 OK in 24ms (Views: 0.2ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/search?input=et" for 127.0.0.1 at 2014-09-09 15:57:57 -0700
+Processing by SearchController#search as JSON
+  Parameters: {"input"=>"et"}
+  [1m[35m (0.7ms)[0m  SELECT COUNT(*) FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))
+  [1m[36mPgSearch::Document Load (0.8ms)[0m  [1mSELECT "pg_search_documents".*, ((ts_rank((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))), (to_tsquery('simple', ''' ' || 'et' || ' ''')), 0))) AS pg_search_rank FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))  ORDER BY pg_search_rank DESC, "pg_search_documents"."id" ASC[0m
+  [1m[35mApi Load (0.4ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mApi Load (0.5ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mApi Load (0.2ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 6]]
+Completed 200 OK in 10ms (Views: 0.2ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/apis/6" for 127.0.0.1 at 2014-09-09 15:57:58 -0700
+Processing by ApisController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 6]]
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/apis/6/reviews" for 127.0.0.1 at 2014-09-09 15:57:58 -0700
+Processing by ReviewsController#index as JSON
+  Parameters: {"api_id"=>"6"}
+  [1m[35mApi Load (0.4ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mReview Load (3.6ms)[0m  [1mSELECT "reviews".* FROM "reviews"  WHERE "reviews"."api_id" = $1[0m  [["api_id", 6]]
+  [1m[35mVote Load (4.3ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 7]]
+  [1m[36mComment Load (2.3ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 7]]
+  [1m[35mVote Load (1.8ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 10]]
+  [1m[36mComment Load (1.1ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 10]]
+  [1m[35mVote Load (7.4ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 16]]
+  [1m[36mComment Load (0.7ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 16]]
+  [1m[35mVote Load (0.3ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 21]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 21]]
+  [1m[35mVote Load (0.2ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 31]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 31]]
+  [1m[35mVote Load (0.2ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 52]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 52]]
+Completed 200 OK in 55ms (Views: 0.1ms | ActiveRecord: 23.1ms)
+
+
+Started GET "/apis/6" for 127.0.0.1 at 2014-09-09 15:58:01 -0700
+Processing by ApisController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[35mApi Load (0.3ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 6]]
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/apis/6/reviews" for 127.0.0.1 at 2014-09-09 15:58:01 -0700
+Processing by ReviewsController#index as JSON
+  Parameters: {"api_id"=>"6"}
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mReview Load (0.3ms)[0m  SELECT "reviews".* FROM "reviews"  WHERE "reviews"."api_id" = $1  [["api_id", 6]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 7]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 7]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 10]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 10]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 16]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 16]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 21]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 21]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 31]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 31]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 52]]
+  [1m[35mComment Load (0.7ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 52]]
+Completed 200 OK in 26ms (Views: 0.1ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/apis/6" for 127.0.0.1 at 2014-09-09 15:58:11 -0700
+Processing by ApisController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 6]]
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/apis/6/reviews" for 127.0.0.1 at 2014-09-09 15:58:11 -0700
+Processing by ReviewsController#index as JSON
+  Parameters: {"api_id"=>"6"}
+  [1m[35mApi Load (0.2ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mReview Load (0.3ms)[0m  [1mSELECT "reviews".* FROM "reviews"  WHERE "reviews"."api_id" = $1[0m  [["api_id", 6]]
+  [1m[35mVote Load (0.3ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 7]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 7]]
+  [1m[35mVote Load (0.2ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 10]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 10]]
+  [1m[35mVote Load (0.2ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 16]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 16]]
+  [1m[35mVote Load (0.2ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 21]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 21]]
+  [1m[35mVote Load (0.3ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 31]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 31]]
+  [1m[35mVote Load (0.2ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 52]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 52]]
+Completed 200 OK in 25ms (Views: 0.1ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/search?input=et" for 127.0.0.1 at 2014-09-09 15:58:19 -0700
+Processing by SearchController#search as JSON
+  Parameters: {"input"=>"et"}
+  [1m[35m (2.9ms)[0m  SELECT COUNT(*) FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))
+  [1m[36mPgSearch::Document Load (1.6ms)[0m  [1mSELECT "pg_search_documents".*, ((ts_rank((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))), (to_tsquery('simple', ''' ' || 'et' || ' ''')), 0))) AS pg_search_rank FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))  ORDER BY pg_search_rank DESC, "pg_search_documents"."id" ASC[0m
+  [1m[35mApi Load (1.1ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mApi Load (1.8ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mApi Load (1.3ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 6]]
+Completed 200 OK in 22ms (Views: 0.2ms | ActiveRecord: 8.7ms)
+
+
+Started GET "/apis/1" for 127.0.0.1 at 2014-09-09 15:58:20 -0700
+Processing by ApisController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/apis/1/reviews" for 127.0.0.1 at 2014-09-09 15:58:20 -0700
+Processing by ReviewsController#index as JSON
+  Parameters: {"api_id"=>"1"}
+  [1m[35mApi Load (0.4ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mReview Load (0.4ms)[0m  [1mSELECT "reviews".* FROM "reviews"  WHERE "reviews"."api_id" = $1[0m  [["api_id", 1]]
+  [1m[35mVote Load (0.3ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 4]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 4]]
+  [1m[35mVote Load (0.3ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 27]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 27]]
+  [1m[35mVote Load (0.3ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 30]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 30]]
+  [1m[35mVote Load (0.4ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 34]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 34]]
+  [1m[35mVote Load (0.4ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 53]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 53]]
+Completed 200 OK in 59ms (Views: 0.1ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/search?input=et" for 127.0.0.1 at 2014-09-09 15:58:33 -0700
+Processing by SearchController#search as JSON
+  Parameters: {"input"=>"et"}
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))
+  [1m[36mPgSearch::Document Load (1.3ms)[0m  [1mSELECT "pg_search_documents".*, ((ts_rank((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))), (to_tsquery('simple', ''' ' || 'et' || ' ''')), 0))) AS pg_search_rank FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))  ORDER BY pg_search_rank DESC, "pg_search_documents"."id" ASC[0m
+  [1m[35mApi Load (0.4ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mApi Load (0.4ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 6]]
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/apis/1/reviews" for 127.0.0.1 at 2014-09-09 15:58:34 -0700
+Processing by ReviewsController#index as JSON
+  Parameters: {"api_id"=>"1"}
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mReview Load (1.3ms)[0m  SELECT "reviews".* FROM "reviews"  WHERE "reviews"."api_id" = $1  [["api_id", 1]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 4]]
+  [1m[35mComment Load (1.1ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 4]]
+  [1m[36mVote Load (0.6ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 27]]
+  [1m[35mComment Load (0.9ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 27]]
+  [1m[36mVote Load (0.5ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 30]]
+  [1m[35mComment Load (1.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 30]]
+  [1m[36mVote Load (0.5ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 34]]
+  [1m[35mComment Load (2.5ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 34]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 53]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 53]]
+Completed 200 OK in 38ms (Views: 0.1ms | ActiveRecord: 10.1ms)
+
+
+Started GET "/apis/1" for 127.0.0.1 at 2014-09-09 15:58:34 -0700
+Processing by ApisController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/reviews/34/votes" for 127.0.0.1 at 2014-09-09 15:58:37 -0700
+Processing by VotesController#create as */*
+  Parameters: {"user_id"=>"21", "review_id"=>"34"}
+  [1m[35mReview Load (0.3ms)[0m  SELECT  "reviews".* FROM "reviews"  WHERE "reviews"."id" = $1 LIMIT 1  [["id", 34]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 21]]
+  [1m[35mVote Load (0.4ms)[0m  SELECT  "votes".* FROM "votes"  WHERE "votes"."user_id" = $1 AND (id = NULL)  ORDER BY "votes"."id" ASC LIMIT 1  [["user_id", 21]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT  "votes".* FROM "votes"  WHERE "votes"."user_id" = $1 AND (review_id = 34)  ORDER BY "votes"."id" ASC LIMIT 1[0m  [["user_id", 21]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "votes" ("created_at", "review_id", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["created_at", "2014-09-09 22:58:37.987758"], ["review_id", 34], ["updated_at", "2014-09-09 22:58:37.987758"]]
+  [1m[35m (7.5ms)[0m  COMMIT
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 34]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "votes" SET "updated_at" = $1, "user_id" = $2 WHERE "votes"."id" = 102[0m  [["updated_at", "2014-09-09 22:58:37.998706"], ["user_id", 21]]
+  [1m[35m (6.2ms)[0m  COMMIT
+Completed 200 OK in 26ms (Views: 0.2ms | ActiveRecord: 16.2ms)
+
+
+Started GET "/apis/1" for 127.0.0.1 at 2014-09-09 16:03:27 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ApisController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mApi Load (0.4ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 1]]
+Completed 200 OK in 22ms (Views: 0.1ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/apis/1/reviews" for 127.0.0.1 at 2014-09-09 16:03:27 -0700
+Processing by ReviewsController#index as JSON
+  Parameters: {"api_id"=>"1"}
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mReview Load (0.5ms)[0m  SELECT "reviews".* FROM "reviews"  WHERE "reviews"."api_id" = $1  [["api_id", 1]]
+  [1m[36mVote Load (0.5ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 4]]
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 4]]
+  [1m[36mVote Load (0.7ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 27]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 27]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 30]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 30]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 34]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 34]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 53]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 53]]
+Completed 200 OK in 116ms (Views: 0.1ms | ActiveRecord: 9.9ms)
+
+
+Started GET "/search?input=et" for 127.0.0.1 at 2014-09-09 16:03:32 -0700
+Processing by SearchController#search as JSON
+  Parameters: {"input"=>"et"}
+  [1m[36m (1.4ms)[0m  [1mSELECT COUNT(*) FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))[0m
+  [1m[35mPgSearch::Document Load (2.4ms)[0m  SELECT "pg_search_documents".*, ((ts_rank((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))), (to_tsquery('simple', ''' ' || 'et' || ' ''')), 0))) AS pg_search_rank FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))  ORDER BY pg_search_rank DESC, "pg_search_documents"."id" ASC
+  [1m[36mApi Load (1.2ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mApi Load (0.7ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mApi Load (0.4ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 6]]
+Completed 200 OK in 31ms (Views: 0.2ms | ActiveRecord: 10.2ms)
+
+
+Started GET "/apis/4" for 127.0.0.1 at 2014-09-09 16:03:33 -0700
+Processing by ApisController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mApi Load (1.5ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 4]]
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/apis/4/reviews" for 127.0.0.1 at 2014-09-09 16:03:33 -0700
+Processing by ReviewsController#index as JSON
+  Parameters: {"api_id"=>"4"}
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mReview Load (0.3ms)[0m  SELECT "reviews".* FROM "reviews"  WHERE "reviews"."api_id" = $1  [["api_id", 4]]
+  [1m[36mVote Load (1.7ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 24]]
+  [1m[35mComment Load (1.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 24]]
+  [1m[36mVote Load (4.6ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 39]]
+  [1m[35mComment Load (5.0ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 39]]
+  [1m[36mVote Load (0.4ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 15]]
+  [1m[35mComment Load (1.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 15]]
+  [1m[36mVote Load (0.8ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 40]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 40]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 42]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 42]]
+  [1m[36mVote Load (0.1ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 51]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 51]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 54]]
+  [1m[35mComment Load (0.1ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 54]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 55]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 55]]
+Completed 200 OK in 52ms (Views: 0.1ms | ActiveRecord: 17.2ms)
+
+
+Started GET "/search?input=et" for 127.0.0.1 at 2014-09-09 16:03:36 -0700
+Processing by SearchController#search as JSON
+  Parameters: {"input"=>"et"}
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))[0m
+  [1m[35mPgSearch::Document Load (0.6ms)[0m  SELECT "pg_search_documents".*, ((ts_rank((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))), (to_tsquery('simple', ''' ' || 'et' || ' ''')), 0))) AS pg_search_rank FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))  ORDER BY pg_search_rank DESC, "pg_search_documents"."id" ASC
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mApi Load (0.3ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 6]]
+Completed 200 OK in 9ms (Views: 0.2ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/apis/6" for 127.0.0.1 at 2014-09-09 16:03:37 -0700
+Processing by ApisController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[35mApi Load (0.3ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 6]]
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/apis/6/reviews" for 127.0.0.1 at 2014-09-09 16:03:37 -0700
+Processing by ReviewsController#index as JSON
+  Parameters: {"api_id"=>"6"}
+  [1m[36mApi Load (0.7ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mReview Load (0.4ms)[0m  SELECT "reviews".* FROM "reviews"  WHERE "reviews"."api_id" = $1  [["api_id", 6]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 7]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 7]]
+  [1m[36mVote Load (0.6ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 10]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 10]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 16]]
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 16]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 21]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 21]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 31]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 31]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 52]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 52]]
+Completed 200 OK in 31ms (Views: 0.1ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/search?input=et" for 127.0.0.1 at 2014-09-09 16:03:39 -0700
+Processing by SearchController#search as JSON
+  Parameters: {"input"=>"et"}
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))[0m
+  [1m[35mPgSearch::Document Load (1.4ms)[0m  SELECT "pg_search_documents".*, ((ts_rank((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))), (to_tsquery('simple', ''' ' || 'et' || ' ''')), 0))) AS pg_search_rank FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))  ORDER BY pg_search_rank DESC, "pg_search_documents"."id" ASC
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mApi Load (0.4ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 6]]
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/apis/6" for 127.0.0.1 at 2014-09-09 16:03:40 -0700
+Processing by ApisController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[35mApi Load (0.5ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 6]]
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/apis/6/reviews" for 127.0.0.1 at 2014-09-09 16:03:40 -0700
+Processing by ReviewsController#index as JSON
+  Parameters: {"api_id"=>"6"}
+  [1m[36mApi Load (0.5ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mReview Load (0.5ms)[0m  SELECT "reviews".* FROM "reviews"  WHERE "reviews"."api_id" = $1  [["api_id", 6]]
+  [1m[36mVote Load (3.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 7]]
+  [1m[35mComment Load (2.0ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 7]]
+  [1m[36mVote Load (0.8ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 10]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 10]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 16]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 16]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 21]]
+  [1m[35mComment Load (0.9ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 21]]
+  [1m[36mVote Load (0.4ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 31]]
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 31]]
+  [1m[36mVote Load (0.4ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 52]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 52]]
+Completed 200 OK in 44ms (Views: 0.1ms | ActiveRecord: 10.5ms)
+
+
+Started GET "/search?input=et" for 127.0.0.1 at 2014-09-09 16:03:42 -0700
+Processing by SearchController#search as JSON
+  Parameters: {"input"=>"et"}
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))[0m
+  [1m[35mPgSearch::Document Load (0.9ms)[0m  SELECT "pg_search_documents".*, ((ts_rank((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))), (to_tsquery('simple', ''' ' || 'et' || ' ''')), 0))) AS pg_search_rank FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))  ORDER BY pg_search_rank DESC, "pg_search_documents"."id" ASC
+  [1m[36mApi Load (0.2ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mApi Load (0.2ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 6]]
+Completed 200 OK in 10ms (Views: 0.2ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/apis/6" for 127.0.0.1 at 2014-09-09 16:03:43 -0700
+Processing by ApisController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[35mApi Load (0.4ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 6]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/apis/6/reviews" for 127.0.0.1 at 2014-09-09 16:03:43 -0700
+Processing by ReviewsController#index as JSON
+  Parameters: {"api_id"=>"6"}
+  [1m[36mApi Load (0.7ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mReview Load (0.4ms)[0m  SELECT "reviews".* FROM "reviews"  WHERE "reviews"."api_id" = $1  [["api_id", 6]]
+  [1m[36mVote Load (0.4ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 7]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 7]]
+  [1m[36mVote Load (0.4ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 10]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 10]]
+  [1m[36mVote Load (0.4ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 16]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 16]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 21]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 21]]
+  [1m[36mVote Load (0.4ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 31]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 31]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 52]]
+  [1m[35mComment Load (0.6ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 52]]
+Completed 200 OK in 36ms (Views: 0.2ms | ActiveRecord: 5.6ms)
+
+
+Started GET "/search?input=et" for 127.0.0.1 at 2014-09-09 16:03:45 -0700
+Processing by SearchController#search as JSON
+  Parameters: {"input"=>"et"}
+  [1m[36m (0.7ms)[0m  [1mSELECT COUNT(*) FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))[0m
+  [1m[35mPgSearch::Document Load (1.0ms)[0m  SELECT "pg_search_documents".*, ((ts_rank((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))), (to_tsquery('simple', ''' ' || 'et' || ' ''')), 0))) AS pg_search_rank FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))  ORDER BY pg_search_rank DESC, "pg_search_documents"."id" ASC
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mApi Load (0.2ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mApi Load (0.2ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 6]]
+Completed 200 OK in 9ms (Views: 0.1ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/apis/1" for 127.0.0.1 at 2014-09-09 16:03:47 -0700
+Processing by ApisController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mApi Load (0.3ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 1]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/apis/1/reviews" for 127.0.0.1 at 2014-09-09 16:03:47 -0700
+Processing by ReviewsController#index as JSON
+  Parameters: {"api_id"=>"1"}
+  [1m[36mApi Load (0.4ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mReview Load (1.0ms)[0m  SELECT "reviews".* FROM "reviews"  WHERE "reviews"."api_id" = $1  [["api_id", 1]]
+  [1m[36mVote Load (1.5ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 4]]
+  [1m[35mComment Load (3.9ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 4]]
+  [1m[36mVote Load (0.6ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 27]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 27]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 30]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 30]]
+  [1m[36mVote Load (0.4ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 34]]
+  [1m[35mComment Load (1.1ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 34]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 53]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 53]]
+Completed 200 OK in 42ms (Views: 0.1ms | ActiveRecord: 10.3ms)
+
+
+Started GET "/search?input=et" for 127.0.0.1 at 2014-09-09 16:03:48 -0700
+Processing by SearchController#search as JSON
+  Parameters: {"input"=>"et"}
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))[0m
+  [1m[35mPgSearch::Document Load (0.8ms)[0m  SELECT "pg_search_documents".*, ((ts_rank((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))), (to_tsquery('simple', ''' ' || 'et' || ' ''')), 0))) AS pg_search_rank FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))  ORDER BY pg_search_rank DESC, "pg_search_documents"."id" ASC
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mApi Load (0.3ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mApi Load (0.2ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 6]]
+Completed 200 OK in 11ms (Views: 0.1ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/apis/6" for 127.0.0.1 at 2014-09-09 16:03:50 -0700
+Processing by ApisController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[35mApi Load (0.3ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 6]]
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/apis/6/reviews" for 127.0.0.1 at 2014-09-09 16:03:50 -0700
+Processing by ReviewsController#index as JSON
+  Parameters: {"api_id"=>"6"}
+  [1m[36mApi Load (1.4ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mReview Load (3.8ms)[0m  SELECT "reviews".* FROM "reviews"  WHERE "reviews"."api_id" = $1  [["api_id", 6]]
+  [1m[36mVote Load (0.5ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 7]]
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 7]]
+  [1m[36mVote Load (0.9ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 10]]
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 10]]
+  [1m[36mVote Load (0.4ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 16]]
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 16]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 21]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 21]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 31]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 31]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 52]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1  [["review_id", 52]]
+Completed 200 OK in 43ms (Views: 0.1ms | ActiveRecord: 9.3ms)
+
+
+Started GET "/search?input=et" for 127.0.0.1 at 2014-09-09 16:03:51 -0700
+Processing by SearchController#search as JSON
+  Parameters: {"input"=>"et"}
+  [1m[36m (1.3ms)[0m  [1mSELECT COUNT(*) FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))[0m
+  [1m[35mPgSearch::Document Load (0.6ms)[0m  SELECT "pg_search_documents".*, ((ts_rank((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))), (to_tsquery('simple', ''' ' || 'et' || ' ''')), 0))) AS pg_search_rank FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))  ORDER BY pg_search_rank DESC, "pg_search_documents"."id" ASC
+  [1m[36mApi Load (0.2ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mApi Load (0.2ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mApi Load (0.2ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 6]]
+Completed 200 OK in 10ms (Views: 0.1ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/search?input=et" for 127.0.0.1 at 2014-09-09 16:06:03 -0700
+Processing by SearchController#search as JSON
+  Parameters: {"input"=>"et"}
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))
+  [1m[36mPgSearch::Document Load (0.7ms)[0m  [1mSELECT "pg_search_documents".*, ((ts_rank((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))), (to_tsquery('simple', ''' ' || 'et' || ' ''')), 0))) AS pg_search_rank FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'et' || ' '''))))  ORDER BY pg_search_rank DESC, "pg_search_documents"."id" ASC[0m
+  [1m[35mApi Load (0.2ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mApi Load (0.2ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mApi Load (0.2ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 6]]
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/apis/1" for 127.0.0.1 at 2014-09-09 16:06:04 -0700
+Processing by ApisController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/apis/1/reviews" for 127.0.0.1 at 2014-09-09 16:06:04 -0700
+Processing by ReviewsController#index as JSON
+  Parameters: {"api_id"=>"1"}
+  [1m[35mApi Load (0.3ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mReview Load (0.4ms)[0m  [1mSELECT "reviews".* FROM "reviews"  WHERE "reviews"."api_id" = $1[0m  [["api_id", 1]]
+  [1m[35mVote Load (0.3ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 4]]
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 4]]
+  [1m[35mVote Load (0.3ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 27]]
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 27]]
+  [1m[35mVote Load (0.3ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 30]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 30]]
+  [1m[35mVote Load (0.2ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 34]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 34]]
+  [1m[35mVote Load (0.2ms)[0m  SELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 53]]
+  [1m[36mComment Load (0.4ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."review_id" = $1[0m  [["review_id", 53]]
+Completed 200 OK in 24ms (Views: 0.1ms | ActiveRecord: 3.6ms)

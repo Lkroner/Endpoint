@@ -70,7 +70,6 @@ ENDPOINT.Routers = Backbone.Router.extend({
 		apiProfileModel.fetch().done(function(data){
 			var apiProfileView = new ENDPOINT.Views.ApiProfile({model: apiProfileModel})
 			apiProfileView.render().$el;
-		});
 
 		//display reviews on profile page
 		var reviewModel = new ENDPOINT.Models.Review({api_id: id})
@@ -79,6 +78,8 @@ ENDPOINT.Routers = Backbone.Router.extend({
 			var reviewsCollection = new ENDPOINT.Collections.Reviews(data.reviews);
 			var reviewsView = new ENDPOINT.Views.Reviews({collection: reviewsCollection, model: reviewModel});
 			$("#app-body").append(reviewsView.render().$el);
+		});
+
 
 		});
 	},
