@@ -61,6 +61,7 @@ json_response = Hash.from_xml(response)
 # sample_response = users can add this
 # dev_twitter_url = json_response["result"]["item"][0]["field_twitter_url"]["und"]["item"]["value"]
 # category/type_of_service = json_response["result"]["item"][0]["field_api_summary"]["und"]["item"]["value"]
+# terms_of_service = json_response["result"]["item"][0]["field_api_terms_of_service"]["und"]["item"]["value"]
 
 # ********************************************************
 
@@ -70,26 +71,15 @@ puts json_response
 puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
 
 
-puts json_response["result"]["item"][0]["field_api_summary"]["und"]["item"]["value"]
+puts json_response["result"]["item"][0]["field_api_terms_of_service"]["und"]["item"]["value"]
 puts "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
-puts json_response["result"]["item"][1]["field_api_summary"]["und"]["item"]["value"]
+puts json_response["result"]["item"][1]["field_api_terms_of_service"]["und"]["item"]["value"]
 puts "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
-puts json_response["result"]["item"][2]["field_api_summary"]["und"]["item"]["value"]
+puts json_response["result"]["item"][2]["field_api_terms_of_service"]["und"]["item"]["value"]
 
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++        
                    
-# "field_api_summary": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "format": null,
-#                         "safe_value": "Mapping services",
-#                         "value": "Mapping services"
-#                     }
-#                 }
-#             }
-            
 # "field_api_terms_of_service": {
 #                 "und": {
 #                     "is_array": "true",
