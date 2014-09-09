@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
     if type.class == User
       render json: {reviews: reviewable_type.reviews}
     elsif type.class == Api
-      api_reviews = determine_reviewable_type.reviews
+      api_reviews = reviewable_type.reviews
       formatted_data = ReviewPresenter.new(api_reviews).change_to_hash
       render json: {reviews: formatted_data}.to_json
     else
@@ -29,7 +29,7 @@ class ReviewsController < ApplicationController
   private
 
   def reviewable_type
-    (params[:api].nil? ? User.find(params[:user_id]) : Api.find(params[:api_id]))
+    (params[:api_id].nil? ? User.find(params[:user_id]) : Api.find(params[:api_id]))
   end
 
 end
