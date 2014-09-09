@@ -47,7 +47,6 @@
 
 require 'rest_client'
 require 'json'
-
 response = RestClient.get 'http://www.programmableweb.com/pw-api/views/query_apis', {
   :params => { 
     'api-key' => 'NM2UJn3mhn2WgG9tLd3zTFG7sd8jdw9G', 
@@ -59,9 +58,20 @@ json_response = Hash.from_xml(response)
 api_array = json_response["result"]["item"]
 
 # *********************  ATTRIBUTES  *********************
+
 # title = json_response["result"]["item"][0]["title"]
+titles = api_array.map do |api|
+  api["title"]
+end
+
 # description = json_response["result"]["item"][0]["field_api_description"]["und"]["item"]["value"]
+descriptions = api_array.map.with_index do |api|
+  api["field_api_description"]["und"]["item"]["value"]
+end
+
 # key_required = json_response["result"]["item"][0]["field_api_developer_key_required"]["und"]["item"]["value"]
+
+
 # documentation = json_response["result"]["item"][0]["field_api_documentation"]["und"]["item"]["value"]
 # endpoint_url = json_response["result"]["item"][0]["field_api_endpoint"]["und"]["item"]["value"]
 # dev_homepage = json_response["result"]["item"][0]["field_api_home_page"]["und"]["item"]["url"]
@@ -73,17 +83,21 @@ api_array = json_response["result"]["item"]
 # usage_limits = json_response["result"]["item"][0]["field_api_usage_limits"]["und"]["item"]["value"]
 # image_url = users can add this / use the scrape logo API
 # ********************************************************
-
 puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 puts api_array.length
 puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
-
-titles = api_array.map do |api|
-  api["title"]
-end
-p titles
-
+print descriptions
 puts "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+
+
+
+
+
+
+
+
+
+
 
 
 puts json_response["result"]["item"][0]["title"]
