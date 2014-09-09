@@ -47,14 +47,25 @@
 
 require 'rest_client'
 require 'json'
-
 response = RestClient.get 'http://www.programmableweb.com/pw-api/views/query_apis', {:params => {'api-key' => 'NM2UJn3mhn2WgG9tLd3zTFG7sd8jdw9G', 'display_id' => 'api', 'keyword' => 'yelp', 'limit' => 1 }}
+json_response = Hash.from_xml(response)
 
-json_response = Hash.from_xml(response).to_json
+# ***************  ATTRIBUTES  *********************
+title = json_response["result"]["item"]["title"]
 
-puts json_response
+# **************************************************
 
-            
+puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+puts JSON.pretty_generate(json_response)
+puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+
+
+puts json_response["result"]["item"]["title"]
+
+# api_description = json_response["result"]
+# puts api_description
+
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++        
 # "field_api_description": {
 #                 "und": {
 #                     "is_array": "true",
