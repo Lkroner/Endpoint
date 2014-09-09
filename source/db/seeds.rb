@@ -51,7 +51,7 @@ response = RestClient.get 'http://www.programmableweb.com/pw-api/views/query_api
   :params => { 
     'api-key' => 'NM2UJn3mhn2WgG9tLd3zTFG7sd8jdw9G', 
     'display_id' => 'api', 
-    'limit' => 20 
+    'limit' => 13000 
   }
 }
 json_response = Hash.from_xml(response)
@@ -95,20 +95,3 @@ CSV.open("database.csv", "wb") do |csv|
   csv << titles
   csv << descriptions
 end
-
-
-
-
-
-
-
-
-puts json_response["result"]["item"][0]["title"]
-# puts json_response["result"]["item"][21]["title"]
-# puts json_response["result"]["item"][32]["title"]
-# puts json_response["result"]["item"][99]["title"]
-# puts json_response["result"]["item"][199]["title"]
-
-
-
-
