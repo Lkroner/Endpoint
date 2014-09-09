@@ -47,19 +47,20 @@
 
 require 'rest_client'
 require 'json'
-response = RestClient.get 'http://www.programmableweb.com/pw-api/views/query_apis', {:params => {'api-key' => 'NM2UJn3mhn2WgG9tLd3zTFG7sd8jdw9G', 'display_id' => 'api', 'keyword' => 'yelp', 'limit' => 2 }}
+response = RestClient.get 'http://www.programmableweb.com/pw-api/views/query_apis', {:params => {'api-key' => 'NM2UJn3mhn2WgG9tLd3zTFG7sd8jdw9G', 'display_id' => 'api', 'keyword' => 'yelp', 'limit' => 3 }}
 json_response = Hash.from_xml(response)
 
-# ***************  ATTRIBUTES  *********************
+# *********************  ATTRIBUTES  *********************
 # title = json_response["result"]["item"][0]["title"]
 # description = json_response["result"]["item"][0]["field_api_description"]["und"]["item"]["value"]
 # key_required = json_response["result"]["item"][0]["field_api_developer_key_required"]["und"]["item"]["value"]
 # documentation = json_response["result"]["item"][0]["field_api_documentation"]["und"]["item"]["value"]
 # endpoint_url = json_response["result"]["item"][0]["field_api_endpoint"]["und"]["item"]["value"]
 # dev_homepage = json_response["result"]["item"][0]["field_api_home_page"]["und"]["item"]["url"]
+# sample_call = json_response["result"]["item"][0]["field_api_sample_calls"]["und"]["item"]["value"]
+# sample_response = users can add this
 
-
-# **************************************************
+# ********************************************************
 
 puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 # puts JSON.pretty_generate(json_response)
@@ -67,33 +68,15 @@ puts json_response
 puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
 
 
-puts json_response["result"]["item"][0]["field_api_home_page"]["und"]["item"]["url"]
+puts json_response["result"]["item"][0]["field_api_sample_calls"]["und"]["item"]["value"]
 puts "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
-puts json_response["result"]["item"][1]["field_api_home_page"]["und"]["item"]["url"]
+puts json_response["result"]["item"][1]["field_api_sample_calls"]["und"]["item"]["value"]
+puts "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
+puts json_response["result"]["item"][2]["field_api_sample_calls"]["und"]["item"]["value"]
 
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++        
-            
-#             "field_api_home_page": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "attributes": null,
-#                         "title": null,
-#                         "url": "http://developer.yahoo.com/maps/"
-#                     }
-#                 }
-#             }
                    
-#             "field_api_sample_calls": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "value": "---"
-#                     }
-#                 }
-#             }
-           
 # "field_api_site_twitter_url": {
 #                 "und": {
 #                     "is_array": "true",
