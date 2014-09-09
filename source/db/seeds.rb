@@ -55,6 +55,9 @@ json_response = Hash.from_xml(response)
 # description = json_response["result"]["item"][0]["field_api_description"]["und"]["item"]["value"]
 # key_required = json_response["result"]["item"][0]["field_api_developer_key_required"]["und"]["item"]["value"]
 # documentation = json_response["result"]["item"][0]["field_api_documentation"]["und"]["item"]["value"]
+# api_url = json_response["result"]["item"][0]["field_api_endpoint"]["und"]["item"]["value"]
+# 
+
 # **************************************************
 
 puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
@@ -63,57 +66,12 @@ puts json_response
 puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
 
 
-puts json_response["result"]["item"][0]["field_api_documentation"]["und"]["item"]["value"]
+puts json_response["result"]["item"][0]["field_api_endpoint"]["und"]["item"]["value"]
 puts "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
-puts json_response["result"]["item"][1]["field_api_documentation"]["und"]["item"]["value"]
+puts json_response["result"]["item"][1]["field_api_endpoint"]["und"]["item"]["value"]
 
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++        
-
-#             "field_api_documentation": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "value": "---"
-#                     }
-#                 }
-#             }
-            
-#             "field_api_endpoint": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "format": null,
-#                         "safe_value": "http://api.maps.yahoo.com/ajaxymap?v=2.0&amp;appid=YourAppId",
-#                         "value": "http://api.maps.yahoo.com/ajaxymap?v=2.0&appid=YourAppId"
-#                     }
-#                 }
-#             }
-            
-#             "field_api_favicon": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "alt": null,
-#                         "fid": "65324",
-#                         "filemime": "image/vnd.microsoft.icon",
-#                         "filename": "api_favicon62696.ico",
-#                         "filesize": "748",
-#                         "height": "16",
-#                         "image_dimensions": {
-#                             "height": "16",
-#                             "width": "16"
-#                         },
-#                         "status": "1",
-#                         "timestamp": "1397933571",
-#                         "title": null,
-#                         "type": "image",
-#                         "uid": "1",
-#                         "uri": "public://apis/favicon/api_favicon62696.ico",
-#                         "width": "16"
-#                     }
-#                 }
-#             }
             
 #             "field_api_home_page": {
 #                 "und": {
@@ -217,6 +175,30 @@ puts json_response["result"]["item"][1]["field_api_documentation"]["und"]["item"
 #                 }
 #             }
 
+#             "field_api_favicon": {
+#                 "und": {
+#                     "is_array": "true",
+#                     "item": {
+#                         "alt": null,
+#                         "fid": "65324",
+#                         "filemime": "image/vnd.microsoft.icon",
+#                         "filename": "api_favicon62696.ico",
+#                         "filesize": "748",
+#                         "height": "16",
+#                         "image_dimensions": {
+#                             "height": "16",
+#                             "width": "16"
+#                         },
+#                         "status": "1",
+#                         "timestamp": "1397933571",
+#                         "title": null,
+#                         "type": "image",
+#                         "uid": "1",
+#                         "uri": "public://apis/favicon/api_favicon62696.ico",
+#                         "width": "16"
+#                     }
+#                 }
+#             }
 
             
 
