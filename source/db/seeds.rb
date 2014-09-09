@@ -62,7 +62,8 @@ json_response = Hash.from_xml(response)
 # dev_twitter_url = json_response["result"]["item"][0]["field_twitter_url"]["und"]["item"]["value"]
 # category/type_of_service = json_response["result"]["item"][0]["field_api_summary"]["und"]["item"]["value"]
 # terms_of_service = json_response["result"]["item"][0]["field_api_terms_of_service"]["und"]["item"]["value"]
-
+# usage_limits = json_response["result"]["item"][0]["field_api_usage_limits"]["und"]["item"]["value"]
+#
 # ********************************************************
 
 puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
@@ -71,36 +72,14 @@ puts json_response
 puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
 
 
-puts json_response["result"]["item"][0]["field_api_terms_of_service"]["und"]["item"]["value"]
+puts json_response["result"]["item"][0]["field_api_usage_limits"]["und"]["item"]["value"]
 puts "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
-puts json_response["result"]["item"][1]["field_api_terms_of_service"]["und"]["item"]["value"]
+puts json_response["result"]["item"][1]["field_api_usage_limits"]["und"]["item"]["value"]
 puts "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
-puts json_response["result"]["item"][2]["field_api_terms_of_service"]["und"]["item"]["value"]
+puts json_response["result"]["item"][2]["field_api_usage_limits"]["und"]["item"]["value"]
 
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++        
-                   
-# "field_api_terms_of_service": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "format": null,
-#                         "safe_value": "http://info.yahoo.com/legal/us/yahoo/maps/mapsapi/mapsapi-2141.html",
-#                         "value": "http://info.yahoo.com/legal/us/yahoo/maps/mapsapi/mapsapi-2141.html"
-#                     }
-#                 }
-#             }
-  
-# "field_api_usage_limits": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "format": null,
-#                         "safe_value": "Simple API has no rate limit. Others are 50,000 queries per IP per day. Also limit on using GPS sensors.",
-#                         "value": "Simple API has no rate limit. Others are 50,000 queries per IP per day. Also limit on using GPS sensors."
-#                     }
-#                 }
-#             }
                      
 # "field_article_related_companies": null
             
