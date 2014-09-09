@@ -1,3 +1,5 @@
+require 'faker'
+
 20.times {
 	user = User.new(email: Faker::Internet.email,
 					about_me: Faker::Lorem.sentence(3),
