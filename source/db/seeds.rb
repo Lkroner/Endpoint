@@ -65,8 +65,6 @@ end
 
 descriptions = api_array.map.with_index do |api|
   desc = api["field_api_description"]["und"]["item"]["value"]
-  p desc
-  puts "####################################################"
   if desc == nil
     desc = "description unavailable"
   else
@@ -75,8 +73,6 @@ descriptions = api_array.map.with_index do |api|
 end
 
 # key_required = json_response["result"]["item"][0]["field_api_developer_key_required"]["und"]["item"]["value"]
-
-
 # documentation = json_response["result"]["item"][0]["field_api_documentation"]["und"]["item"]["value"]
 # endpoint_url = json_response["result"]["item"][0]["field_api_endpoint"]["und"]["item"]["value"]
 # dev_homepage = json_response["result"]["item"][0]["field_api_home_page"]["und"]["item"]["url"]
@@ -91,8 +87,8 @@ end
 puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 puts api_array.length
 puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
-print descriptions
-puts
+# print descriptions
+# puts
 puts "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 
 CSV.open("database.csv", "wb") do |csv|
