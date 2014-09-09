@@ -3,11 +3,9 @@ class ReviewsController < ApplicationController
   # GET /users/:user_id/reviews
 
   def index
-    type = reviewable_type
-
-    if type.class == User
+    if reviewable_type.class == User
       render json: {reviews: reviewable_type.reviews}
-    elsif type.class == Api
+    elsif reviewable_type.class == Api
       formatted_data = ReviewPresenter.new(reviewable_type.reviews).change_to_hash
       render json: {reviews: formatted_data}.to_json
     else
