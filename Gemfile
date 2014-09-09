@@ -14,6 +14,8 @@ gem 'pg_search'
 
 gem 'faker'
 
+gem 'rails_12factor', group: :production
+
 # gem 'bcrypt-ruby', '3.1.2'
 gem 'bcrypt', '~> 3.1.7'
 
