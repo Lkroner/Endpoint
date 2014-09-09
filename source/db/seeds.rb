@@ -48,8 +48,15 @@
 require 'rest_client'
 require 'json'
 
-response = RestClient.get 'http://www.programmableweb.com/pw-api/views/query_apis', {:params => {'api-key' => 'NM2UJn3mhn2WgG9tLd3zTFG7sd8jdw9G', 'display_id' => 'api', 'keyword' => 'yelp', 'limit' => 3 }}
+response = RestClient.get 'http://www.programmableweb.com/pw-api/views/query_apis', {
+  :params => { 
+    'api-key' => 'NM2UJn3mhn2WgG9tLd3zTFG7sd8jdw9G', 
+    'display_id' => 'api', 
+    'limit' => 20 
+  }
+}
 json_response = Hash.from_xml(response)
+api_array = json_response["result"]["item"]
 
 # *********************  ATTRIBUTES  *********************
 # title = json_response["result"]["item"][0]["title"]
@@ -68,9 +75,23 @@ json_response = Hash.from_xml(response)
 # ********************************************************
 
 puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-puts json_response
+puts api_array.length
 puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
 
-puts json_response["result"]["item"][0]["field_article_related_companies"]["und"]["item"]["value"]
-            
+titles = api_array.map do |api|
+  api["title"]
+end
+p titles
+
+puts "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+
+
+puts json_response["result"]["item"][0]["title"]
+# puts json_response["result"]["item"][21]["title"]
+# puts json_response["result"]["item"][32]["title"]
+# puts json_response["result"]["item"][99]["title"]
+# puts json_response["result"]["item"][199]["title"]
+
+
+
 
