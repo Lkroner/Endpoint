@@ -55,8 +55,9 @@ json_response = Hash.from_xml(response)
 # description = json_response["result"]["item"][0]["field_api_description"]["und"]["item"]["value"]
 # key_required = json_response["result"]["item"][0]["field_api_developer_key_required"]["und"]["item"]["value"]
 # documentation = json_response["result"]["item"][0]["field_api_documentation"]["und"]["item"]["value"]
-# api_url = json_response["result"]["item"][0]["field_api_endpoint"]["und"]["item"]["value"]
-# 
+# endpoint_url = json_response["result"]["item"][0]["field_api_endpoint"]["und"]["item"]["value"]
+# dev_homepage = json_response["result"]["item"][0]["field_api_home_page"]["und"]["item"]["url"]
+
 
 # **************************************************
 
@@ -66,9 +67,9 @@ puts json_response
 puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
 
 
-puts json_response["result"]["item"][0]["field_api_endpoint"]["und"]["item"]["value"]
+puts json_response["result"]["item"][0]["field_api_home_page"]["und"]["item"]["url"]
 puts "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
-puts json_response["result"]["item"][1]["field_api_endpoint"]["und"]["item"]["value"]
+puts json_response["result"]["item"][1]["field_api_home_page"]["und"]["item"]["url"]
 
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++        
