@@ -14,5 +14,4 @@ class ReviewPresenter
       end
       return all_reviews
   end
-
 end
