@@ -14,6 +14,7 @@ ENDPOINT.Views.HomeView = Backbone.View.extend({
 	},
 
 	clickSearch: function() {
-		ENDPOINT.router.navigate("searchResults", true)
+		var query = $(".form-control").val();
+		ENDPOINT.router.navigate("search=" + query, true)
 	}
 })
