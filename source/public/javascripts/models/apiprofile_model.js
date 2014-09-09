@@ -3,7 +3,7 @@ ENDPOINT.Models.ApiProfile = Backbone.Model.extend({
     this.set("url", opts.url)
   },
 
-  url:function(){
+  url: function(){
     return this.attributes.url;
   }
 })

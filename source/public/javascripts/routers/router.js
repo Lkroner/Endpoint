@@ -9,6 +9,7 @@ ENDPOINT.Routers = Backbone.Router.extend({
 
 
 	resetBody: function(){
+		$('#app-body').empty();
 		var hasNavbar = false
 		for (var i = 0 ; i < ENDPOINT.CurrentState.Views.length; i++) {
 			ENDPOINT.CurrentState.Views[i].remove();
@@ -24,8 +25,6 @@ ENDPOINT.Routers = Backbone.Router.extend({
 	},
 
 	navigateToHome: function(){
-
-		//Proper way to destroy a model would be to set it to null
 		this.resetBody();
 		this.toggleNavBar();
 	    var homeView = new ENDPOINT.Views.HomeView();
@@ -52,7 +51,6 @@ ENDPOINT.Routers = Backbone.Router.extend({
 		this.toggleNavBar();
 		console.log("in navigate")
 		var searchModel = new ENDPOINT.Models.Search({input: query});
-		// debugger
 		searchModel.fetch({data: {input: searchModel.get("input")}}).done(function(data){
 			var searchResultCollection = new ENDPOINT.Collections.SearchResults(data.apis);
 			var searchResultsView = new ENDPOINT.Views.SearchResults({collection: searchResultCollection});
@@ -61,18 +59,25 @@ ENDPOINT.Routers = Backbone.Router.extend({
 	},
 
 	navigateToApiProfile: function(id){
-		this.resetBody()
+		console.log('navigating to profile')
+		this.resetBody();
 		this.toggleNavBar();
 		var apiProfileModel = new ENDPOINT.Models.ApiProfile({url: "/apis/"+id});
-
 		apiProfileModel.fetch().done(function(data){
-			// debugger
+			console.log(data)
 			var apiProfileView = new ENDPOINT.Views.ApiProfile({model: apiProfileModel})
 			apiProfileView.render().$el;
-		})
-		// var apireviews = new ENDPOINT.Views.Reviews({id: id});
-		// $('#app-body').html(apiprofile.render().$el);
-		// $('#app-body').append(apireviews.render());
+		});
+
+		var reviewListModel = new ENDPOINT.Models.ReviewList({url: "/apis/"+id+"/reviews"})
+
+		reviewListModel.fetch().done(function(data){
+			// debugger
+			var reviewsCollection = new ENDPOINT.Collections.Reviews(data.reviews);
+			var reviewsView = new ENDPOINT.Views.Reviews({collection: reviewsCollection});
+			reviewsView.render();
+		});
+
 	},
 
 	toggleNavBar: function(){
