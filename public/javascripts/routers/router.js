@@ -70,17 +70,18 @@ ENDPOINT.Routers = Backbone.Router.extend({
 		apiProfileModel.fetch().done(function(data){
 			var apiProfileView = new ENDPOINT.Views.ApiProfile({model: apiProfileModel})
 			apiProfileView.render().$el;
-		});
 
 		//display reviews on profile page
-		var reviewListModel = new ENDPOINT.Models.ReviewList({url: "/apis/"+id+"/reviews"})
-		reviewListModel.fetch().done(function(data){
+		var reviewModel = new ENDPOINT.Models.Review({api_id: id})
+		var reviewsCollection = new ENDPOINT.Collections.Reviews({api_id: id});
+		reviewsCollection.fetch().done(function(data){
 			var reviewsCollection = new ENDPOINT.Collections.Reviews(data.reviews);
-
-			var reviewsView = new ENDPOINT.Views.Reviews({collection: reviewsCollection});
-			reviewsView.render();
+			var reviewsView = new ENDPOINT.Views.Reviews({collection: reviewsCollection, model: reviewModel});
+			$("#app-body").append(reviewsView.render().$el);
 		});
 
+
+		});
 	},
 
 	toggleNavBar: function(){
