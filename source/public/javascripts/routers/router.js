@@ -35,14 +35,17 @@ ENDPOINT.Routers = Backbone.Router.extend({
 	navigateToSignUp: function(){
 		this.resetBody();
 		this.toggleNavBar();
-		var signup = new ENDPOINT.Views.SignUpPage(ENDPOINT.router);
+		var signupModel = new ENDPOINT.Models.SignUp();
+
+		var signup = new ENDPOINT.Views.SignUpPage({model: signupModel});
 		$('#app-body').html(signup.render().$el);
 	},
 
 	navigateToLogin: function(){
 		this.resetBody()
 		this.toggleNavBar();
-		var login = new ENDPOINT.Views.LoginPage(ENDPOINT.router);
+		var loginModel = new ENDPOINT.Models.Login();
+		var login = new ENDPOINT.Views.LoginPage({model: loginModel});
 		$("#app-body").html(login.render().$el);
 	},
 
