@@ -59,7 +59,8 @@ json_response = Hash.from_xml(response)
 # dev_homepage = json_response["result"]["item"][0]["field_api_home_page"]["und"]["item"]["url"]
 # sample_call = json_response["result"]["item"][0]["field_api_sample_calls"]["und"]["item"]["value"]
 # sample_response = users can add this
-
+# dev_twitter_url = json_response["result"]["item"][0]["field_twitter_url"]["und"]["item"]["value"]
+# 
 # ********************************************************
 
 puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
@@ -68,26 +69,15 @@ puts json_response
 puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
 
 
-puts json_response["result"]["item"][0]["field_api_sample_calls"]["und"]["item"]["value"]
+puts json_response["result"]["item"][0]["field_twitter_url"]["und"]["item"]["value"]
 puts "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
-puts json_response["result"]["item"][1]["field_api_sample_calls"]["und"]["item"]["value"]
+puts json_response["result"]["item"][1]["field_twitter_url"]["und"]["item"]["value"]
 puts "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
-puts json_response["result"]["item"][2]["field_api_sample_calls"]["und"]["item"]["value"]
+puts json_response["result"]["item"][2]["field_twitter_url"]["und"]["item"]["value"]
 
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++        
                    
-# "field_api_site_twitter_url": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "format": null,
-#                         "safe_value": null,
-#                         "value": null
-#                     }
-#                 }
-#             }
-            
 # "field_api_summary": {
 #                 "und": {
 #                     "is_array": "true",
