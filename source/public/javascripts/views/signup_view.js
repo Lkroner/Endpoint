@@ -1,10 +1,4 @@
-app.SignUp = {
-	Models: {},
-	Collections: {},
-	Views: {}
-}
-
-app.SignUp.Views.SignUpPage = Backbone.View.extend({
+ENDPOINT.Views.SignUpPage = Backbone.View.extend({
 	initialize: function(){
 	},
 	
@@ -26,7 +20,7 @@ app.SignUp.Views.SignUpPage = Backbone.View.extend({
 		}).done(function(data){
 			if (data.user) {
 			$.cookie("user_id", data.user.id)
-			app.router.navigate("", true)
+			ENDPOINT.router.navigate("", true)
 			} else if (data.errors){
 				errors = data.errors
 				errorsHTML = ""
@@ -35,7 +29,7 @@ app.SignUp.Views.SignUpPage = Backbone.View.extend({
 				}
 				$(".errors").html(errorsHTML)
 			}
-			// app.router.navigate("", true)
+			// ENDPOINT.router.navigate("", true)
 		})		
 	},
 

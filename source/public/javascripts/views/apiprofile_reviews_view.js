@@ -1,79 +1,5 @@
-app.ApiProfile = {
-  Models: {},
-  Collections: {},
-  Views: {}
-}
-
-app.ApiProfile.Models.Profile = Backbone.Model.extend({
-
-  initialize: function(){
-  },
-
-  defaults: {
-    "title": "",
-    "description": "",
-    "tips": "",
-    "average_score": "",
-    "logo_url": "",
-    "data_type": "",
-    "doc_link": "",
-    "endpoint_link": "",
-    "num_followers": 0,
-  }
-})
-
-app.ApiProfile.Views.Profile = Backbone.View.extend({
-  model: app.ApiProfile.Models.Profile,
-
-  initialize: function(opts){
-    this.id = opts.id
-  },
-
-  template: _.template($('#apiprofile-template').html()),
-
-  render: function() {
-    var apiObject = new this.model
-    var that = this;
-    $.ajax({
-      url:'/apis/' + this.id,
-      success: function(result){
-        apiObject.set(result.api);
-        that.$el.html(that.template(apiObject.attributes));
-      }
-    })
-    return this;
-  },
-})
-
-/////////////// Reviews Section
-app.ApiProfile.Models.Review = Backbone.Model.extend({
-  initialize: function(){
-  },
-
-  defaults: {
-    "score": "",
-    "content": "",
-    "title": "",
-    "created_at": "",
-    "user_id": "",
-    "user_photo_url": "",
-    "comment_content": ""
-  }
-
-})
-
-
-app.ApiProfile.Collections.Reviews = Backbone.Collection.extend({
-  initialize: function(opts){
-    this.id = opts.id
-  },
-  model: app.ApiProfile.Models.Review,
-  url: '/apis/' + this.id + '/reviews'
-})
-
-
-app.ApiProfile.Views.Reviews = Backbone.View.extend({
-  model: app.ApiProfile.Models.Review,
+ENDPOINT.Views.Reviews = Backbone.View.extend({
+  model: ENDPOINT.Models.Review,
 
   initialize: function(opts){
     this.id = opts.id
@@ -103,7 +29,7 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
         alert("You can only vote once!")
       })
     } else {
-      app.router.navigate("login", true)
+      EDNPOINT.router.navigate("login", true)
       $(".errors").html("You must be logged in to upvote!")
     }
   },
@@ -149,4 +75,3 @@ app.ApiProfile.Views.Reviews = Backbone.View.extend({
     });
   }
 })
-
