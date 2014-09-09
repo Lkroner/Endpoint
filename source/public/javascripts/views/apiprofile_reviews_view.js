@@ -19,7 +19,7 @@ ENDPOINT.Views.Reviews = Backbone.View.extend({
         url: '/reviews/' + review_id + '/votes',
         type: 'POST',
         data: {user_id: user_id, review_id: review_id}
-      })    
+      })
       .done(function(data){
         var newVoteCount = data.vote_count
         review = $("[data-id='"+ data.review_id + "'][class='single-review row']")
@@ -29,7 +29,7 @@ ENDPOINT.Views.Reviews = Backbone.View.extend({
         alert("You can only vote once!")
       })
     } else {
-      EDNPOINT.router.navigate("login", true)
+      ENDPOINT.router.navigate("login", true)
       $(".errors").html("You must be logged in to upvote!")
     }
   },

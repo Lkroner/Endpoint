@@ -54,7 +54,6 @@ ENDPOINT.Routers = Backbone.Router.extend({
 		var searchModel = new ENDPOINT.Models.Search({input: query});
 		// debugger
 		searchModel.fetch({data: {input: searchModel.get("input")}}).done(function(data){
-			// debugger
 			var searchResultCollection = new ENDPOINT.Collections.SearchResults(data.apis);
 			var searchResultsView = new ENDPOINT.Views.SearchResults({collection: searchResultCollection});
 			searchResultsView.render().$el;
@@ -64,10 +63,16 @@ ENDPOINT.Routers = Backbone.Router.extend({
 	navigateToApiProfile: function(id){
 		this.resetBody()
 		this.toggleNavBar();
-		var apiprofile = new ENDPOINT.Views.ApiProfile({id: id});
-		var apireviews = new ENDPOINT.Views.Reviews({id: id});
-		$('#app-body').html(apiprofile.render().$el);
-		$('#app-body').append(apireviews.render());
+		var apiProfileModel = new ENDPOINT.Models.ApiProfile({url: "/apis/"+id});
+
+		apiProfileModel.fetch().done(function(data){
+			// debugger
+			var apiProfileView = new ENDPOINT.Views.ApiProfile({model: apiProfileModel})
+			apiProfileView.render().$el;
+		})
+		// var apireviews = new ENDPOINT.Views.Reviews({id: id});
+		// $('#app-body').html(apiprofile.render().$el);
+		// $('#app-body').append(apireviews.render());
 	},
 
 	toggleNavBar: function(){
