@@ -12,6 +12,8 @@ gem 'pg'
 
 gem 'pg_search'
 
+gem 'faker'
+
 # gem 'bcrypt-ruby', '3.1.2'
 gem 'bcrypt', '~> 3.1.7'
 
