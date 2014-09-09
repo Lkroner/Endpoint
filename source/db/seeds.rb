@@ -47,6 +47,7 @@
 
 require 'rest_client'
 require 'json'
+
 response = RestClient.get 'http://www.programmableweb.com/pw-api/views/query_apis', {:params => {'api-key' => 'NM2UJn3mhn2WgG9tLd3zTFG7sd8jdw9G', 'display_id' => 'api', 'keyword' => 'yelp', 'limit' => 3 }}
 json_response = Hash.from_xml(response)
 
@@ -63,86 +64,13 @@ json_response = Hash.from_xml(response)
 # category/type_of_service = json_response["result"]["item"][0]["field_api_summary"]["und"]["item"]["value"]
 # terms_of_service = json_response["result"]["item"][0]["field_api_terms_of_service"]["und"]["item"]["value"]
 # usage_limits = json_response["result"]["item"][0]["field_api_usage_limits"]["und"]["item"]["value"]
-#
+# image_url = users can add this / use the scrape logo API
 # ********************************************************
 
 puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-# puts JSON.pretty_generate(json_response)
 puts json_response
 puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
 
-
-puts json_response["result"]["item"][0]["field_api_usage_limits"]["und"]["item"]["value"]
-puts "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
-puts json_response["result"]["item"][1]["field_api_usage_limits"]["und"]["item"]["value"]
-puts "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
-puts json_response["result"]["item"][2]["field_api_usage_limits"]["und"]["item"]["value"]
-
-
-# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++        
-                     
-# "field_article_related_companies": null
-            
-# "field_image_upload": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "alt": "Yahoo Maps",
-#                         "fid": "65323",
-#                         "filemime": "image/png",
-#                         "filename": null,
-#                         "filesize": "2470",
-#                         "height": "27",
-#                         "image_dimensions": {
-#                             "height": "27",
-#                             "width": "130"
-#                         },
-#                         "status": "1",
-#                         "timestamp": "1397933571",
-#                         "title": "Yahoo Maps",
-#                         "type": "image",
-#                         "uid": "1",
-#                         "uri": "public://apis/at31.png",
-#                         "width": "130"
-#                     }
-#                 }
-#             }
-            
-# "field_twitter_url": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "format": null,
-#                         "safe_value": null,
-#                         "value": null
-#                     }
-#                 }
-#             }
-
-#             "field_api_favicon": {
-#                 "und": {
-#                     "is_array": "true",
-#                     "item": {
-#                         "alt": null,
-#                         "fid": "65324",
-#                         "filemime": "image/vnd.microsoft.icon",
-#                         "filename": "api_favicon62696.ico",
-#                         "filesize": "748",
-#                         "height": "16",
-#                         "image_dimensions": {
-#                             "height": "16",
-#                             "width": "16"
-#                         },
-#                         "status": "1",
-#                         "timestamp": "1397933571",
-#                         "title": null,
-#                         "type": "image",
-#                         "uid": "1",
-#                         "uri": "public://apis/favicon/api_favicon62696.ico",
-#                         "width": "16"
-#                     }
-#                 }
-#             }
-
+puts json_response["result"]["item"][0]["field_article_related_companies"]["und"]["item"]["value"]
             
 
