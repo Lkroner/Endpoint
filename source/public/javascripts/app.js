@@ -1,4 +1,14 @@
 // Establish our app namespace
-window.app = {}
+window.ENDPOINT = {
+	Models: {},
+	Collections: {},
+	Views: {},
+	Routers: {},
+	CurrentState: {
+		Models: [],
+		Collections: [],
+		Views: []
+	}
+}
 
 

@@ -1,6 +1,4 @@
-app.SearchResults = {};
-
-app.SearchResults.View = Backbone.View.extend({
+ENDPOINT.Views.View = Backbone.View.extend({
   template: _.template($('#search-template').html()),
 
   ajaxRequest: function(){
@@ -29,11 +27,6 @@ app.SearchResults.View = Backbone.View.extend({
   navigateToProfile: function(){
     event.preventDefault();
     var id = this.dataset.id
-    app.router.navigate("api/" + id, true)
+    ENDPOINT.router.navigate("api/" + id, true)
   }
-
-
 })
-
-
-
