@@ -21,5 +21,6 @@ group :development, :test do
   gem 'faker'
   gem 'httparty'
   gem 'selenium-webdriver'
+  gem 'database_cleaner'
 end
 
