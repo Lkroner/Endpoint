@@ -9,7 +9,6 @@ ENDPOINT.Views.SearchResult = Backbone.View.extend({
 })
 
 
-
 ENDPOINT.Views.SearchResults = Backbone.View.extend({
   render: function(){
     $("#app-body").append('<div id="search-list"></div>');
