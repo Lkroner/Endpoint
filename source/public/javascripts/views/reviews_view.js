@@ -53,7 +53,6 @@ ENDPOINT.Views.Reviews = Backbone.View.extend({
     var filledTemplate = this.template(this.model.attributes);
     this.$el.html(filledTemplate);
     var that = this
-    // debugger
     this.collection.each(function(reviewModel){
       var reviewView = new ENDPOINT.Views.Review({model: reviewModel});
       that.$el.find("#tab4").append(reviewView.render().$el);
