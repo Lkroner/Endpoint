@@ -3,7 +3,7 @@ ENDPOINT.Routers = Backbone.Router.extend({
 		"": "navigateToHome",
 		"signup": "navigateToSignUp",
 		"login": "navigateToLogin",
-		"searchResults": "navigateToSearchResults",
+		"search=:query": "navigateToSearchResults",
 		"api/:id": "navigateToApiProfile"
 	},
 
@@ -47,12 +47,18 @@ ENDPOINT.Routers = Backbone.Router.extend({
 		$("#app-body").html(login.render().$el);
 	},
 
-	navigateToSearchResults: function(){
-		var navbar = new ENDPOINT.Views.NavBarView();
-		$('#navbar').html(navbar.render().$el)
+	navigateToSearchResults: function(query){
+		this.resetBody();
 		this.toggleNavBar();
-		var result = new ENDPOINT.Views.View();
-		result.render()
+		console.log("in navigate")
+		var searchModel = new ENDPOINT.Models.Search({input: query});
+		// debugger
+		searchModel.fetch({data: {input: searchModel.get("input")}}).done(function(data){
+			// debugger
+			var searchResultCollection = new ENDPOINT.Collections.SearchResults(data.apis);
+			var searchResultsView = new ENDPOINT.Views.SearchResults({collection: searchResultCollection});
+			searchResultsView.render().$el;
+		})
 	},
 
 	navigateToApiProfile: function(id){
