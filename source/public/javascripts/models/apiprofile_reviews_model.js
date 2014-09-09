@@ -1,15 +1,14 @@
-ENDPOINT.Models.Review = Backbone.Model.extend({
-  initialize: function(){
+ENDPOINT.Models.ReviewList = Backbone.Model.extend({
+  initialize: function(opts){
+    console.log("review list")
+    this.set("url", opts.url)
   },
 
-  defaults: {
-    "score": "",
-    "content": "",
-    "title": "",
-    "created_at": "",
-    "user_id": "",
-    "user_photo_url": "",
-    "comment_content": ""
+  url: function(){
+    return this.attributes.url;
   }
+})
+
+ENDPOINT.Models.Review = Backbone.Model.extend({
 
 })

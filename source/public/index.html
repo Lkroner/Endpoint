@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Agency - Start Bootstrap Theme</title>
+    <title>Endpoint</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -194,8 +194,6 @@
         <ul>
           <li><h3><%= title %></h3></li>
           <li><p><%= description %></p></li>
-          <li>Docs: <p><%= doc_link %></p></li>
-          <li>Data Type: <p><%= data_type %></p></li>
         </ul>
         <div><h2><%= average_score %></h2></div>
       </div>
@@ -275,7 +273,7 @@
           <div class="col-md-7">
           </div>
           <div class="col-md-1">
-            <h6><%= created_at%></h6>
+            <h6><%= rev.created_at%></h6>
           </div>
           <div class="col-md-1">
           </div>
@@ -304,18 +302,22 @@
 <!-- LOAD CLIENT SIDE -->
 <script src="javascripts/app.js"></script>
 <!-- LOAD MODELS -->
+<script src="javascripts/models/search_model.js"></script>
 <script src="javascripts/models/apiprofile_model.js"></script>
 <script src="javascripts/models/apiprofile_reviews_model.js"></script>
+<script src="javascripts/models/login_model.js"></script>
+<script src="javascripts/models/signup_model.js"></script>
 <!-- LOAD COLLECTIONS  -->
-<script src="javascripts/collections/apiprofile_reviews_collection.js"></script>
+<script src="javascripts/collections/search_results_collection.js"></script>
+<script src="javascripts/collections/reviews_collection.js"></script>
 <!-- LOAD VIEWS -->
-<script src="javascripts/views/apiprofile_view.js"></script>
-<script src="javascripts/views/apiprofile_reviews_view.js"></script>
+<script src="javascripts/views/reviews_view.js"></script>
+<script src="javascripts/views/api_profile_view.js"></script>
 <script src="javascripts/views/homepage_view.js"></script>
 <script src="javascripts/views/login_view.js"></script>
 <script src="javascripts/views/navbar_view.js"></script>
 <script src="javascripts/views/signup_view.js"></script>
-<script src="javascripts/views/searchresults_view.js"></script>
+<script src="javascripts/views/search_results_view.js"></script>
 <!-- LOAD ROUTER -->
 <script src="javascripts/routers/router.js"></script>
 </body>
