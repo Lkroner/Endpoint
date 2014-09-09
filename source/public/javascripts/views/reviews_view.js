@@ -7,7 +7,7 @@ ENDPOINT.Views.Review = Backbone.View.extend({
     "click .votes": "upVote"
   },
 
-  //this shit needs to be refactored
+  //this needs to be refactored
   upVote: function(event){
     var user_id = $.cookie("user_id")
     var review_id = this.model.attributes.rev.id
@@ -31,7 +31,7 @@ ENDPOINT.Views.Review = Backbone.View.extend({
     }
   },
 
-  //this shit needs to be refactored
+  //this needs to be refactored
   submitReview: function(){
     event.preventDefault();
     Backbone.ajax({
