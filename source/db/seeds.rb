@@ -1,78 +1,98 @@
-return_arrays = []
-CSV.foreach("database.csv") do |row|
-  # puts index
-  # puts csv
-   return_arrays << row.to_a
-end
+# return_arrays = []
+# CSV.foreach("database.csv") do |row|
+#    return_arrays << row.to_a
+# end
 
-api_attributes = return_arrays.transpose
-puts api_attributes[1]
+# # p return_arrays[1]
+# # puts "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+# # fixed_row = return_arrays[1].gsub!("^", ",")
+# # return_arrays << fixed_row
+# # puts "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+# # p return_arrays
 
-api_attributes.each do |api|
-  title = api[0]
-  description = api[1]
-  Api.create(
-    title: title,
-    description: description,
-    )
-end
+# api_attributes = return_arrays.transpose
 
-# Api.create(title: Faker::Lorem.word,
-#        description: Faker::Lorem.sentence(3),
-#        tips: Faker::Lorem.sentence(3),
-#        average_score: rand(1.0..5.0),
-#        logo_url: "http://www.nasa.gov/sites/default/files/sydney.b.boen/images/twitter-small(1).gifv"
-#        )
+# api_attributes.each do |api|
+#   title = api[0]
+#   description = api[1]
+#   key_required = api[]
+#   documentation = api[]
+#   Api.create(
+#     title: title,
+#     description: description,
+#     tips: Faker::Lorem.sentence(3),
+#     average_score: 0,
+#     logo_url: null,
+#     key_required: key_required,
+#     documentation: documentation,
+#   )
+# end
 
-# =================================================================================================================================
-  # if row.include?("^")
-  #   fixed_row = row.gsub!("^", ",")
-  #   puts fixed_row
-  # else
-  #   puts row
-  # end
+
+
+# ==============================================================================================
   
 # ============================================================================
 # ==================== QUERY PROGRAMMABLE WEB API ============================
 # ============================================================================
 
-# require 'rest_client'
-# require 'json'
-# response = RestClient.get 'http://www.programmableweb.com/pw-api/views/query_apis', {
-#   :params => { 
-#     'api-key' => 'NM2UJn3mhn2WgG9tLd3zTFG7sd8jdw9G', 
-#     'display_id' => 'api', 
-#     'limit' => 20
-#   }
-# }
-# json_response = Hash.from_xml(response)
-# api_array = json_response["result"]["item"]
+require 'rest_client'
+require 'json'
+response = RestClient.get 'http://www.programmableweb.com/pw-api/views/query_apis', {
+  :params => { 
+    'api-key' => 'NM2UJn3mhn2WgG9tLd3zTFG7sd8jdw9G', 
+    'display_id' => 'api', 
+    'limit' => 100
+  }
+}
+json_response = Hash.from_xml(response)
+api_array = json_response["result"]["item"]
 
 # ********************************************************
 # **************** API ATTRIBUTES ************************
 # ********************************************************
 
-# titles = api_array.map do |api|
-#   title = api["title"]
-#   if title.include?(",")
-#     title.gsub!(",", "^")
-#   end
-#   title
-# end
+puts "((((((((((((((((((((((((((((((((((((((("
+puts api_array[39]
+puts ")))))))))))))))))))))))))))))))))))))))"
+puts api_array[40]
 
-# descriptions = api_array.map do |api|
-#   desc = api["field_api_description"]["und"]["item"]["value"]
-#   if desc == nil
-#     desc = "description unavailable"
-#   else
-#     if desc.include?(",")
-#       desc.gsub!(",", "^")
-#     end 
-#     desc = desc.gsub(/[\n]/, " ")
-#   end 
-# end
+titles = api_array.map do |api|
+  title = api["title"]
+  title.include?(",") ? title.gsub!(",", "^") : title
+end
 
-# key_required = json_response["result"]["item"][0]["field_api_developer_key_required"]["und"]["item"]["value"]
+descriptions = api_array.map do |api|
+  desc = api["field_api_description"]["und"]["item"]["value"]
+  if desc == nil
+    desc = "description unavailable"
+  else
+    if desc.include?(",")
+      desc.gsub!(",", "^")
+    end 
+    desc = desc.gsub(/[\n]/, " ")
+  end 
+end
+
+key_required = api_array.map do |api|
+  if api["field_api_developer_key_required"] == nil
+    key = "Unknown"
+  else
+    key = api["field_api_developer_key_required"]["und"]["item"]["value"]
+    if key == nil
+      key = "Unknown"
+    else
+      key
+    end
+  end
+end
+
+documentation = api_array.map do |api|
+  doc = api["field_api_documentation"]["und"]["item"]["value"]
+end
+  
+
+  
 # documentation = json_response["result"]["item"][0]["field_api_documentation"]["und"]["item"]["value"]
 # endpoint_url = json_response["result"]["item"][0]["field_api_endpoint"]["und"]["item"]["value"]
 # dev_homepage = json_response["result"]["item"][0]["field_api_home_page"]["und"]["item"]["url"]
@@ -97,10 +117,12 @@ end
 # # puts
 # puts "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 
-# CSV.open("database.csv", "wb") do |csv| # change this so that new rows of attributes are appended (ab)
-#   csv << titles
-#   csv << descriptions
-# end
+CSV.open("database.csv", "wb") do |csv| # change this so that new rows of attributes are appended (ab)
+  csv << titles
+  csv << descriptions
+  csv << key_required
+  csv << documentation
+end
 
 
 # //////////////////////////////////////////////////////////////////////

@@ -6,6 +6,8 @@ class CreateApis < ActiveRecord::Migration
     	t.string :tips
     	t.float :average_score
     	t.string :logo_url
+        t.string :key_required
+        t.string :documentation
     	t.timestamps
     end
   end
