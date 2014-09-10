@@ -20,7 +20,7 @@ api_attributes.each do |api|
   description = api[1]
   key_required = api[2]
   endpoint_url = api[3]
-  dev_homepage = apigit[4]
+  dev_homepage = api[4]
   category = api[5]
   Api.create(
     title: title,
@@ -36,38 +36,39 @@ end
 # ////////////////////// FAKE SEED DATA ////////////////////////////////
 # //////////////////////////////////////////////////////////////////////
 
-# 20.times {
-#   user = User.new(email: Faker::Internet.email,
-#           about_me: Faker::Lorem.sentence(3),
-#           picture_url: 'http://www.chadcreates.com/wp-content/uploads/2009/05/People-128.png'
-#           )
-#   user.password = Faker::Internet.password
-#   user.save
-# }
+20.times {
+  user = User.new(email: Faker::Internet.email,
+          about_me: Faker::Lorem.sentence(3),
+          picture_url: 'http://www.chadcreates.com/wp-content/uploads/2009/05/People-128.png'
+          )
+  user.password = Faker::Internet.password
+  user.save
+}
 
-# 50.times {
-#   review = Review.create(score: rand(1..5),
-#                  content: Faker::Lorem.sentence(3),
-#                    title: Faker::Lorem.word)
+5000.times {
+  review = Review.create(
+    score: rand(1..5),
+    content: Faker::Lorem.sentence(3),
+    title: Faker::Lorem.word)
 
-#   api = Api.find(rand(1..10))
-#   user = User.find(rand(1..20))
-#   api.reviews << review
-#   user.reviews << review
-# }
+  api = Api.find(rand(1..Api.all.count))
+  user = User.find(rand(1..20))
+  api.reviews << review
+  user.reviews << review
+}
 
-# 100.times {
-#   vote = Vote.create()
-#   user = User.find(rand(1..20))
-#   review = Review.find(rand(1..50))
-#   user.votes << vote
-#   review.votes << vote
-# }
+1000.times {
+  vote = Vote.create()
+  user = User.find(rand(1..20))
+  review = Review.find(rand(1..5000))
+  user.votes << vote
+  review.votes << vote
+}
 
-# 100.times {
-#   comment = Comment.create(content: Faker::Lorem.sentence(3))
-#   user = User.find(rand(1..20))
-#   review = Review.find(rand(1..50))
-#   user.comments << comment
-#   review.comments << comment
-# }
+100.times {
+  comment = Comment.create(content: Faker::Lorem.sentence(3))
+  user = User.find(rand(1..20))
+  review = Review.find(rand(1..50))
+  user.comments << comment
+  review.comments << comment
+}
