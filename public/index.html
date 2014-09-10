@@ -145,37 +145,33 @@
 
   <!--  Search Results Template -->
 <script id="search-template" type="text/template">
-    <div class="result" data-id=<%=id%>>
-        <div class="row">
-            <div class="well">
-                <div class="list-group">
-                    <a class="list-group-item">
-                        <div class="media col-md-3">
-                            <figure class="pull-left">
-                                <i class="fa fa-cloud-upload blogicon"></i>
-                            </figure>
-                        </div>
-                        <div class="col-md-6">
-                            <h4 class="list-group-item-heading">
-                              <%= title %>
-                            </h4>
-                            <p class="list-group-item-text">
-                              <%= description %>
-                            </p>
-                        </div>
-                        <div class="col-md-3 text-center">
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="stars"></div>
-                                    <h2><%=Math.round(average_score*20)%> <small> % </small></h2>
-                                    <div id="rate1"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                  </div>
+  <div class="result" data-id=<%=id%>>
+    <div class="row">
+      <div class="well">
+        <div class="list-group">
+          <a class="list-group-item">
+            <div class="media col-md-3">
+              <div class="circle">
+                <div class="stars"></div>
+                  <h3><%=Math.round(average_score*20)%> <small> % </small></h3>
+                  <div id="rate1"></div>
               </div>
-         </div>
+            </div>
+              <div class="col-md-6">
+                <h4 class="list-group-item-heading">
+                  <%= title %>
+                </h4>
+                <p class="list-group-item-text">
+                  <%= description %>
+                </p>
+              </div>
+                <div class="col-md-3 text-center">
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
 </script>
 
