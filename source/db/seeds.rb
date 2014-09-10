@@ -47,7 +47,7 @@ end
 
 # response = RestClient.get 'http://www.programmableweb.com/pw-api/views/query_apis', {
 #   :params => { 
-#     'api-key' => 'NM2UJn3mhn2WgG9tLd3zTFG7sd8jdw9G', 
+#     'api-key' => 'lol', 
 #     'display_id' => 'api', 
 #     'limit' => 13000
 #   }
