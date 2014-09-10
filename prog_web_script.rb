@@ -1,6 +1,7 @@
 require 'rest-client'
 require 'active_support/all'
 require "csv"
+require 'metainspector'
 # ============================================================================
 # ==================== QUERY PROGRAMMABLE WEB API ============================
 # ============================================================================
@@ -10,9 +11,9 @@ end
 
 response = RestClient.get 'http://www.programmableweb.com/pw-api/views/query_apis', {
   :params => { 
-    'api-key' => 'programmable web api key goes here', 
+    'api-key' => 'PUT API KEY HERE', 
     'display_id' => 'api', 
-    'limit' => 10000
+    'limit' => 2000
   }
 }
 json_response = Hash.from_xml(response)
@@ -76,6 +77,14 @@ end
 # ********************************************************
 # ********************************************************
 
+logo_urls = []
+titles.each do |title|
+  query = title.gsub(" ",  "+") + "+logo"
+  url = "https://www.google.com/search?q=#{query}&source=lnms&tbm=isch&sa=X&ei=nMgQVOnFL-6VjALR3oDgDg&ved=0CAYQ_AUoAQ&biw=1440&bih=706"
+  page = MetaInspector.new(url)
+  logo_urls << page.images[0]
+end
+
 CSV.open("database.csv", "wb") do |csv| # change this so that new rows of attributes are appended (ab)
   csv << titles
   csv << descriptions
@@ -83,4 +92,7 @@ CSV.open("database.csv", "wb") do |csv| # change this so that new rows of attrib
   csv << endpoint_url
   csv << dev_homepage
   csv << category
+  csv << logo_urls
 end
+
+

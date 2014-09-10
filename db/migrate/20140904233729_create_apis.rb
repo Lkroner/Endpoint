@@ -5,7 +5,7 @@ class CreateApis < ActiveRecord::Migration
       t.text :description
       t.string :tips
       t.float :average_score
-      t.string :logo_url
+      t.text :logo_url
       t.string :key_required
       t.string :documentation
       t.string :endpoint_url
@@ -16,7 +16,6 @@ class CreateApis < ActiveRecord::Migration
       t.string :category
       t.string :terms_of_service
       t.string :usage_limits
-      t.string :image_url
       t.timestamps
     end
   end
