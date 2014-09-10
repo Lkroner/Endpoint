@@ -1,19 +1,9 @@
 /*!
  * Start Bootstrap - Agency Bootstrap Theme (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
- */
 
 /* Possible backgrounds:
 http://geekslovebacon.com/wp-content/uploads/2014/01/clean-white-polygon-backgrounds-8.jpg
 */
-
-.list-group-item-heading {
-  font-family: Montserrat, 'Helvetica Neue', Helvetica, sans-serif;
-  font-size: 25pt;
-  padding-bottom: 3%;
-
-}
 
 header {
   background-image: url('http://geekslovebacon.com/wp-content/uploads/2014/01/clean-white-polygon-backgrounds-8.jpg');
@@ -24,6 +14,14 @@ header {
 
 .api-trading-card {
   margin-top: 9%;
+  /*padding-top: 1%;*/
+  height: 350px;
+}
+.api-trading-card h3 {
+  text-transform: uppercase;
+}
+.api-reviews {
+  margin-top: 1%;
 }
 
 #app-body {
