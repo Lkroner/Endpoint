@@ -48,18 +48,18 @@
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav navbar-right">
-                      <li class="hidden">
-                          <a href="#page-top"></a>
-                      </li>
-                      <li>
-                          <a href ="" class="hidden page-scroll" id="login">Login</a>
-                      </li>
-                      <li>
-                          <a href= "" class="hidden page-scroll" id="sign-up">Sign Up</a>
-                      </li>
-                      <li>
-                        <a href ="" class="hidden page-scroll" id="logout">Logout</a>
-                      </li>
+                    <li class="hidden">
+                      <a href="#page-top"></a>
+                    </li>
+                    <li>
+                      <a href ="" class="hidden page-scroll" id="login">Login</a>
+                    </li>
+                    <li>
+                      <a href= "" class="hidden page-scroll" id="sign-up">Sign Up</a>
+                    </li>
+                    <li>
+                      <a href ="" class="hidden page-scroll" id="logout">Logout</a>
+                    </li>
                   </ul>
               </div>
               <!-- /.navbar-collapse -->
@@ -116,69 +116,63 @@
   </script>
   <!--  Login Template -->
   <script id="login-template" type="text/template">
-      <div class="container" id="signup-template">
-        <div class="row">
-          <div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                  <h5 class="text-center">LOGIN</h5>
-                  <div class="errors"></div>
-                    <form class="form form-login" role="form">
-                      <div class="form-group">
-                        <div class="input-group">
-                          <input type="text" name="email" class="form-control" placeholder="Email Address" />
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="input-group">
-                          <input type="password" name="password" class="form-control" placeholder="Password" />
-                        </div>
-                      </div>
-                </div>
-                  <a class="btn btn-sm btn-primary btn-block" role="button" id="submit">
-                        SUBMIT</a> </form>
-              </div>
-          </div>
-        </div>
-      </div>
-  </script>
-
-  <!--  Search Results Template -->
-<script id="search-template" type="text/template">
-  <div class="result" data-id=<%=id%>>
-    <div class="row">
-      <div class="well">
-        <div class="list-group">
-          <a class="list-group-item">
-            <div class="media col-md-3">
-              <div class="circle">
-                <div class="stars"></div>
-                  <h3><%=Math.round(average_score*20)%> <small> % </small></h3>
-                  <div id="rate1"></div>
-              </div>
+    <div class="container" id="signup-template">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h5 class="text-center">LOGIN</h5>
+              <div class="errors"></div>
+                <form class="form form-login" role="form">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input type="text" name="email" class="form-control" placeholder="Email Address" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input type="password" name="password" class="form-control" placeholder="Password" />
+                    </div>
+                  </div>
+                  <a class="btn btn-sm btn-primary btn-block" role="button" id="submit"> SUBMIT</a> 
+                </form>
             </div>
-              <div class="col-md-6">
-                <h4 class="list-group-item-heading">
-                  <%= title %>
-                </h4>
-                <p class="list-group-item-text">
-                  <%= description %>
-                </p>
-              </div>
-                <div class="col-md-3 text-center">
-                </div>
-              </div>
-            </a>
           </div>
         </div>
       </div>
     </div>
+  </script>
+
+  <!--  Search Results Template -->
+<script id="search-template" type="text/template">
+  <div class="result container-fluid" data-id=<%=id%>>
+    <div class="row">
+      <div class="list-group">
+        <a class="list-group-item">
+          <div class="media col-md-2 col-sm-2">
+            <div class="circle">
+              <div class="stars"></div>
+                <h3><%=Math.round(average_score*20)%> <small> % </small></h3>
+              <div id="rate1"></div>
+            </div>
+          </div>
+          <div class="col-md-9 col-sm-10">
+            <h4 class="list-group-item-heading">
+              <%= title %>
+            </h4>
+            <p class="list-group-item-text">
+              <%= description %>
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 </script>
 
   <!--  Api Profile Template -->
   <script id="apiprofile-template" type="text/template">
-  <div class="container api-trading-card">
-    <div class="container">
+    <div class="container api-trading-card">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#tab1" data-toggle="tab">Info</a></li>
         <li><a href="#tab2" data-toggle="tab">Tips & Tricks</a></li>
@@ -206,7 +200,6 @@
         </ul>
       </div>
     </div>
-  </div>
   </script>
 
   <!-- Api Reviews Template -->
