@@ -208,37 +208,38 @@
   <!-- Api Reviews Template -->
   <script id="apireviews-template" type="text/template">
     <div class="container api-reviews">
-      <div class="container">
-        <ul class="nav nav-tabs">
-          <li class="active"><a href="#tab4" data-toggle="tab" id="reviews-list">Reviews</a></li>
-          <li><a href="#tab5" data-toggle="tab">Add a Review</a></li>
-        </ul>
-        <div class="tab-content">
-          <div class="tab-pane active" id="tab4"></div>
-          <div class="tab-pane" id="tab5">
-            <div class="feedback-form">
-              <form class="reviewSubmission" id="submit-review">
-                <span class="star-rating">
-                  <input type="radio" name="score" value="1"><i></i>
-                  <input type="radio" name="score" value="2"><i></i>
-                  <input type="radio" name="score" value="3"><i></i>
-                  <input type="radio" name="score" value="4"><i></i>
-                  <input type="radio" name="score" value="5"><i></i>
-                </span><br>
-                <input type="text" name="title"><br>
-                <textarea rows="3" cols="50" name="content"></textarea><br>
-                <input type="submit" value="Submit">
-              </form>
-            </div>
-            <h4 class="feedback-success" style="display:none">Thank you for your feeback!</h4>
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab4" data-toggle="tab" id="reviews-list">Reviews</a></li>
+        <li><a href="#tab5" data-toggle="tab">Add a Review</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="tab4"></div>
+        <div class="tab-pane" id="tab5">
+          <div class="feedback-form">
+            <form class="reviewSubmission" id="submit-review">
+              <span class="star-rating">
+                <input type="radio" name="score" value="1"><i></i>
+                <input type="radio" name="score" value="2"><i></i>
+                <input type="radio" name="score" value="3"><i></i>
+                <input type="radio" name="score" value="4"><i></i>
+                <input type="radio" name="score" value="5"><i></i>
+              </span><br>
+              <input type="text" name="title"><br>
+              <textarea rows="3" cols="50" name="content"></textarea><br>
+              <input type="submit" value="Submit">
+            </form>
+            <hr>
           </div>
-      </div>
+          <h4 class="feedback-success" style="display:none">Thank you for your feeback!</h4>
+        </div>
+      <hr>
     </div>
   </script>
 
 
   <!--  End Template: Body Scripts -->
     <script id="singlereview-template" type="text/template">
+      <div class='single-review-box'>
         <div class="single-review row" data-id=<%=rev.id%>>
         <!-- start Laurens upvote area -->
           <div class="votes col-md-1">
