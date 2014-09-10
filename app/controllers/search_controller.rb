@@ -15,6 +15,8 @@ class SearchController < ApplicationController
                     tips: api_db.tips, logo_url: api_db.logo_url, average_score: average_score}
         apis << api_hash
       end
+      apis.sort_by!{|api_hash| api_hash[:average_score]}
+      apis.reverse!
 
       render json: {apis: apis}.to_json
     else
