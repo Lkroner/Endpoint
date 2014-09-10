@@ -1,14 +1,16 @@
+require 'rest_client'
+require 'json'
 # return_arrays = []
 # CSV.foreach("database.csv") do |row|
 #    return_arrays << row.to_a
 # end
 
-# # p return_arrays[1]
-# # puts "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
-# # fixed_row = return_arrays[1].gsub!("^", ",")
-# # return_arrays << fixed_row
-# # puts "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
-# # p return_arrays
+# p return_arrays[1]
+# puts "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+# fixed_row = return_arrays[1].gsub!("^", ",")
+# return_arrays << fixed_row
+# puts "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+# p return_arrays
 
 # api_attributes = return_arrays.transpose
 
@@ -31,9 +33,10 @@
 # ============================================================================
 # ==================== QUERY PROGRAMMABLE WEB API ============================
 # ============================================================================
+def replace_commas(string)
+  string.gsub(",", "^")
+end
 
-require 'rest_client'
-require 'json'
 response = RestClient.get 'http://www.programmableweb.com/pw-api/views/query_apis', {
   :params => { 
     'api-key' => 'NM2UJn3mhn2WgG9tLd3zTFG7sd8jdw9G', 
@@ -50,19 +53,16 @@ api_array = json_response["result"]["item"]
 
 titles = api_array.map do |api|
   title = api["title"]
-  title.include?(",") ? title.gsub!(",", "^") : title
+  replace_commas(title)
 end
 
-# THIS NEEDS TO CHECK FOR AND REMOVE COMMAS
 descriptions = api_array.map do |api|
   desc = api["field_api_description"]["und"]["item"]["value"]
   if desc == nil
     desc = "description unavailable"
   else
-    if desc.include?(",")
-      desc.gsub!(",", "^")
-    end 
     desc = desc.gsub(/[\n]/, " ")
+    replace_commas(desc)
   end 
 end
 
@@ -84,6 +84,7 @@ endpoint_url = api_array.map do |api|
     endpoint = "unavailable"
   else
     endpoint = api["field_api_endpoint"]["und"]["item"]["value"]
+    replace_commas(endpoint)
   end
 end
 
@@ -91,10 +92,10 @@ dev_homepage = api_array.map do |api|
   homepage = api["field_api_home_page"]["und"]["item"]["url"]
 end
 
-# THIS NEEDS TO CHECK FOR AND REMOVE COMMAS
 # TODO: REGEX to remove the word "service" & "services"
 category = api_array.map do |api|
   cat = api["field_api_summary"]["und"]["item"]["value"]
+  replace_commas(cat)
 end
 
 # terms_of_service = json_response["result"]["item"][0]["field_api_terms_of_service"]["und"]["item"]["value"]
