@@ -58,6 +58,9 @@ ENDPOINT.Routers = Backbone.Router.extend({
 			var searchResultCollection = new ENDPOINT.Collections.SearchResults(data.apis);
 			var searchResultsView = new ENDPOINT.Views.SearchResults({collection: searchResultCollection});
 			searchResultsView.render().$el;
+		}).fail(function(){
+			ENDPOINT.router.navigate("", true)
+			$("#search-error-message").append("Sorry, we don't have anything that matches that.")
 		})
 	},
 
