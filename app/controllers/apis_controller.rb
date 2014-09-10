@@ -14,13 +14,13 @@ class ApisController < ApplicationController
   # GET '/apis/:id'
   def show
     api = Api.find(params[:id])
+    average_score = average_score(api)
     if api
-      render json: {api: api}.to_json
+      render json: {api: api, average_score: average_score}.to_json
     else
       render status: :unprocessable_entity, json: { message: "#{params[:api_id]} is not a valid api id!" }.to_json
     end
   end
-
 
   # PUT '/apis/:id'
   def update
@@ -31,5 +31,4 @@ class ApisController < ApplicationController
         render status: :unprocessable_entity, json: {errors: api.errors}.to_json
       end
   end
-
 end
