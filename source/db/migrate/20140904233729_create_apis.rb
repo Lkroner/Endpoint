@@ -8,6 +8,15 @@ class CreateApis < ActiveRecord::Migration
     	t.string :logo_url
         t.string :key_required
         t.string :documentation
+        t.string :endpoint_url
+        t.string :dev_homepage
+        t.text :sample_call
+        t.text :sample_response
+        t.string :dev_twitter_url
+        t.string :category
+        t.string :terms_of_service
+        t.string :usage_limits
+        t.string :image_url
     	t.timestamps
     end
   end

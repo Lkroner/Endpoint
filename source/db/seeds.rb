@@ -27,10 +27,6 @@
 #     documentation: documentation,
 #   )
 # end
-
-
-
-# ==============================================================================================
   
 # ============================================================================
 # ==================== QUERY PROGRAMMABLE WEB API ============================
@@ -52,16 +48,12 @@ api_array = json_response["result"]["item"]
 # **************** API ATTRIBUTES ************************
 # ********************************************************
 
-puts "((((((((((((((((((((((((((((((((((((((("
-puts api_array[39]
-puts ")))))))))))))))))))))))))))))))))))))))"
-puts api_array[40]
-
 titles = api_array.map do |api|
   title = api["title"]
   title.include?(",") ? title.gsub!(",", "^") : title
 end
 
+# THIS NEEDS TO CHECK FOR AND REMOVE COMMAS
 descriptions = api_array.map do |api|
   desc = api["field_api_description"]["und"]["item"]["value"]
   if desc == nil
@@ -76,30 +68,35 @@ end
 
 key_required = api_array.map do |api|
   if api["field_api_developer_key_required"] == nil
-    key = "Unknown"
+    key = "unknown"
   else
     key = api["field_api_developer_key_required"]["und"]["item"]["value"]
     if key == nil
-      key = "Unknown"
+      key = "unknown"
     else
       key
     end
   end
 end
 
-documentation = api_array.map do |api|
-  doc = api["field_api_documentation"]["und"]["item"]["value"]
+endpoint_url = api_array.map do |api|
+  if api["field_api_endpoint"]["und"]["item"]["value"] == nil
+    endpoint = "unavailable"
+  else
+    endpoint = api["field_api_endpoint"]["und"]["item"]["value"]
+  end
 end
-  
 
-  
-# documentation = json_response["result"]["item"][0]["field_api_documentation"]["und"]["item"]["value"]
-# endpoint_url = json_response["result"]["item"][0]["field_api_endpoint"]["und"]["item"]["value"]
-# dev_homepage = json_response["result"]["item"][0]["field_api_home_page"]["und"]["item"]["url"]
-# sample_call = json_response["result"]["item"][0]["field_api_sample_calls"]["und"]["item"]["value"]
-# sample_response = users can add this
-# dev_twitter_url = json_response["result"]["item"][0]["field_twitter_url"]["und"]["item"]["value"]
-# category/type_of_service = json_response["result"]["item"][0]["field_api_summary"]["und"]["item"]["value"]
+dev_homepage = api_array.map do |api|
+  homepage = api["field_api_home_page"]["und"]["item"]["url"]
+end
+
+# THIS NEEDS TO CHECK FOR AND REMOVE COMMAS
+# TODO: REGEX to remove the word "service" & "services"
+category = api_array.map do |api|
+  cat = api["field_api_summary"]["und"]["item"]["value"]
+end
+
 # terms_of_service = json_response["result"]["item"][0]["field_api_terms_of_service"]["und"]["item"]["value"]
 # usage_limits = json_response["result"]["item"][0]["field_api_usage_limits"]["und"]["item"]["value"]
 # image_url = users can add this / use the scrape logo API
@@ -121,7 +118,9 @@ CSV.open("database.csv", "wb") do |csv| # change this so that new rows of attrib
   csv << titles
   csv << descriptions
   csv << key_required
-  csv << documentation
+  csv << endpoint_url
+  csv << dev_homepage
+  csv << category
 end
 
 
