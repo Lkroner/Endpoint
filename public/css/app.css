@@ -205,19 +205,16 @@ header {
   width: 20%;
   padding: 2%;
 }
-#tab1 {
-  padding-top: 3%;
-}
-#tab2 {
-  padding: 2%;
-  padding-top: 3%;
-}
-#tab3 {
-  padding: 2%;
-  padding-top: 3%;
-}
 .tab-pane ul{
   list-style: none;
+}
+.tab-pane {
+  padding: 2%;
+  padding-top: 3%;
+}
+#tab5 input{
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 .tab-content img {
   float: left;
