@@ -4,7 +4,7 @@ ENDPOINT.Routers = Backbone.Router.extend({
 		"signup": "navigateToSignUp",
 		"login": "navigateToLogin",
 		"search=:query": "navigateToSearchResults",
-		"api/:id": "navigateToApiProfile"
+		"api/:id": "navigateToApiProfile",
     "admin": "navigateToAdmin"
 	},
 
