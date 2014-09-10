@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20140907012035) do
     t.string   "title"
     t.text     "description"
     t.string   "tips"
-    t.float    "average_score"
     t.text     "logo_url"
     t.string   "key_required"
     t.string   "documentation"
