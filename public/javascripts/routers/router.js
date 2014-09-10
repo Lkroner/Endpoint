@@ -5,6 +5,7 @@ ENDPOINT.Routers = Backbone.Router.extend({
 		"login": "navigateToLogin",
 		"search=:query": "navigateToSearchResults",
 		"api/:id": "navigateToApiProfile"
+    "admin": "navigateToAdmin"
 	},
 
 
@@ -23,6 +24,12 @@ ENDPOINT.Routers = Backbone.Router.extend({
 		}
 		ENDPOINT.CurrentState.Views = [];
 	},
+
+  navigateToAdmin: function(){
+    this.resetBody();
+    var adminView = new ENDPOINT.Views.AdminView();
+    $('#app-body').html(adminView.render().$el);
+  },
 
 	navigateToHome: function(){
 		this.resetBody();
