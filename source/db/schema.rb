@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20140907012035) do
 
   create_table "apis", force: true do |t|
     t.string   "title"
-    t.string   "description"
+    t.text     "description"
     t.string   "tips"
     t.float    "average_score"
     t.string   "logo_url"
