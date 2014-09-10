@@ -1,5 +1,5 @@
-Given(/^I am on the localhost:3000 homepage$/) do
-  visit 'http://localhost:3000'
+Given(/^I am on the www.endpoint.me homepage$/) do
+  visit 'http://www.endpoint.me'
 end
 
 Then(/^I will search for "(.*?)"$/) do |searchText|
@@ -13,3 +13,4 @@ end
 Then(/^I should see "(.*?)"$/) do |expectedText|
     page.should have_content(expectedText)
 end
+
