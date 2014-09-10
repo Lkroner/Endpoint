@@ -1,3 +1,6 @@
+require 'rest-client'
+require 'active_support/all'
+require "csv"
 # ============================================================================
 # ==================== QUERY PROGRAMMABLE WEB API ============================
 # ============================================================================
@@ -28,7 +31,7 @@ titles = api_array.map do |api|
 end
 
 descriptions = api_array.map do |api|
-  desc = api["field_api_description"]["und"]["item"]["value"]
+  desc = api["field_api_description"]["und"]["item"]["safe_value"]
   if desc == nil
     desc = "description unavailable"
   else
@@ -54,7 +57,7 @@ endpoint_url = api_array.map do |api|
   if api["field_api_endpoint"]["und"]["item"]["value"] == nil
     endpoint = "unavailable"
   else
-    endpoint = api["field_api_endpoint"]["und"]["item"]["value"]
+    endpoint = api["field_api_endpoint"]["und"]["item"]["safe_value"]
     replace_commas(endpoint)
   end
 end
@@ -63,9 +66,8 @@ dev_homepage = api_array.map do |api|
   homepage = api["field_api_home_page"]["und"]["item"]["url"]
 end
 
-# TODO: REGEX to remove the word "service" & "services"
 category = api_array.map do |api|
-  cat = api["field_api_summary"]["und"]["item"]["value"]
+  cat = api["field_api_summary"]["und"]["item"]["safe_value"]
   unless cat == nil
     replace_commas(cat)
   end
