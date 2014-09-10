@@ -3435,7 +3435,7 @@ tbody.collapse.in {
   z-index: 2;
   float: left;
   width: 100%;
-  margin-bottom: 0;
+  margin-bottom: 2%;
 }
 .input-group-lg > .form-control,
 .input-group-lg > .input-group-addon,
@@ -4992,7 +4992,7 @@ a.list-group-item-danger.active:focus {
 .panel {
   margin-bottom: 20px;
   background-color: #fff;
-  border: 1px solid transparent;
+/*  border: 1px solid transparent;*/
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
           box-shadow: 0 1px 1px rgba(0, 0, 0, .05);

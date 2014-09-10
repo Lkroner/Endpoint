@@ -23,10 +23,26 @@ header {
 .api-reviews {
   margin-top: 1%;
 }
-
+.api-reviews input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 1%;
+}
+.api-reviews textarea {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 1%;
+}
 #app-body {
   /*background-color: red;*/
   font-family: 'Helvetica Neue', Helvetica;
+}
+.authentication {
+  background-image: url('http://geekslovebacon.com/wp-content/uploads/2014/01/clean-white-polygon-backgrounds-8.jpg');
+  background-position: center center;
+  background-size: cover;
+/*  text-align: center;*/
+  margin-top: 10%;
 }
 .circle {
   border-radius: 50%;
@@ -45,6 +61,11 @@ header {
   margin-top: 10%;
   padding-left: 1%;
   padding-right: 1%;
+}
+.input-group input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 1%;
 }
 .intro-heading {
   color: white;
@@ -110,6 +131,9 @@ header {
 }
 .single-review p {
   padding-top: 2%;
+}
+.comment-toggler {
+  padding-left: 14%;
 }
 .single-review-box {
   border-bottom: 1px #ddd solid;
