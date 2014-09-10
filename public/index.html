@@ -149,14 +149,14 @@
     <div class="row">
       <div class="list-group">
         <a class="list-group-item">
-          <div class="media col-md-2 col-sm-2">
+          <div class="media col-md-2 col-sm-2 col-xs-2">
             <div class="circle">
               <div class="stars"></div>
                 <h3><%=Math.round(average_score*20)%> <small> % </small></h3>
               <div id="rate1"></div>
             </div>
           </div>
-          <div class="col-md-7 col-sm-10">
+          <div class="list-title-text col-md-7 col-sm-10 col-sm-10">
             <h4 class="list-group-item-heading">
               <%= title %>
             </h4>
@@ -164,8 +164,9 @@
               <%= description %>
             </p>
           </div>
-          <div class='col-md-3'>
+          <div class='review-count col-md-3'>
             <h3><%=review_count %></h3>
+            <p>reviews</p>
           </div>
         </a>
       </div>
