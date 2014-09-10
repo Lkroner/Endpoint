@@ -10,9 +10,9 @@ end
 
 response = RestClient.get 'http://www.programmableweb.com/pw-api/views/query_apis', {
   :params => { 
-    'api-key' => 'lol', 
+    'api-key' => 'programmable web api key goes here', 
     'display_id' => 'api', 
-    'limit' => 13000
+    'limit' => 10000
   }
 }
 json_response = Hash.from_xml(response)
