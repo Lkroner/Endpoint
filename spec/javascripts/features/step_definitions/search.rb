@@ -7,7 +7,7 @@ Then(/^I will search for "(.*?)"$/) do |searchText|
 end
 
 Then(/^I will click Search button$/) do
-  click_button('search')
+  click_link('search')
 end
 
 Then(/^I should see "(.*?)"$/) do |expectedText|
