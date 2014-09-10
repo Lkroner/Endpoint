@@ -1,76 +1,76 @@
-# 20.times {
-# 	user = User.new(email: Faker::Internet.email,
-# 					about_me: Faker::Lorem.sentence(3),
-# 					picture_url: 'http://www.chadcreates.com/wp-content/uploads/2009/05/People-128.png'
-# 					)
-# 	user.password = Faker::Internet.password
-# 	user.save
-# }
-
-
-# 10.times{
-# 	Api.create(title: Faker::Lorem.word,
-# 			   description: Faker::Lorem.sentence(3),
-# 			   tips: Faker::Lorem.sentence(3),
-# 			   average_score: rand(1.0..5.0),
-# 			   logo_url: "http://www.nasa.gov/sites/default/files/sydney.b.boen/images/twitter-small(1).gifv"
-# 			   )
-# }
-
-# 50.times {
-# 	review = Review.create(score: rand(1..5),
-# 				  		   content: Faker::Lorem.sentence(3),
-# 				           title: Faker::Lorem.word)
-
-# 	api = Api.find(rand(1..10))
-# 	user = User.find(rand(1..20))
-# 	api.reviews << review
-# 	user.reviews << review
-
-# }
-
-# 100.times {
-# 	vote = Vote.create()
-# 	user = User.find(rand(1..20))
-# 	review = Review.find(rand(1..50))
-# 	user.votes << vote
-# 	review.votes << vote
-# }
-
-# 100.times {
-# 	comment = Comment.create(content: Faker::Lorem.sentence(3))
-# 	user = User.find(rand(1..20))
-# 	review = Review.find(rand(1..50))
-# 	user.comments << comment
-# 	review.comments << comment
-# }
-
-require 'rest_client'
-require 'json'
-response = RestClient.get 'http://www.programmableweb.com/pw-api/views/query_apis', {
-  :params => { 
-    'api-key' => 'NM2UJn3mhn2WgG9tLd3zTFG7sd8jdw9G', 
-    'display_id' => 'api', 
-    'limit' => 13000 
-  }
-}
-json_response = Hash.from_xml(response)
-api_array = json_response["result"]["item"]
-
-# *********************  ATTRIBUTES  *********************
-
-titles = api_array.map do |api|
-  api["title"]
+return_arrays = []
+CSV.foreach("database.csv") do |row|
+  # puts index
+  # puts csv
+   return_arrays << row.to_a
 end
 
-descriptions = api_array.map.with_index do |api|
-  desc = api["field_api_description"]["und"]["item"]["value"]
-  if desc == nil
-    desc = "description unavailable"
-  else
-    desc.gsub(/[\n]/, " ")
-  end
+api_attributes = return_arrays.transpose
+puts api_attributes[1]
+
+api_attributes.each do |api|
+  title = api[0]
+  description = api[1]
+  Api.create(
+    title: title,
+    description: description,
+    )
 end
+
+# Api.create(title: Faker::Lorem.word,
+#        description: Faker::Lorem.sentence(3),
+#        tips: Faker::Lorem.sentence(3),
+#        average_score: rand(1.0..5.0),
+#        logo_url: "http://www.nasa.gov/sites/default/files/sydney.b.boen/images/twitter-small(1).gifv"
+#        )
+
+# =================================================================================================================================
+  # if row.include?("^")
+  #   fixed_row = row.gsub!("^", ",")
+  #   puts fixed_row
+  # else
+  #   puts row
+  # end
+  
+# ============================================================================
+# ==================== QUERY PROGRAMMABLE WEB API ============================
+# ============================================================================
+
+# require 'rest_client'
+# require 'json'
+# response = RestClient.get 'http://www.programmableweb.com/pw-api/views/query_apis', {
+#   :params => { 
+#     'api-key' => 'NM2UJn3mhn2WgG9tLd3zTFG7sd8jdw9G', 
+#     'display_id' => 'api', 
+#     'limit' => 20
+#   }
+# }
+# json_response = Hash.from_xml(response)
+# api_array = json_response["result"]["item"]
+
+# ********************************************************
+# **************** API ATTRIBUTES ************************
+# ********************************************************
+
+# titles = api_array.map do |api|
+#   title = api["title"]
+#   if title.include?(",")
+#     title.gsub!(",", "^")
+#   end
+#   title
+# end
+
+# descriptions = api_array.map do |api|
+#   desc = api["field_api_description"]["und"]["item"]["value"]
+#   if desc == nil
+#     desc = "description unavailable"
+#   else
+#     if desc.include?(",")
+#       desc.gsub!(",", "^")
+#     end 
+#     desc = desc.gsub(/[\n]/, " ")
+#   end 
+# end
 
 # key_required = json_response["result"]["item"][0]["field_api_developer_key_required"]["und"]["item"]["value"]
 # documentation = json_response["result"]["item"][0]["field_api_documentation"]["und"]["item"]["value"]
@@ -83,15 +83,62 @@ end
 # terms_of_service = json_response["result"]["item"][0]["field_api_terms_of_service"]["und"]["item"]["value"]
 # usage_limits = json_response["result"]["item"][0]["field_api_usage_limits"]["und"]["item"]["value"]
 # image_url = users can add this / use the scrape logo API
-# ********************************************************
-puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-puts api_array.length
-puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
-# print descriptions
-# puts
-puts "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 
-CSV.open("database.csv", "wb") do |csv|
-  csv << titles
-  csv << descriptions
-end
+# ********************************************************
+# ********************************************************
+
+
+# puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+# puts api_array.length
+# puts titles.length
+# puts descriptions.length
+# puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+# # print descriptions
+# # puts
+# puts "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+
+# CSV.open("database.csv", "wb") do |csv| # change this so that new rows of attributes are appended (ab)
+#   csv << titles
+#   csv << descriptions
+# end
+
+
+# //////////////////////////////////////////////////////////////////////
+# ////////////////////// FAKE SEED DATA ////////////////////////////////
+# //////////////////////////////////////////////////////////////////////
+
+# 20.times {
+#   user = User.new(email: Faker::Internet.email,
+#           about_me: Faker::Lorem.sentence(3),
+#           picture_url: 'http://www.chadcreates.com/wp-content/uploads/2009/05/People-128.png'
+#           )
+#   user.password = Faker::Internet.password
+#   user.save
+# }
+
+# 50.times {
+#   review = Review.create(score: rand(1..5),
+#                  content: Faker::Lorem.sentence(3),
+#                    title: Faker::Lorem.word)
+
+#   api = Api.find(rand(1..10))
+#   user = User.find(rand(1..20))
+#   api.reviews << review
+#   user.reviews << review
+# }
+
+# 100.times {
+#   vote = Vote.create()
+#   user = User.find(rand(1..20))
+#   review = Review.find(rand(1..50))
+#   user.votes << vote
+#   review.votes << vote
+# }
+
+# 100.times {
+#   comment = Comment.create(content: Faker::Lorem.sentence(3))
+#   user = User.find(rand(1..20))
+#   review = Review.find(rand(1..50))
+#   user.comments << comment
+#   review.comments << comment
+# }
