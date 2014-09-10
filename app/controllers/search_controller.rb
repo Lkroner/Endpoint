@@ -6,7 +6,7 @@ class SearchController < ApplicationController
   # get '/search'
   def search
     pg_apis = PgSearch.multisearch(params[:input])
-  	if !(pg_apis.empty?)
+    if !(pg_apis.empty?)
       apis = []
       pg_apis.each do |api|
         api_db = Api.find(api.id)
@@ -16,10 +16,10 @@ class SearchController < ApplicationController
         apis << api_hash
       end
 
-  		render json: {apis: apis}.to_json
-  	else
-  		render status: :unprocessable_entity, json: { errors: pg_apis.errors }.to_json
-  	end
+      render json: {apis: apis}.to_json
+    else
+      render status: :unprocessable_entity, json: { errors: pg_apis.errors }.to_json
+    end
   end
 
 end
