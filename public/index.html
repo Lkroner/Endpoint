@@ -183,9 +183,9 @@
         <img src=<%= logo_url %>>
         <ul>
           <li><h3><%= title %></h3></li>
-          <li><p><%= description %></p></li>
+          <li><p>Description: <%= description %></p></li>
         </ul>
-        <div><h2><%= average_score %></h2></div>
+        <div><h2><%=Math.round(average_score*20)%>%</h2></div>
       </div>
       <div class="tab-pane" id="tab2">
         <ul>
