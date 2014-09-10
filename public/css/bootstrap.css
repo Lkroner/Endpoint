@@ -4982,7 +4982,7 @@ a.list-group-item-danger.active:focus {
   border-color: #a94442;
 }
 .list-group-item-heading {
-  margin-top: 0;
+  margin-top: 5%;
   margin-bottom: 5px;
 }
 .list-group-item-text {
