@@ -172,11 +172,8 @@ DEPENDENCIES
   pg_search
   rails (= 4.1.5)
   rails-api
-<<<<<<< HEAD:source/Gemfile.lock
   rest_client
-=======
   rails_12factor
->>>>>>> origin:Gemfile.lock
   rspec-rails (~> 3.0.0)
   selenium-webdriver
   spring
