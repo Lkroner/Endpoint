@@ -20,7 +20,8 @@ ActiveRecord::Schema.define(version: 20140907012035) do
     t.string   "title"
     t.text     "description"
     t.string   "tips"
-    t.string   "logo_url"
+    t.float    "average_score"
+    t.text     "logo_url"
     t.string   "key_required"
     t.string   "documentation"
     t.string   "endpoint_url"
@@ -31,7 +32,6 @@ ActiveRecord::Schema.define(version: 20140907012035) do
     t.string   "category"
     t.string   "terms_of_service"
     t.string   "usage_limits"
-    t.string   "image_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

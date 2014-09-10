@@ -29,9 +29,9 @@ api_attributes.each do |api|
     key_required: key_required,
     endpoint_url: endpoint_url,
     dev_homepage: dev_homepage,
-    category: category
-    logo_url: logo_url
-  )
+    category: category,
+    logo_url: logo_url,
+    )
 end
 
 # //////////////////////////////////////////////////////////////////////
