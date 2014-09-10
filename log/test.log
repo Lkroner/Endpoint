@@ -1,1 +1,248 @@
 
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (6.8ms)[0m  CREATE TABLE "apis" ("id" serial primary key, "title" character varying(255), "description" text, "tips" character varying(255), "logo_url" character varying(255), "key_required" character varying(255), "documentation" character varying(255), "endpoint_url" character varying(255), "dev_homepage" character varying(255), "sample_call" text, "sample_response" text, "dev_twitter_url" character varying(255), "category" character varying(255), "terms_of_service" character varying(255), "usage_limits" character varying(255), "image_url" character varying(255), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (2.8ms)[0m  [1mCREATE TABLE "comments" ("id" serial primary key, "content" character varying(255), "user_id" integer, "review_id" integer, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (2.5ms)[0m  CREATE TABLE "followings" ("id" serial primary key, "user_id" integer, "api_id" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (4.0ms)[0m  [1mCREATE TABLE "pg_search_documents" ("id" serial primary key, "content" text, "searchable_id" integer, "searchable_type" character varying(255), "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (4.4ms)[0m  CREATE TABLE "reviews" ("id" serial primary key, "score" integer, "content" character varying(255), "title" character varying(255), "api_id" integer, "user_id" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (3.5ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying(255), "password_hash" character varying(255), "about_me" character varying(255), "picture_url" character varying(255), "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (2.7ms)[0m  CREATE TABLE "votes" ("id" serial primary key, "user_id" integer, "review_id" integer, "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36m (1.1ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (1.6ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36m (0.3ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.9ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140907012035')
+  [1m[36m (1.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140904233716')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140904233723')
+  [1m[36m (0.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140904233726')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140904233729')
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140905001003')[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140905001507')
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.8ms)[0m  ALTER TABLE "apis" DISABLE TRIGGER ALL;ALTER TABLE "comments" DISABLE TRIGGER ALL;ALTER TABLE "followings" DISABLE TRIGGER ALL;ALTER TABLE "pg_search_documents" DISABLE TRIGGER ALL;ALTER TABLE "reviews" DISABLE TRIGGER ALL;ALTER TABLE "users" DISABLE TRIGGER ALL;ALTER TABLE "votes" DISABLE TRIGGER ALL;ALTER TABLE "schema_migrations" DISABLE TRIGGER ALL
+  [1m[36m (1.7ms)[0m  [1mselect table_name from information_schema.views where table_schema = 'endpoint_me_test'[0m
+  [1m[35m (12.9ms)[0m  TRUNCATE TABLE "apis", "comments", "followings", "pg_search_documents", "reviews", "users", "votes" RESTART IDENTITY CASCADE;
+  [1m[36m (1.0ms)[0m  [1mALTER TABLE "apis" ENABLE TRIGGER ALL;ALTER TABLE "pg_search_documents" ENABLE TRIGGER ALL;ALTER TABLE "schema_migrations" ENABLE TRIGGER ALL;ALTER TABLE "comments" ENABLE TRIGGER ALL;ALTER TABLE "followings" ENABLE TRIGGER ALL;ALTER TABLE "reviews" ENABLE TRIGGER ALL;ALTER TABLE "users" ENABLE TRIGGER ALL;ALTER TABLE "votes" ENABLE TRIGGER ALL[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "apis"
+Processing by ApisController#create as HTML
+  Parameters: {"title"=>"hi", "description"=>"hi", "tips"=>"hi"}
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "apis" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"  [["created_at", "2014-09-10 19:04:37.185389"], ["updated_at", "2014-09-10 19:04:37.185389"]]
+  [1m[36mPgSearch::Document Load (0.4ms)[0m  [1mSELECT  "pg_search_documents".* FROM "pg_search_documents"  WHERE "pg_search_documents"."searchable_id" = $1 AND "pg_search_documents"."searchable_type" = $2 LIMIT 1[0m  [["searchable_id", 1], ["searchable_type", "Api"]]
+  [1m[35mApi Load (0.4ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "pg_search_documents" ("content", "created_at", "searchable_id", "searchable_type", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", " "], ["created_at", "2014-09-10 19:04:37.222855"], ["searchable_id", 1], ["searchable_type", "Api"], ["updated_at", "2014-09-10 19:04:37.222855"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_2
+Completed 200 OK in 43ms (Views: 0.1ms | ActiveRecord: 3.9ms)
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "apis"[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "apis" ("created_at", "description", "tips", "title", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-09-10 19:04:37.229891"], ["description", "hi"], ["tips", "hi"], ["title", "hi"], ["updated_at", "2014-09-10 19:04:37.229891"]]
+  [1m[35mPgSearch::Document Load (0.3ms)[0m  SELECT  "pg_search_documents".* FROM "pg_search_documents"  WHERE "pg_search_documents"."searchable_id" = $1 AND "pg_search_documents"."searchable_type" = $2 LIMIT 1  [["searchable_id", 2], ["searchable_type", "Api"]]
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "pg_search_documents" ("content", "created_at", "searchable_id", "searchable_type", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "hi hi"], ["created_at", "2014-09-10 19:04:37.233894"], ["searchable_id", 2], ["searchable_type", "Api"], ["updated_at", "2014-09-10 19:04:37.233894"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+Processing by ApisController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mApi Load (0.6ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "reviews"  WHERE "reviews"."api_id" = $1[0m  [["api_id", 2]]
+Completed 200 OK in 16ms (Views: 0.1ms | ActiveRecord: 2.6ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "apis" ("created_at", "description", "tips", "title", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["created_at", "2014-09-10 19:04:37.256247"], ["description", "hi"], ["tips", "hi"], ["title", "hi"], ["updated_at", "2014-09-10 19:04:37.256247"]]
+  [1m[35mPgSearch::Document Load (0.2ms)[0m  SELECT  "pg_search_documents".* FROM "pg_search_documents"  WHERE "pg_search_documents"."searchable_id" = $1 AND "pg_search_documents"."searchable_type" = $2 LIMIT 1  [["searchable_id", 3], ["searchable_type", "Api"]]
+  [1m[36mApi Load (0.3ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "pg_search_documents" ("content", "created_at", "searchable_id", "searchable_type", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "hi hi"], ["created_at", "2014-09-10 19:04:37.260007"], ["searchable_id", 3], ["searchable_type", "Api"], ["updated_at", "2014-09-10 19:04:37.260007"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "apis" SET "title" = $1, "updated_at" = $2 WHERE "apis"."id" = 3[0m  [["title", "meep"], ["updated_at", "2014-09-10 19:04:37.261625"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."email" = 'hi@gmial.com' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("about_me", "created_at", "email", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["about_me", "hiiiiii"], ["created_at", "2014-09-10 19:04:37.327476"], ["email", "hi@gmial.com"], ["updated_at", "2014-09-10 19:04:37.327476"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "comments" ("content", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["content", "hiiiii"], ["created_at", "2014-09-10 19:04:37.340728"], ["updated_at", "2014-09-10 19:04:37.340728"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "comments" SET "updated_at" = $1, "user_id" = $2 WHERE "comments"."id" = 1[0m  [["updated_at", "2014-09-10 19:04:37.344992"], ["user_id", 1]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_2
+Processing by CommentsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.5ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."email" = 'hi@gmial.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("about_me", "created_at", "email", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["about_me", "hiiiiii"], ["created_at", "2014-09-10 19:04:37.356651"], ["email", "hi@gmial.com"], ["updated_at", "2014-09-10 19:04:37.356651"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "reviews" ("content", "created_at", "title", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["content", "hiiiii"], ["created_at", "2014-09-10 19:04:37.363541"], ["title", "This API is almost as bad at PW's API"], ["updated_at", "2014-09-10 19:04:37.363541"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "reviews" SET "updated_at" = $1, "user_id" = $2 WHERE "reviews"."id" = 1[0m  [["updated_at", "2014-09-10 19:04:37.369103"], ["user_id", 2]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_2
+Processing by ReviewsController#index as HTML
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mReview Load (0.2ms)[0m  SELECT "reviews".* FROM "reviews"  WHERE "reviews"."user_id" = $1  [["user_id", 2]]
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 0.5ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "reviews" ("content", "created_at", "score", "title", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["content", "hiiiiii"], ["created_at", "2014-09-10 19:04:37.379711"], ["score", 4], ["title", "i'm a person"], ["updated_at", "2014-09-10 19:04:37.379711"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "reviews" SET "content" = $1, "updated_at" = $2 WHERE "reviews"."id" = 2[0m  [["content", "not hiiiiii"], ["updated_at", "2014-09-10 19:04:37.381853"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Processing by SearchController#index as HTML
+Completed 200 OK in 0ms (ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "apis" ("created_at", "description", "tips", "title", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", "2014-09-10 19:04:37.391335"], ["description", "hi"], ["tips", "hi"], ["title", "hi"], ["updated_at", "2014-09-10 19:04:37.391335"]]
+  [1m[36mPgSearch::Document Load (0.2ms)[0m  [1mSELECT  "pg_search_documents".* FROM "pg_search_documents"  WHERE "pg_search_documents"."searchable_id" = $1 AND "pg_search_documents"."searchable_type" = $2 LIMIT 1[0m  [["searchable_id", 4], ["searchable_type", "Api"]]
+  [1m[35mApi Load (0.5ms)[0m  SELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "pg_search_documents" ("content", "created_at", "searchable_id", "searchable_type", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "hi hi"], ["created_at", "2014-09-10 19:04:37.395844"], ["searchable_id", 4], ["searchable_type", "Api"], ["updated_at", "2014-09-10 19:04:37.395844"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_2
+Processing by SearchController#search as HTML
+  Parameters: {"input"=>"hi"}
+  [1m[36m (1.0ms)[0m  [1mSELECT COUNT(*) FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'hi' || ' '''))))[0m
+  [1m[35mPgSearch::Document Load (0.6ms)[0m  SELECT "pg_search_documents".*, ((ts_rank((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))), (to_tsquery('simple', ''' ' || 'hi' || ' ''')), 0))) AS pg_search_rank FROM "pg_search_documents"  WHERE (((to_tsvector('simple', coalesce("pg_search_documents"."content"::text, ''))) @@ (to_tsquery('simple', ''' ' || 'hi' || ' '''))))  ORDER BY pg_search_rank DESC, "pg_search_documents"."id" ASC
+  [1m[36mApi Load (0.2ms)[0m  [1mSELECT  "apis".* FROM "apis"  WHERE "apis"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "reviews"  WHERE "reviews"."api_id" = $1  [["api_id", 4]]
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 2.0ms)
+  [1m[36m (0.2ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "users"[0m
+Processing by UsersController#create as HTML
+  Parameters: {"email"=>"hi@gmail.com", "password"=>"hiiiiii", "about_me"=>"i'm a person"}
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_2
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'hi@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "password_hash", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-09-10 19:04:37.497880"], ["email", "hi@gmail.com"], ["password_hash", "$2a$10$PmH9t3byE4M5OBCGiBujIu.i9pvTn5xD1cpsdfSz/K5D3DbT3dtn6"], ["updated_at", "2014-09-10 19:04:37.497880"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 88ms (Views: 0.2ms | ActiveRecord: 0.9ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36m (0.2ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users"  WHERE "users"."email" = 'hi@gmail.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("about_me", "created_at", "email", "password_hash", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["about_me", "i'm a person"], ["created_at", "2014-09-10 19:04:37.589180"], ["email", "hi@gmail.com"], ["password_hash", "$2a$10$VFctXLYT0ORLHK5FWaox0OVVAQ0cdVyxsJsb8XcY29Bt/2J/OK8mC"], ["updated_at", "2014-09-10 19:04:37.589180"]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_2
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_2
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'hi@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("about_me", "created_at", "email", "password_hash", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["about_me", "i'm a person"], ["created_at", "2014-09-10 19:04:37.683805"], ["email", "hi@gmail.com"], ["password_hash", "$2a$10$j0oz82mkRHTQXxmitT7y6echJ.lXlcwa5bvGxuNV0O5THrWaCukQ."], ["updated_at", "2014-09-10 19:04:37.683805"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_2
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE ("users"."email" = 'meep' AND "users"."id" != 5) LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK TO SAVEPOINT active_record_2
+  [1m[36m (0.1ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  ROLLBACK
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "reviews" ("api_id", "content", "created_at", "score", "title", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["api_id", 1], ["content", "I had a mediocre experience"], ["created_at", "2014-09-10 19:04:38.114074"], ["score", 2], ["title", "it was OK"], ["updated_at", "2014-09-10 19:04:38.114074"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "votes" ("created_at", "review_id", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2014-09-10 19:04:38.125728"], ["review_id", 1], ["updated_at", "2014-09-10 19:04:38.125728"], ["user_id", 1]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "votes" SET "review_id" = $1, "updated_at" = $2 WHERE "votes"."id" = 1  [["review_id", 3], ["updated_at", "2014-09-10 19:04:38.129875"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+Processing by VotesController#index as HTML
+  Parameters: {"review_id"=>"3"}
+  [1m[35mReview Load (0.2ms)[0m  SELECT  "reviews".* FROM "reviews"  WHERE "reviews"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mVote Load (0.2ms)[0m  [1mSELECT "votes".* FROM "votes"  WHERE "votes"."review_id" = $1[0m  [["review_id", 3]]
+Completed 200 OK in 3ms (Views: 1.1ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.2ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_2
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'hi@gmial.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("about_me", "created_at", "email", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["about_me", "hiiiiii"], ["created_at", "2014-09-10 19:04:38.140878"], ["email", "hi@gmial.com"], ["updated_at", "2014-09-10 19:04:38.140878"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_2
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "reviews" ("api_id", "content", "created_at", "score", "title", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["api_id", 1], ["content", "I had a mediocre experience"], ["created_at", "2014-09-10 19:04:38.142750"], ["score", 2], ["title", "it was OK"], ["updated_at", "2014-09-10 19:04:38.142750"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_2
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "votes" ("created_at", "review_id", "updated_at", "user_id") VALUES ($1, $2, $3, $4) RETURNING "id"  [["created_at", "2014-09-10 19:04:38.144422"], ["review_id", 1], ["updated_at", "2014-09-10 19:04:38.144422"], ["user_id", 6]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 4]]
+Processing by VotesController#create as HTML
+  Parameters: {"user_id"=>"6", "review_id"=>"4"}
+  [1m[36mReview Load (0.3ms)[0m  [1mSELECT  "reviews".* FROM "reviews"  WHERE "reviews"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mVote Load (0.3ms)[0m  [1mSELECT  "votes".* FROM "votes"  WHERE "votes"."user_id" = $1 AND (id = NULL)  ORDER BY "votes"."id" ASC LIMIT 1[0m  [["user_id", 6]]
+  [1m[35mVote Load (0.3ms)[0m  SELECT  "votes".* FROM "votes"  WHERE "votes"."user_id" = $1 AND (review_id = 4)  ORDER BY "votes"."id" ASC LIMIT 1  [["user_id", 6]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "votes" ("created_at", "review_id", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["created_at", "2014-09-10 19:04:38.155098"], ["review_id", 4], ["updated_at", "2014-09-10 19:04:38.155098"]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 4]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_2[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "votes" SET "updated_at" = $1, "user_id" = $2 WHERE "votes"."id" = 3  [["updated_at", "2014-09-10 19:04:38.159028"], ["user_id", 6]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_2[0m
+Completed 200 OK in 13ms (Views: 0.2ms | ActiveRecord: 2.5ms)
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "votes"  WHERE "votes"."review_id" = $1  [["review_id", 4]]
+  [1m[36m (0.2ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
