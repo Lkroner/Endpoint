@@ -94,12 +94,6 @@ ENDPOINT.Routers = Backbone.Router.extend({
 			$("#login").toggleClass("hidden")
 			$("#sign-up").toggleClass("hidden")
 		}
-	},
-
-	toggleUserReview: function(){
-		if ($.cookie("user_id")){
-			
-		}
 	}
 
 });
