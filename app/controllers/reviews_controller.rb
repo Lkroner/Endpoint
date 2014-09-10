@@ -1,3 +1,4 @@
+require 'pp'
 class ReviewsController < ApplicationController
   # GET /apis/:api_id/reviews
   # GET /users/:user_id/reviews
@@ -12,6 +13,12 @@ class ReviewsController < ApplicationController
         review["comments"] = rev.comments
         reviews << review
       end
+      pp reviews
+      reviews.sort_by!{|rev_obj| rev_obj["votes"].count}
+      reviews.reverse!
+
+      # puts reviews = [rev: {votes: [], comments: []}}, rev: {votes: [], comments: []}]
+
       render json: {reviews: reviews}.to_json
     elsif params[:user_id]
         user = User.find(params[:user_id])
