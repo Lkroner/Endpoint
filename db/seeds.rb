@@ -22,6 +22,7 @@ api_attributes.each do |api|
   endpoint_url = api[3]
   dev_homepage = api[4]
   category = api[5]
+  logo_url = api[6]
   Api.create(
     title: title,
     description: description,
@@ -29,6 +30,7 @@ api_attributes.each do |api|
     endpoint_url: endpoint_url,
     dev_homepage: dev_homepage,
     category: category
+    logo_url: logo_url
   )
 end
 

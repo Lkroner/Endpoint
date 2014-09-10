@@ -11,7 +11,6 @@ gem 'spring', :group => :development
 gem 'pg'
 
 gem 'pg_search'
-
 gem 'faker'
 
 gem 'rails_12factor', group: :production
@@ -29,5 +28,6 @@ group :development, :test do
   gem 'database_cleaner'
   gem "rest_client"
   gem 'json'
+  gem  'metainspector'
 end
 
