@@ -8,6 +8,12 @@
 http://geekslovebacon.com/wp-content/uploads/2014/01/clean-white-polygon-backgrounds-8.jpg
 */
 
+.list-group-item-heading {
+  font-family: Montserrat, 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 25pt;
+  padding-bottom: 3%;
+
+}
 
 header {
   background-image: url('http://geekslovebacon.com/wp-content/uploads/2014/01/clean-white-polygon-backgrounds-8.jpg');
@@ -51,7 +57,8 @@ header {
 }
 .intro-text {
   padding-top: 20%;
-  padding-bottom: 18%;
+  padding-bottom: 10%;
+  /*margin-bottom: 18%*/
 }
 .navbar {
   background-color: white;
@@ -71,17 +78,12 @@ header {
 .navbar-default .navbar-nav > li > a {
   color: grey;
 }
+
 #search-list {
-  padding-top: 6%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 10%;
 }
-
-.tab-pane ul{
-  list-style: none;
-}
-.tab-content img {
-  float: left;
-}
-
 /*##Rating Template##*/
 .star-container {
   /*div containing the star-rating form*/
@@ -145,4 +147,13 @@ header {
   text-align: center;
   padding: 20px;
   display: block;
+}
+
+/*END Rating Templates*/
+
+.tab-pane ul{
+  list-style: none;
+}
+.tab-content img {
+  float: left;
 }
