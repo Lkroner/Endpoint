@@ -5,15 +5,18 @@ class Api < ActiveRecord::Base
   include PgSearch          
   multisearchable :against => [:title, :description]
     
-    def average_score
+  def average_score
+    average = 0
+    if self.reviews.count == 0
+      return average
+    else
       sum = 0
-      if self.reviews.length == 0
-        return 0
-      else
-        self.reviews.each do |review|
-          sum += review.score
-        end
-        return (sum/self.reviews.length)
+      self.reviews.each do |review|
+        sum += review.score
       end
+      average = (sum.to_f/self.reviews.count)
+    end
+    return average
   end
+  
 end

@@ -14,9 +14,11 @@ class ApisController < ApplicationController
   # GET '/apis/:id'
   def show
     api = Api.find(params[:id])
-    average_score = average_score(api)
     if api
-      render json: {api: api, average_score: average_score}.to_json
+      average_score = api.average_score
+      api_hash = {id: api.id, title: api.title, description: api.description, 
+                  tips: api.tips, logo_url: api.logo_url, average_score: average_score}
+      render json: {api: api_hash}.to_json
     else
       render status: :unprocessable_entity, json: { message: "#{params[:api_id]} is not a valid api id!" }.to_json
     end
