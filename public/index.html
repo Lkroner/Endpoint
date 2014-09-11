@@ -33,37 +33,37 @@
     <!-- Navigation Template -->
     <script id="navbar-template" type="text/template">
       <nav class="navbar navbar-default navbar-fixed-top">
-          <div class="container">
-              <!-- Brand and toggle get grouped for better mobile display -->
-              <div class="navbar-header page-scroll">
-                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                      <span class="sr-only">Toggle navigation</span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                  </button>
-                  <a class="navbar-brand page-scroll" href=" ">/endpoint</a>
-              </div>
-
-              <!-- Collect the nav links, forms, and other content for toggling -->
-              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                  <ul class="nav navbar-nav navbar-right">
-                      <li class="hidden">
-                          <a href="#page-top"></a>
-                      </li>
-                      <li>
-                          <a href ="" class="hidden page-scroll" id="login">Login</a>
-                      </li>
-                      <li>
-                          <a href= "" class="hidden page-scroll" id="sign-up">Sign Up</a>
-                      </li>
-                      <li>
-                        <a href ="" class="hidden page-scroll" id="logout">Logout</a>
-                      </li>
-                  </ul>
-              </div>
-              <!-- /.navbar-collapse -->
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href=" ">/endpoint</a>
           </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                  <a href="#page-top"></a>
+                </li>
+                <li>
+                  <a href ="" class="hidden page-scroll" id="login">Login</a>
+                </li>
+                <li>
+                  <a href= "" class="hidden page-scroll" id="sign-up">Sign Up</a>
+                </li>
+                <li>
+                  <a href ="" class="hidden page-scroll" id="logout">Logout</a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
           <!-- /.container-fluid -->
       </nav>
     </script>
@@ -230,8 +230,7 @@
 
   <!--  Api Profile Template -->
   <script id="apiprofile-template" type="text/template">
-  <div class="container api-trading-card">
-    <div class="container">
+    <div class="container api-trading-card">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#tab1" data-toggle="tab">Info</a></li>
         <li><a href="#tab2" data-toggle="tab">Tips & Tricks</a></li>
@@ -270,7 +269,6 @@
         </ul>
       </div>
     </div>
-  </div>
   </script>
 
   <!-- Api Reviews Template -->
@@ -331,13 +329,13 @@
           </div>
           <div class="col-md-1">
             <h6>
-              <% var d = new Date(rev.created_at) 
+              <% var d = new Date(rev.created_at)
               fragments = [
                   d.getDate(),
                   d.getMonth() + 1,
                   d.getFullYear()
-              ]; 
-              print(fragments.join('/')); %>  
+              ];
+              print(fragments.join('/')); %>
               </h6>
           </div>
           <div class="col-md-1">

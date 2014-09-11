@@ -3,16 +3,12 @@ ENDPOINT.Views.AdminView = Backbone.View.extend({
     "click #submit": "clickSubmit"
   },
 
-  initialize: function(){
-  },
-
   template: _.template($('#admin-template').html()),
 
   render: function() {
     this.$el.html(this.template());
   return this;
   },
-
 
   clickSubmit: function(){
     this.title = $("input[name='title']").val();
