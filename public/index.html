@@ -33,39 +33,98 @@
     <!-- Navigation Template -->
     <script id="navbar-template" type="text/template">
       <nav class="navbar navbar-default navbar-fixed-top">
-          <div class="container">
-              <!-- Brand and toggle get grouped for better mobile display -->
-              <div class="navbar-header page-scroll">
-                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                      <span class="sr-only">Toggle navigation</span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                  </button>
-                  <a class="navbar-brand page-scroll" href=" ">/endpoint</a>
-              </div>
-
-              <!-- Collect the nav links, forms, and other content for toggling -->
-              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                  <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                      <a href="#page-top"></a>
-                    </li>
-                    <li>
-                      <a href ="" class="hidden page-scroll" id="login">Login</a>
-                    </li>
-                    <li>
-                      <a href= "" class="hidden page-scroll" id="sign-up">Sign Up</a>
-                    </li>
-                    <li>
-                      <a href ="" class="hidden page-scroll" id="logout">Logout</a>
-                    </li>
-                  </ul>
-              </div>
-              <!-- /.navbar-collapse -->
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href=" ">/endpoint</a>
           </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                  <a href="#page-top"></a>
+                </li>
+                <li>
+                  <a href ="" class="hidden page-scroll" id="login">Login</a>
+                </li>
+                <li>
+                  <a href= "" class="hidden page-scroll" id="sign-up">Sign Up</a>
+                </li>
+                <li>
+                  <a href ="" class="hidden page-scroll" id="logout">Logout</a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
           <!-- /.container-fluid -->
       </nav>
+    </script>
+
+   <!-- Admin Page Template -->
+    <script id="admin-template" type="text/template">
+    <header>
+      <div class="adminpage">
+        <div>
+          <div class="col-md-4 col-md-offset-4">
+            <br>
+            <br>
+            <br>
+            <h2>Admin Page</h2>
+            <form class="form form-signup" role="form">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" name="title" class="form-control" placeholder="Title" />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" name="description" class="form-control" placeholder="Description" />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" name="tips" class="form-control" placeholder="Tips" />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" name="logo_url" class="form-control" placeholder="Logo_url" />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" name="dev_homepage" class="form-control" placeholder="Dev_homepage" />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" name="key_required" class="form-control" placeholder="Key_required" />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" name="endpoint_url" class="form-control" placeholder="Endpoint_url" />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" name="category" class="form-control" placeholder="Category" />
+                </div>
+              </div>
+              <a class="btn btn-sm btn-primary btn-block" role="button" id="submit">SUBMIT</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </header>
     </script>
 
     <!-- Home Page Template -->
@@ -88,7 +147,7 @@
 
    <!--  Signup Template -->
   <script id="signup-template" type="text/template">
-      <div class="container authentication" id="signup-template">
+      <div class="container" id="signup-template">
         <div class="row">
           <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-default">
@@ -112,27 +171,31 @@
   </script>
   <!--  Login Template -->
   <script id="login-template" type="text/template">
-    <div class="container authentication" id="signup-template">
-      <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <h5 class="text-center">LOGIN</h5>
-              <div class="errors"></div>
-                <form class="form form-login" role="form">
-                  <div class="form-group">
-                    <input type="text" name="email" class="form-control" placeholder="Email Address" />
-                  </div>
-                  <div class="form-group">
-                    <input type="password" name="password" class="form-control" placeholder="Password" />
-                    </div>
-                  <a class="btn btn-sm btn-primary btn-block" role="button" id="submit"> SUBMIT</a> 
-                </form>
-            </div>
+      <div class="container" id="signup-template">
+        <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                  <h5 class="text-center">LOGIN</h5>
+                  <div class="errors"></div>
+                    <form class="form form-login" role="form">
+                      <div class="form-group">
+                        <div class="input-group">
+                          <input type="text" name="email" class="form-control" placeholder="Email Address" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <input type="password" name="password" class="form-control" placeholder="Password" />
+                        </div>
+                      </div>
+                </div>
+                  <a class="btn btn-sm btn-primary btn-block" role="button" id="submit">
+                        SUBMIT</a> </form>
+              </div>
           </div>
         </div>
       </div>
-    </div>
   </script>
 
   <!--  Search Results Template -->
@@ -163,7 +226,6 @@
         </a>
       </div>
     </div>
-  </div>
 </script>
 
   <!--  Api Profile Template -->
@@ -212,36 +274,37 @@
   <!-- Api Reviews Template -->
   <script id="apireviews-template" type="text/template">
     <div class="container api-reviews">
-      <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab4" data-toggle="tab" id="reviews-list">Reviews</a></li>
-        <li><a href="#tab5" data-toggle="tab">Add a Review</a></li>
-      </ul>
-      <div class="tab-content">
-        <div class="tab-pane active" id="tab4"></div>
-        <div class="tab-pane" id="tab5">
-          <div class="feedback-form">
-            <form class="reviewSubmission" id="submit-review">
-              <span class="star-rating">
-                <input type="radio" name="score" value="1"><i></i>
-                <input type="radio" name="score" value="2"><i></i>
-                <input type="radio" name="score" value="3"><i></i>
-                <input type="radio" name="score" value="4"><i></i>
-                <input type="radio" name="score" value="5"><i></i>
-              </span><br>
-              <input type="text" name="title" placeholder="Title"><br>
-              <textarea rows="6" cols="100" name="content" placeholder="You're Review Here..."></textarea><br>
-              <input type="submit" value="Submit">
-            </form>
+      <div class="container">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#tab4" data-toggle="tab" id="reviews-list">Reviews</a></li>
+          <li><a href="#tab5" data-toggle="tab">Add a Review</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab4"></div>
+          <div class="tab-pane" id="tab5">
+            <div class="feedback-form">
+              <form class="reviewSubmission" id="submit-review">
+                <span class="star-rating">
+                  <input type="radio" name="score" value="1"><i></i>
+                  <input type="radio" name="score" value="2"><i></i>
+                  <input type="radio" name="score" value="3"><i></i>
+                  <input type="radio" name="score" value="4"><i></i>
+                  <input type="radio" name="score" value="5"><i></i>
+                </span><br>
+                <input type="text" name="title"><br>
+                <textarea rows="3" cols="50" name="content"></textarea><br>
+                <input type="submit" value="Submit">
+              </form>
+            </div>
+            <h4 class="feedback-success" style="display:none">Thank you for your feeback!</h4>
           </div>
-          <h4 class="feedback-success" style="display:none">Thank you for your feeback!</h4>
-        </div>
+      </div>
     </div>
   </script>
 
 
   <!--  End Template: Body Scripts -->
     <script id="singlereview-template" type="text/template">
-      <div class='single-review-box'>
         <div class="single-review row" data-id=<%=rev.id%>>
         <!-- start Laurens upvote area -->
           <div class="votes col-md-1">
@@ -266,13 +329,13 @@
           </div>
           <div class="col-md-1">
             <h6>
-              <% var d = new Date(rev.created_at) 
+              <% var d = new Date(rev.created_at)
               fragments = [
                   d.getDate(),
                   d.getMonth() + 1,
                   d.getFullYear()
-              ]; 
-              print(fragments.join('/')); %>  
+              ];
+              print(fragments.join('/')); %>
               </h6>
           </div>
           <div class="col-md-1">
@@ -282,7 +345,7 @@
 <!-- This row will be repeated for each comment on a review -->
         <div class="col-md-1">
         </div>
-        <div class="comment col-md-11">
+        <div class="col-md-11">
         <p>This area will contain reviews comments</p>
         </div>
         </div>
@@ -311,6 +374,7 @@
 <script src="javascripts/collections/search_results_collection.js"></script>
 <script src="javascripts/collections/reviews_collection.js"></script>
 <!-- LOAD VIEWS -->
+<script src="javascripts/views/admin_view.js"></script>
 <script src="javascripts/views/reviews_view.js"></script>
 <script src="javascripts/views/api_profile_view.js"></script>
 <script src="javascripts/views/homepage_view.js"></script>
