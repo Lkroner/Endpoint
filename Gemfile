@@ -22,11 +22,9 @@ group :development, :test do
   gem 'capybara'
   gem 'cucumber'
   gem 'jasmine-rails'
-  gem 'faker'
-  gem 'httparty'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
   gem 'json'
-  gem  'metainspector'
+  gem 'metainspector'
 end
 
