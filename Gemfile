@@ -26,7 +26,6 @@ group :development, :test do
   gem 'httparty'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
-  gem "rest_client"
   gem 'json'
   gem  'metainspector'
 end
