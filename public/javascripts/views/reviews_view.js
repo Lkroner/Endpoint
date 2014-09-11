@@ -37,6 +37,7 @@ ENDPOINT.Views.Review = Backbone.View.extend({
   },
 
   render: function(){
+    debugger
     var filledTemplate = this.template(this.model.attributes);
     this.$el.html(filledTemplate)
     return this;
