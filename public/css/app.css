@@ -36,24 +36,39 @@ header {
 #app-body {
   /*background-color: red;*/
   font-family: 'Helvetica Neue', Helvetica;
+  color: #555;
 }
 .authentication {
-  background-image: url('http://geekslovebacon.com/wp-content/uploads/2014/01/clean-white-polygon-backgrounds-8.jpg');
   background-position: center center;
   background-size: cover;
-/*  text-align: center;*/
   margin-top: 10%;
+}
+.category {
+  text-transform: uppercase;
 }
 .circle {
   border-radius: 50%;
-  border: gray 1px solid;
+  border: white 1px solid;
+  float: center;
   height: 75px;
-  margin-bottom: auto;
-  margin-left: 30%;
-  margin-top: 24%;
-  padding-left: 6%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25%;
+  padding-top: 2%;
+  text-align: center;
   width: 75px;
 }
+.circle[rating^='100'] {background-color: #cbfffc}
+.circle[rating^='9'] {background-color: #cbfffc}
+.circle[rating^='8'] {background-color: #cde3fe}
+.circle[rating^='7'] {background-color: #cde3fe}
+.circle[rating^='6'] {background-color: #e1c6ff}
+.circle[rating^='5'] {background-color: #e1c6ff}
+.circle[rating^='4'] {background-color: #f0b6cd}
+.circle[rating^='3'] {background-color: #f0b6cd}
+.circle[rating^='2'] {background-color: #ffbfcf}
+/*.circle[rating^='1'] {background-color: #142f20}*/
+.circle[rating^='0'] {background-color: #ffbfcf}
 
 .container header {
   margin-left: auto;
