@@ -156,7 +156,7 @@ header {
   margin-top: 10%;
 }
 .single-review {
-  padding: 2%;
+  /*padding: 2%;*/
 }
 .single-review p {
   padding-top: 2%;
@@ -166,6 +166,7 @@ header {
 }
 .single-review-box {
   border-bottom: 1px #ddd solid;
+  padding: 2%;
 }
 /*    ##Rating Template##    */
 .star-rating {
@@ -230,8 +231,8 @@ header {
 
 /*   END Rating Templates   */
 #tab1 img{
-  height: 20%;
-  width: 20%;
+/*  height: 20%;
+  width: 20%;*/
   padding: 2%;
 }
 .tab-pane ul{
@@ -248,4 +249,7 @@ header {
 .tab-content img {
   float: left;
   padding-top: 2%;
+}
+.title {
+  font-family: Montserrat, 'Helvetica-Neue', Helvetica, sans-serif;
 }
