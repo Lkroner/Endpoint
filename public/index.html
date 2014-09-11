@@ -328,7 +328,15 @@
           <div class="col-md-7">
           </div>
           <div class="col-md-1">
-            <h6><%= rev.created_at%></h6>
+            <h6>
+              <% var d = new Date(rev.created_at) 
+              fragments = [
+                  d.getDate(),
+                  d.getMonth() + 1,
+                  d.getFullYear()
+              ]; 
+              print(fragments.join('/')); %>  
+              </h6>
           </div>
           <div class="col-md-1">
           </div>
