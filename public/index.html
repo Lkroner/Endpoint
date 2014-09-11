@@ -33,38 +33,38 @@
     <!-- Navigation Template -->
     <script id="navbar-template" type="text/template">
       <nav class="navbar navbar-default navbar-fixed-top">
-          <div class="container">
-              <!-- Brand and toggle get grouped for better mobile display -->
-              <div class="navbar-header page-scroll">
-                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                      <span class="sr-only">Toggle navigation</span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                  </button>
-                  <a class="navbar-brand page-scroll" href=" ">/endpoint</a>
-              </div>
-
-              <!-- Collect the nav links, forms, and other content for toggling -->
-              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                  <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                      <a href="#page-top"></a>
-                    </li>
-                    <li>
-                      <a href ="" class="hidden page-scroll" id="login">Login</a>
-                    </li>
-                    <li>
-                      <a href= "" class="hidden page-scroll" id="sign-up">Sign Up</a>
-                    </li>
-                    <li>
-                      <a href ="" class="hidden page-scroll" id="logout">Logout</a>
-                    </li>
-                  </ul>
-              </div>
-              <!-- /.navbar-collapse -->
+        <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href=" ">/endpoint</a>
           </div>
-          <!-- /.container-fluid -->
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="hidden">
+                <a href="#page-top"></a>
+              </li>
+              <li>
+                <a href ="" class="hidden page-scroll" id="login">Login</a>
+              </li>
+              <li>
+                <a href= "" class="hidden page-scroll" id="sign-up">Sign Up</a>
+              </li>
+              <li>
+                <a href ="" class="hidden page-scroll" id="logout">Logout</a>
+              </li>
+            </ul>
+          </div>
+        <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
       </nav>
     </script>
 
@@ -109,16 +109,16 @@
     <!-- Home Page Template -->
     <script id="home-template" type="text/template">
       <header>
-          <div class="homepage">
-              <div class="intro-text">
-                  <div class="intro-heading">Welcome to endpoint!</div>
-                    <div class="intro-lead-in">API discovery network</div>
-                    <div class="form-group intro-heading">
-                      <input type="text" id="first-test" class="form-control" placeholder="What Api are you looking for?">
-                      <button id="search" class="btn btn-default">Search</button>
-                      <div id="search-error-message"></div>
-	                    </div>
+        <div class="homepage">
+          <div class="intro-text">
+            <div class="intro-heading">Welcome to endpoint!</div>
+            <div class="intro-lead-in">API discovery network</div>
+              <div class="form-group intro-heading">
+                <input type="text" id="first-test" class="form-control" placeholder="What Api are you looking for?">
+                <button id="search" class="btn btn-default">Search</button>
+                <div id="search-error-message"></div>
 	            </div>
+	          </div>
 	        </div>
         </div>
 	    </header>
@@ -126,31 +126,32 @@
 
    <!--  Signup Template -->
   <script id="signup-template" type="text/template">
-      <div class="container authentication" id="signup-template">
-        <div class="row">
-          <div class="col-md-4 col-md-offset-4">
-            <div class="panel panel-default">
-                <div class="authentication panel-body">
-                  <h5 class="text-center">SIGN UP</h5>
-                  <div class="errors"></div>
-                    <form class="form form-signup" role="form">
-                      <div class="form-group">
-                        <div class="input-group">
-                          <input type="text" id="email" name="email" class="form-control" placeholder="Email Address" />
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="input-group">
-                          <input type="password" name="password" id="password"class="form-control" placeholder="Password" />
-                        </div>
-                      </div>
+    <div class="container authentication" id="signup-template">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+          <div class="panel panel-default">
+            <div class="authentication panel-body">
+              <h5 class="text-center">SIGN UP</h5>
+              <div class="errors"></div>
+              <form class="form form-signup" role="form">
+                <div class="form-group">
+                  <div class="input-group">
+                    <input type="text" id="email" name="email" class="form-control" placeholder="Email Address" />
+                  </div>
                 </div>
-                  <a class="btn btn-sm btn-primary btn-block" role="button" id="submit">
-                        SUBMIT</a> </form>
+                <div class="form-group">
+                  <div class="input-group">
+                    <input type="password" name="password" id="password"class="form-control" placeholder="Password" />
+                  </div>
+                </div>
               </div>
+              <a class="btn btn-sm btn-primary btn-block" role="button" id="submit"> SUBMIT</a>
+              </form>
+            </div>
           </div>
         </div>
       </div>
+    </div>
   </script>
   <!--  Login Template -->
   <script id="login-template" type="text/template">
@@ -168,7 +169,7 @@
                   <div class="form-group">
                     <input type="password" name="password" class="form-control" placeholder="Password" />
                     </div>
-                  <a class="btn btn-sm btn-primary btn-block" role="button" id="submit"> SUBMIT</a> 
+                  <a class="btn btn-sm btn-primary btn-block" role="button" id="submit"> SUBMIT</a>
                 </form>
             </div>
           </div>
