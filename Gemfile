@@ -17,6 +17,7 @@ gem 'rails_12factor', group: :production
 
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'json'
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'capybara'
@@ -24,7 +25,6 @@ group :development, :test do
   gem 'jasmine-rails'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
-  gem 'json'
   gem 'metainspector'
 end
 
