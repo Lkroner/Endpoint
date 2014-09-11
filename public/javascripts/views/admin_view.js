@@ -30,6 +30,7 @@ ENDPOINT.Views.AdminView = Backbone.View.extend({
       data: thing
     }).done(function(data){
       console.log("finished!")
+      ENDPOINT.router.navigate("", true)
     })
   },
 })
