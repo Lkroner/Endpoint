@@ -185,6 +185,7 @@
         <img src=<%= logo_url %>>
         <ul>
           <li><h3><%= title %></h3></li>
+          <li><h5>(<%= category %>)</li>
           <li><p>Description: <%= description %></p></li>
         </ul>
         <div><h2><%=Math.round(average_score*20)%>%</h2></div>
@@ -192,7 +193,9 @@
       <div class="tab-pane" id="tab2">
         <ul>
           <li><h3><%= title %></h3></li>
-          <li>Tips Go Here...</li>
+          <li>Key Required? <%=key_required%></li>
+          <li>Endpoint Url: <%=endpoint_url%></li>
+          <li>Dev Homepage: <%=dev_homepage%></li>
         </ul>
       </div>
       <div class="tab-pane" id="tab3">

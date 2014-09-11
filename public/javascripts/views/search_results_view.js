@@ -2,7 +2,6 @@ ENDPOINT.Views.SearchResult = Backbone.View.extend({
   template: _.template($("#search-template").html()),
 
   render: function(){
-    debugger
     var filledTemplate = this.template(this.model.attributes);
     this.$el.html(filledTemplate)
     return this;
