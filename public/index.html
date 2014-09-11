@@ -130,17 +130,17 @@
     <!-- Home Page Template -->
     <script id="home-template" type="text/template">
       <header>
-          <div class="homepage">
-              <div class="intro-text">
-                  <div class="intro-heading">Welcome to endpoint!</div>
-                    <div class="intro-lead-in">API discovery network</div>
-                    <div class="form-group intro-heading">
-                      <input type="text" id="first-test" class="form-control" placeholder="What Api are you looking for?">
-                      <button id="search" class="btn btn-default">Search</button>
-                      <div id="search-error-message"></div>
-	                    </div>
-	            </div>
-	        </div>
+        <div class="homepage">
+          <div class="intro-text">
+            <div class="intro-heading ">Welcome to endpoint!</div>
+              <div class="intro-lead-in">API discovery network</div>
+              <div class="form-group intro-heading">
+                <input type="text" id="first-test" class="form-control" placeholder="What Api are you looking for?">
+                <button id="search" class="btn btn-default">Search</button>
+                <div id="search-error-message"></div>
+              </div>
+          </div>
+        </div>
         </div>
 	    </header>
     </script>
@@ -156,14 +156,10 @@
                   <div class="errors"></div>
                     <form class="form form-signup" role="form">
                       <div class="form-group">
-                        <div class="input-group">
                           <input type="text" id="email" name="email" class="form-control" placeholder="Email Address" />
-                        </div>
                       </div>
                       <div class="form-group">
-                        <div class="input-group">
                           <input type="password" name="password" id="password"class="form-control" placeholder="Password" />
-                        </div>
                       </div>
                 </div>
                   <a class="btn btn-sm btn-primary btn-block" role="button" id="submit">
@@ -209,25 +205,23 @@
       <div class="list-group">
         <a class="list-group-item">
           <div class="media col-md-2 col-sm-2 col-xs-2">
-            <div class="circle">
-              <div class="stars"></div>
-                <h3><%=Math.round(average_score*20)%> <small> % </small></h3>
+            <div class="circle stars" rating=<%=Math.round(average_score*20)%>>
+                <h3><%=Math.round(average_score*20)%> <small></small></h3>
               <div id="rate1"></div>
             </div>
           </div>
           <div class="list-title-text col-md-7 col-sm-10 col-sm-10">
-            <h4 class="list-group-item-heading">
+            <h4 class="list-group-item-heading title">
               <%= title %>
             </h4>
-            <p class="list-group-item-text">
+            <p class="hide-overflow list-group-item-text">
               <%= description %>
             </p>
           </div>
           <div class='review-count col-md-3'>
             <h3><%=review_count %></h3>
             <p>reviews</p>
-            <img src=<%=logo_url%>>
-            <h6><%=category%></h6>
+            <h5 class='category'><%=category%></h5>
           </div>
         </a>
       </div>
@@ -245,13 +239,21 @@
       </ul>
       <div class="tab-content">
       <div class="tab-pane active" id="tab1">
-        <img src=<%= logo_url %>>
+        <div class='col-md-1'>
+        <img src=<%= logo_url %> class='img'>
+        </div>
+        <div class='col-md-9'>
         <ul>
-          <li><h3><%= title %></h3></li>
-          <li><h5>(<%= category %>)</li>
+          <li><h3 class='title'><%= title %></h3></li>
+          <li class='category'><h5><%= category %></li>
           <li><p>Description: <%= description %></p></li>
         </ul>
-        <div><h2><%=Math.round(average_score*20)%>%</h2></div>
+        </div>
+        <div class='col-md-2'>
+          <div class='circle' rating=<%=Math.round(average_score*20)%>>
+            <h3><%=Math.round(average_score*20)%></h3>
+          </div>
+        </div>
       </div>
       <div class="tab-pane" id="tab2">
         <ul>

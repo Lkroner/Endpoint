@@ -36,24 +36,39 @@ header {
 #app-body {
   /*background-color: red;*/
   font-family: 'Helvetica Neue', Helvetica;
+  color: #555;
 }
 .authentication {
-  background-image: url('http://geekslovebacon.com/wp-content/uploads/2014/01/clean-white-polygon-backgrounds-8.jpg');
   background-position: center center;
   background-size: cover;
-/*  text-align: center;*/
   margin-top: 10%;
+}
+.category {
+  text-transform: uppercase;
 }
 .circle {
   border-radius: 50%;
-  border: gray 1px solid;
+  border: white 1px solid;
+  float: center;
   height: 75px;
-  margin-bottom: auto;
-  margin-left: 30%;
-  margin-top: 24%;
-  padding-left: 6%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25%;
+  padding-top: 2%;
+  text-align: center;
   width: 75px;
 }
+.circle[rating^='100'] {background-color: #cbfffc}
+.circle[rating^='9'] {background-color: #cbfffc}
+.circle[rating^='8'] {background-color: #cde3fe}
+.circle[rating^='7'] {background-color: #cde3fe}
+.circle[rating^='6'] {background-color: #e1c6ff}
+.circle[rating^='5'] {background-color: #e1c6ff}
+.circle[rating^='4'] {background-color: #f0b6cd}
+.circle[rating^='3'] {background-color: #f0b6cd}
+.circle[rating^='2'] {background-color: #ffbfcf}
+/*.circle[rating^='1'] {background-color: #142f20}*/
+.circle[rating^='0'] {background-color: #ffbfcf}
 
 .container header {
   margin-left: auto;
@@ -84,6 +99,7 @@ header {
   font-size: 70pt;
   font-weight: 700;
   text-align: center;
+  text-shadow: 1px 1px grey;
 }
 .intro-text {
   padding-top: 17%;
@@ -117,9 +133,22 @@ header {
 .navbar-default .navbar-nav > li > a {
   color: grey;
 }
+.hide-overflow {
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    width:100%;
+    display:block;
+}
 .review-count {
   text-align: center;
-  padding: 3%;
+  padding: 2%;
+}
+.review-count h6 {
+  /*max-width: 90%;*/
+  text-align: center;
+  text-transform: uppercase;
+  padding: 2%;
 }
 #search-list {
   margin-left: 5%;
@@ -127,7 +156,7 @@ header {
   margin-top: 10%;
 }
 .single-review {
-  padding: 2%;
+  /*padding: 2%;*/
 }
 .single-review p {
   padding-top: 2%;
@@ -137,6 +166,7 @@ header {
 }
 .single-review-box {
   border-bottom: 1px #ddd solid;
+  padding: 2%;
 }
 /*    ##Rating Template##    */
 .star-rating {
@@ -201,8 +231,8 @@ header {
 
 /*   END Rating Templates   */
 #tab1 img{
-  height: 20%;
-  width: 20%;
+/*  height: 20%;
+  width: 20%;*/
   padding: 2%;
 }
 .tab-pane ul{
@@ -219,4 +249,7 @@ header {
 .tab-content img {
   float: left;
   padding-top: 2%;
+}
+.title {
+  font-family: Montserrat, 'Helvetica-Neue', Helvetica, sans-serif;
 }
