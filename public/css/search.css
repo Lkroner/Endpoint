@@ -21,8 +21,8 @@ a.list-group-item {
 }
 
 a.list-group-item:hover, a.list-group-item:focus {
-    border-left:10px solid #EBD6F5;
-    border-right:10px solid #EBD6F5;
+    border-left:10px solid #ccc;
+    border-right:10px solid #ccc;
 }
 
 a.list-group-item {
