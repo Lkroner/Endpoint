@@ -99,6 +99,7 @@ header {
   font-size: 70pt;
   font-weight: 700;
   text-align: center;
+  text-shadow: 1px 1px grey;
 }
 .intro-text {
   padding-top: 17%;
@@ -132,9 +133,22 @@ header {
 .navbar-default .navbar-nav > li > a {
   color: grey;
 }
+.hide-overflow {
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    width:100%;
+    display:block;
+}
 .review-count {
   text-align: center;
-  padding: 3%;
+  padding: 2%;
+}
+.review-count h6 {
+  /*max-width: 90%;*/
+  text-align: center;
+  text-transform: uppercase;
+  padding: 2%;
 }
 #search-list {
   margin-left: 5%;
