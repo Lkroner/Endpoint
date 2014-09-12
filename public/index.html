@@ -234,38 +234,30 @@
       <ul class="nav nav-tabs">
         <li class="active"><a href="#tab1" data-toggle="tab">Info</a></li>
         <li><a href="#tab2" data-toggle="tab">Tips & Tricks</a></li>
-        <li><a href="#tab3" data-toggle="tab">Endpoints</a></li>
       </ul>
       <div class="tab-content">
       <div class="tab-pane active" id="tab1">
-        <div class='col-md-1'>
-        <img src=<%= logo_url %> class='img'>
-        </div>
-        <div class='col-md-9'>
-        <ul>
-          <li><h3 class='title'><%= title %></h3></li>
-          <li class='category'><h5><%= category %></li>
-          <li><p>Description: <%= description %></p></li>
-        </ul>
-        </div>
         <div class='col-md-2'>
-          <div class='circle' rating=<%=Math.round(average_score*20)%>>
+          <div class='big-circle' rating=<%=Math.round(average_score*20)%>>
             <h3><%=Math.round(average_score*20)%></h3>
           </div>
+        </div>
+        <div class='col-md-10'>
+          <div>
+          <img src=<%= logo_url %> class='img'>
+          </div>
+          <ul>
+            <li><h3 class='title'><%= title %></h3></li>
+            <li class='category'><h5><%= category %></li>
+            <li><p>Description: <%= description %></p></li>
+          </ul>
         </div>
       </div>
       <div class="tab-pane" id="tab2">
         <ul>
-          <li><h3><%= title %></h3></li>
-          <li>Key Required? <%=key_required%></li>
-          <li>Endpoint Url: <%=endpoint_url%></li>
-          <li>Dev Homepage: <%=dev_homepage%></li>
-        </ul>
-      </div>
-      <div class="tab-pane" id="tab3">
-        <ul>
-          <li><h3><%= title %></h3></li>
-          <li>Endpoints Go Here...</li>
+          <li><h4>Key Required?</h4><p><%=key_required%></p></li>
+          <li><h4>Endpoint Url:</h4><p><%=endpoint_url%></p></li>
+          <li><h4>Dev Homepage:</h4><p><%=dev_homepage%></p></li>
         </ul>
       </div>
     </div>
@@ -306,14 +298,12 @@
   <!--  End Template: Body Scripts -->
     <script id="singlereview-template" type="text/template">
         <div class="single-review row" data-id=<%=rev.id%>>
-        <!-- start Laurens upvote area -->
           <div class="votes col-md-1">
           <button type="button" class="btn btn-default btn-lg">
             <span id="votes" class="glyphicon glyphicon-chevron-up"></span>
           </button>
-            <h4><span class="vote-count"> <%=votes.length%> votes</span></h4>
+            <h4><span class="vote-count"><%=votes.length%> votes</span></h4>
           </div>
-        <!-- end Laurens upvote area -->
           <div class="col-md-11">
             <h3><%=rev.title%></h3>
             <p><%=rev.content%></p>
@@ -323,7 +313,6 @@
           <div class="col-md-1">
           </div>
           <div class="col-md-2">
-            <h5><a href="" class="comment-toggler">Show comments</a></h5>
           </div>
           <div class="col-md-7">
           </div>
@@ -338,16 +327,6 @@
               print(fragments.join('/')); %>
               </h6>
           </div>
-          <div class="col-md-1">
-          </div>
-        </div>
-        <div class="row comment-area" style="display:none">
-<!-- This row will be repeated for each comment on a review -->
-        <div class="col-md-1">
-        </div>
-        <div class="col-md-11">
-        <p>This area will contain reviews comments</p>
-        </div>
         </div>
       </div>
     </script>
