@@ -43,7 +43,20 @@ header {
   background-size: cover;
   margin-top: 10%;
 }
+.big-circle {
+  border-radius: 50%;
+  border: white 1px solid;
+  float: center;
+  height: 125px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20%;
+  padding-top: 19%;
+  text-align: center;
+  width: 125px;
+}
 .category {
+  font-weight: 400;
   text-transform: uppercase;
 }
 .circle {
@@ -69,6 +82,18 @@ header {
 .circle[rating^='2'] {background-color: #ffbfcf}
 /*.circle[rating^='1'] {background-color: #142f20}*/
 .circle[rating^='0'] {background-color: #ffbfcf}
+
+.big-circle[rating^='100'] {background-color: #cbfffc}
+.big-circle[rating^='9'] {background-color: #cbfffc}
+.big-circle[rating^='8'] {background-color: #cde3fe}
+.big-circle[rating^='7'] {background-color: #cde3fe}
+.big-circle[rating^='6'] {background-color: #e1c6ff}
+.big-circle[rating^='5'] {background-color: #e1c6ff}
+.big-circle[rating^='4'] {background-color: #f0b6cd}
+.big-circle[rating^='3'] {background-color: #f0b6cd}
+.big-circle[rating^='2'] {background-color: #ffbfcf}
+/*.big-circle[rating^='1'] {background-color: #142f20}*/
+.big-circle[rating^='0'] {background-color: #ffbfcf}
 
 .container header {
   margin-left: auto;
