@@ -84,7 +84,8 @@ ENDPOINT.Views.Reviews = Backbone.View.extend({
 
       })
     } else {
-      alert("You have to be signed in to submit a review!")
+      ENDPOINT.router.navigate("login", true)
+      $(".errors").html("You must be logged in to write a review!")
     }
   }
 
