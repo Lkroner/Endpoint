@@ -29,7 +29,17 @@ class ReviewsController < ApplicationController
   # POST /apis/:api_id/reviews
   def create
     api = Api.find(params[:api_id])
-    review = api.reviews.create(score: params[:score], title: params[:title], content: params[:content])
-    render json: {review: review}.to_json
+    review = Review.new(score: params[:score], title: params[:title], content: params[:content])
+    if review.save
+      api.reviews << review
+      render json: {review: review}.to_json
+    else
+      errors = []
+      review.errors.messages.each do |property, message|
+        errors.concat(message)
+      end
+      render json: {errors: errors}
+    end
   end
+
 end
