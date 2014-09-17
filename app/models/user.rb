@@ -12,13 +12,12 @@ class User < ActiveRecord::Base
 	validates :email, format: { with: /@/, message: "Email format is incorrect"}
 
 
-	def password
-    	@password ||= Password.new(password_hash)
-  	end
-  	def password=(new_password)
-	    @password = Password.create(new_password)
-	    self.password_hash = @password
-  	end
+  def password
+   @password ||= Password.new(password_hash)
+  end
 
-
+  def password=(new_password)
+   @password = Password.create(new_password)
+   self.password_hash = @password
+  end
 end
