@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 20140907012035) do
 
   create_table "reviews", force: true do |t|
     t.integer  "score"
-    t.string   "content"
-    t.string   "title"
+    t.text     "content"
+    t.text     "title"
     t.integer  "api_id"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20140907012035) do
 
   create_table "users", force: true do |t|
     t.string   "email"
+    t.string   "username"
     t.string   "password_hash"
     t.string   "about_me"
     t.string   "picture_url"
