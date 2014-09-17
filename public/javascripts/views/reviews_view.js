@@ -66,10 +66,20 @@ ENDPOINT.Views.Reviews = Backbone.View.extend({
                       score: $("input[name='score']:checked").attr("value"), 
                       api_id: this.model.attributes.api_id};
     this.model.save(reviewData).done(function(data){
-      var url = "api/" + data.review.api_id;
-      ENDPOINT.router.navigate("", true)
-      ENDPOINT.router.navigate(url, true)
-    });
+      if (data.review){
+        var url = "api/" + data.review.api_id;
+        ENDPOINT.router.navigate("", true)
+        ENDPOINT.router.navigate(url, true)
+      } else if (data.errors){
+        errors = data.errors
+        errorsHTML = ""
+        for (var i = 0; i < errors.length; i++) {
+          errorsHTML += errors[i] + "<br>"
+        }
+        $(".errors").html(errorsHTML)
+      }
+
+    })
   }
 
 })
