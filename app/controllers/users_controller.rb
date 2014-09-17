@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # POST '/users'
   def create
-    @user = User.new(email: params[:email])
+    @user = User.new(email: params[:email], username: params[:username])
     @user.password = params[:password]
     if @user.save
       render json: {user: @user}.to_json
