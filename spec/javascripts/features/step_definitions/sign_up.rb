@@ -9,6 +9,7 @@ end
 
 Then(/^I should sign up$/) do
   fill_in 'email', :with => "bob.smith@gmail.com"
+  fill_in 'username', :with => "meep1111111"
   fill_in 'password', :with => "12345"
 end
 
