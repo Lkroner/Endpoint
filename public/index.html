@@ -159,6 +159,9 @@
                           <input type="text" id="email" name="email" class="form-control" placeholder="Email Address" />
                       </div>
                       <div class="form-group">
+                          <input type="text" id="username" name="username" class="form-control" placeholder="Username" />
+                      </div>
+                      <div class="form-group">
                           <input type="password" name="password" id="password"class="form-control" placeholder="Password" />
                       </div>
                 </div>
@@ -284,6 +287,7 @@
                 <textarea rows="3" cols="50" name="content" placeholder='Your review here'></textarea><br>
                 <input type="submit" value="Submit">
               </form>
+              <div class="errors"></div>
             </div>
             <h4 class="feedback-success" style="display:none">Thank you for your feeback!</h4>
           </div>
@@ -322,6 +326,7 @@
                   d.getFullYear()
               ];
               print(fragments.join('/')); %>
+              <%= user.username %>
               </h6>
           </div>
         </div>
