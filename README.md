@@ -1,10 +1,17 @@
 Endpoint
 ============
 
-API discovery. Helping developers find the API that fits.
+API discovery. Helping developers find the API that fits. You can rate, review, and leave tips and tricks on API's that you've used. Help make it easy to find and use your next API!
+
+This is a Rails API and Backbone.js application using a PostgreSQL database.
+
+Help Our Open Source Project: Be A Contributor!
+================
+
+Please checkout out our issues list if you'd like contribute. We have tasks ranging from small bugs/enhancements to full length features. 
 
 
-Team
+Original Team
 ============
 - Lauren Kroner: Chief WannaBe API Whisperer
 - Nina Church: Flow Guru
@@ -14,28 +21,4 @@ Team
 - Phillip Crawford: Our Sweet Vegan  
 
 
-User Stories
-============
-- As a user, I can sign-in/sign out with Github.
-- As a user, I can browse the site unless I want to add/rate content on it.
-- As a user, I can search for an API.
-- As a user, I can review and rate an API.
-- As a user, I can upvote a review.
-
-MVP
-============
-- Tips and Tricks
-- Trading card - summary
-- Review has comments
-- User profile
-
-Features
-============
-- Sort reviews
-- Sort search
-- Related APIs
-- List related stackoverflow
-- API experts: Endpoint Elite
-- Follow API
-- Spotlight API
 
